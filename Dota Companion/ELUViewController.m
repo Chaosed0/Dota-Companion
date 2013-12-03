@@ -8,7 +8,13 @@
 
 #import "ELUViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface ELUViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *cardView;
+- (IBAction)playButtonPressed:(UIBarButtonItem *)sender;
+
+@property double rotation;
 
 @end
 
@@ -17,7 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.rotation = 0.0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,4 +32,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
+    self.rotation += M_PI * 0.2;
+    CATransform3D rotationAndPerspective = CATransform3DIdentity;
+    rotationAndPerspective.m34 = 1.0 / - 1000.0;
+    rotationAndPerspective = CATransform3DRotate(rotationAndPerspective, self.rotation, 0.0, 1.0, 0.0);
+    [UIView animateWithDuration:0.5f animations:^{
+        self.cardView.layer.anchorPoint = CGPointMake(0.5, 0.5);
+        self.cardView.layer.transform = rotationAndPerspective;
+    } completion:^(BOOL complete){
+    }];
+}
 @end
