@@ -33,13 +33,14 @@
 }
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
-    self.rotation += M_PI * 0.2;
+    self.rotation += M_PI * 0.5;
     CATransform3D rotationAndPerspective = CATransform3DIdentity;
     rotationAndPerspective.m34 = 1.0 / - 1000.0;
     rotationAndPerspective = CATransform3DRotate(rotationAndPerspective, self.rotation, 0.0, 1.0, 0.0);
     [UIView animateWithDuration:0.5f animations:^{
         self.cardView.layer.anchorPoint = CGPointMake(0.5, 0.5);
         self.cardView.layer.transform = rotationAndPerspective;
+        self.cardView.frame = CGRectMake(320, self.view.frame.size.height/2.0 - self.cardView.image.size.height/2.0, 0, self.view.frame.size.height/2.0);
     } completion:^(BOOL complete){
     }];
 }
