@@ -12,11 +12,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="EMRAKUL.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MMh-WQ-8jk"/>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2i-6M-tCR">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="siq-Ur-HYm"/>
-                                </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="kRM-li-LRG"/>
                                     <barButtonItem systemItem="play" id="0fH-dp-dc1">
@@ -27,29 +23,29 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="2Hi-L1-eEc"/>
                                 </items>
                             </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WVz-4I-VAB" customClass="ELUCardView">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="MMh-WQ-8jk" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="9y1-Hz-0vb"/>
-                            <constraint firstItem="MMh-WQ-8jk" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="NcU-aA-ex3"/>
-                            <constraint firstItem="MMh-WQ-8jk" firstAttribute="bottom" secondItem="d2i-6M-tCR" secondAttribute="top" type="default" id="bt3-xy-aHI"/>
+                            <constraint firstItem="WVz-4I-VAB" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="8td-Oy-Ff0"/>
+                            <constraint firstItem="WVz-4I-VAB" firstAttribute="bottom" secondItem="d2i-6M-tCR" secondAttribute="top" type="default" id="NAB-bd-pmO"/>
                             <constraint firstItem="d2i-6M-tCR" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="dfW-fZ-gPA"/>
-                            <constraint firstItem="MMh-WQ-8jk" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="fgE-rn-VJi"/>
+                            <constraint firstItem="WVz-4I-VAB" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="jff-IH-fM0"/>
+                            <constraint firstItem="WVz-4I-VAB" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="pdo-o0-PRt"/>
                             <constraint firstItem="d2i-6M-tCR" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="pl3-Aa-vOf"/>
                             <constraint firstItem="d2i-6M-tCR" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="yj2-MR-LhK"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cardView" destination="MMh-WQ-8jk" id="uh0-6l-Ymg"/>
+                        <outlet property="cardView" destination="WVz-4I-VAB" id="uoI-ax-5MW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
-    <resources>
-        <image name="EMRAKUL.jpg" width="223" height="310"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

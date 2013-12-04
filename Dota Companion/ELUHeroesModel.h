@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class ELUHero;
+
 @interface ELUHeroesModel : NSObject
 
-- (id) initWithJsonFile: (NSString*) jsonFile;
+- (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings;
+- (NSUInteger) count;
+- (ELUHero*) heroAtIndex:(NSUInteger)index;
 
 @end

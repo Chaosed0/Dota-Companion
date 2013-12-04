@@ -10,7 +10,8 @@
 
 @interface eluUtil : NSObject
 
++ (NSDictionary*)parseDotaFile:(NSString*)dotaFileName;
 + (NSString*)resourcePathLoc:(NSString*)resource;
-+ (NSDictionary*)createThemeWithColor:(UIColor*)color andFont:(UIFont*) font;
++ (NSDictionary*)dotaStrings;
 
 @end

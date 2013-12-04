@@ -7,15 +7,50 @@
 //
 
 #import "ELUHeroesModel.h"
+#import "ELUHero.h"
+#import "eluUtil.h"
+
+#define kInitialCapacity 30
 
 @interface ELUHeroesModel ()
+
+@property (strong, nonatomic) NSArray *heroes;
 
 @end
 
 @implementation ELUHeroesModel
 
-- (id) initWithJsonFile: (NSString*) jsonFile {
-    
+- (NSArray*) fillHeroesFromDict: (NSDictionary*) heroesDict stringsDict: (NSDictionary*)dotaStrings {
+    NSMutableArray *heroes = [NSMutableArray arrayWithCapacity:kInitialCapacity];
+    for(NSString* heroID in heroesDict) {
+        if([heroID hasPrefix:@"npc_dota_hero_"] && ![heroID hasSuffix:@"base"]) {
+            //Valid hero, this is an NSDictionary
+            NSDictionary *heroInfo = heroesDict[heroID];
+            ELUHero *hero = [ELUHero heroFromDict:heroInfo heroID:heroID stringsDict:dotaStrings];
+            [heroes addObject:hero];
+        }
+    }
+    return heroes;
+}
+
+- (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings {
+    self = [super init];
+    if(self) {
+        NSDictionary *heroesDict = [eluUtil parseDotaFile:heroesFileName];
+        self.heroes = [self fillHeroesFromDict:heroesDict stringsDict:dotaStrings];
+    }
+    return self;
+}
+
+- (NSUInteger) count {
+    return [self.heroes count];
+}
+
+- (ELUHero*) heroAtIndex:(NSUInteger)index {
+    if(index >= self.count) {
+        return nil;
+    }
+    return [self.heroes objectAtIndex:index];
 }
 
 @end

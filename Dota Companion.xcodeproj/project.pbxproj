@@ -12,6 +12,8 @@
 		D44BACE7184FA61E00CD0C62 /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE4184FA61E00CD0C62 /* items.txt */; };
 		D44BACE8184FA61E00CD0C62 /* npc_abilities.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */; };
 		D44BACE9184FA61E00CD0C62 /* npc_heroes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */; };
+		D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */; };
+		D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430AD184E705A008BB0C5 /* eluUtil.m */; };
 		D4643080184E6E61008BB0C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D464307F184E6E61008BB0C5 /* UIKit.framework */; };
 		D4643082184E6E61008BB0C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4643081184E6E61008BB0C5 /* Foundation.framework */; };
 		D4643084184E6E61008BB0C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4643083184E6E61008BB0C5 /* CoreGraphics.framework */; };
@@ -37,6 +39,8 @@
 		D44BACE4184FA61E00CD0C62 /* items.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = items.txt; sourceTree = "<group>"; };
 		D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_abilities.txt; sourceTree = "<group>"; };
 		D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_heroes.txt; sourceTree = "<group>"; };
+		D44BACEA184FAA9900CD0C62 /* ELUHeroAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroAbility.h; sourceTree = "<group>"; };
+		D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroAbility.m; sourceTree = "<group>"; };
 		D464307C184E6E61008BB0C5 /* Dota Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D464307F184E6E61008BB0C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D4643081184E6E61008BB0C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +148,8 @@
 			children = (
 				D46430B3184E7FAC008BB0C5 /* ELUHero.h */,
 				D46430B4184E7FAD008BB0C5 /* ELUHero.m */,
+				D44BACEA184FAA9900CD0C62 /* ELUHeroAbility.h */,
+				D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */,
 				D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */,
 				D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */,
 			);
@@ -291,6 +297,8 @@
 				D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */,
 				D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */,
 				D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */,
+				D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */,
+				D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

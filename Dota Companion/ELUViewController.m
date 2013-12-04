@@ -6,15 +6,23 @@
 //  Copyright (c) 2013 EDWARD LU. All rights reserved.
 //
 
+#import "eluUtil.h"
 #import "ELUViewController.h"
+#import "ELUHeroesModel.h"
+#import "ELUCardView.h"
 
 #import <QuartzCore/QuartzCore.h>
 
+#define kHeroesFile @"npc_heroes.txt"
+
 @interface ELUViewController ()
-@property (weak, nonatomic) IBOutlet UIImageView *cardView;
-- (IBAction)playButtonPressed:(UIBarButtonItem *)sender;
+@property(strong, nonatomic) ELUHeroesModel *heroesModel;
 
 @property double rotation;
+@property NSUInteger currentHero;
+
+- (IBAction)playButtonPressed:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet ELUCardView *cardView;
 
 @end
 
@@ -24,16 +32,15 @@
 {
     [super viewDidLoad];
     self.rotation = 0.0;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.currentHero = 0;
+    self.heroesModel = [[ELUHeroesModel alloc] initWithHeroesFile:[eluUtil resourcePathLoc:kHeroesFile] stringsDict:[eluUtil dotaStrings]];
+    [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
 }
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
-    self.rotation += M_PI * 0.5;
+    self.currentHero++;
+    [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
+    /*self.rotation += M_PI * 0.5;
     CATransform3D rotationAndPerspective = CATransform3DIdentity;
     rotationAndPerspective.m34 = 1.0 / - 1000.0;
     rotationAndPerspective = CATransform3DRotate(rotationAndPerspective, self.rotation, 0.0, 1.0, 0.0);
@@ -42,6 +49,6 @@
         self.cardView.layer.transform = rotationAndPerspective;
         self.cardView.frame = CGRectMake(320, self.view.frame.size.height/2.0 - self.cardView.image.size.height/2.0, 0, self.view.frame.size.height/2.0);
     } completion:^(BOOL complete){
-    }];
+    }];*/
 }
 @end
