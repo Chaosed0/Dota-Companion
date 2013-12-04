@@ -105,17 +105,17 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
             stop = true;
         }
         (*loc)++;
-        if(!stop) {
-            if(*loc >= bufferLen) {
-                *loc = 0;
-                *start += bufferLen;
-                if(*start + bufferLen < string.length) {
-                    [string getCharacters:(*buffer) range: NSMakeRange((*start), bufferLen)];
-                } else {
-                    [string getCharacters:(*buffer) range: NSMakeRange((*start), string.length - *start)];
-                    (*buffer)[string.length - *start + 1] = '\0';
-                }
+        if(*loc >= bufferLen) {
+            *loc = 0;
+            *start += bufferLen;
+            if(*start + bufferLen < string.length) {
+                [string getCharacters:(*buffer) range: NSMakeRange((*start), bufferLen)];
+            } else {
+                [string getCharacters:(*buffer) range: NSMakeRange((*start), string.length - *start)];
+                (*buffer)[string.length - *start + 1] = '\0';
             }
+        }
+        if(!stop) {
             if(recurse) {
                 value = [eluUtil parseStrings:string curBuffer:buffer bufferStart:start bufferLen:bufferLen bufferLoc:loc];
                [result setValue:value forKey:key];
