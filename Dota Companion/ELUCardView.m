@@ -36,12 +36,26 @@
     self.heroNameLabel = [[UILabel alloc] init];
     self.heroImageView = [[UIImageView alloc] init];
     self.heroRolesLabel = [[UILabel alloc] init];
+    
+    [self addSubview:self.heroNameLabel];
+    [self addSubview:self.heroImageView];
+    [self addSubview:self.heroRolesLabel];
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) { }
+    if (self) {
+        [self baseInit];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if(self) {
+        [self baseInit];
+    }
     return self;
 }
 
@@ -49,7 +63,7 @@
     self.heroNameLabel.text = hero.name;
     self.heroRolesLabel.text = [hero.roles componentsJoinedByString:@" - "];
     self.heroImageView.image = hero.image_medium;
-    [self setNeedsLayout];
+    //[self setNeedsLayout];
 }
 
 - (void)layoutSubviews {
