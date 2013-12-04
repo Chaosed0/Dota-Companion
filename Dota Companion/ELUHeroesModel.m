@@ -22,7 +22,7 @@
 
 - (NSArray*) fillHeroesFromDict: (NSDictionary*) heroesDict stringsDict: (NSDictionary*)dotaStrings {
     NSMutableArray *heroes = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-    for(NSString* heroID in heroesDict) {
+    for(NSString* heroID in (NSDictionary*)heroesDict[@"DOTAHeroes"]) {
         if([heroID hasPrefix:@"npc_dota_hero_"] && ![heroID hasSuffix:@"base"]) {
             //Valid hero, this is an NSDictionary
             NSDictionary *heroInfo = heroesDict[heroID];
