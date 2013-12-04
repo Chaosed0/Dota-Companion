@@ -50,18 +50,6 @@
     <resources>
         <image name="EMRAKUL.jpg" width="223" height="310"/>
     </resources>
-    <classes>
-        <class className="ELUViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="playButtonPressed:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="cardView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

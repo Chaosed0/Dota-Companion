@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */; };
+		D44BACE3184FA60B00CD0C62 /* dota_english.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE2184FA60B00CD0C62 /* dota_english.txt */; };
+		D44BACE7184FA61E00CD0C62 /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE4184FA61E00CD0C62 /* items.txt */; };
+		D44BACE8184FA61E00CD0C62 /* npc_abilities.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */; };
+		D44BACE9184FA61E00CD0C62 /* npc_heroes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */; };
 		D4643080184E6E61008BB0C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D464307F184E6E61008BB0C5 /* UIKit.framework */; };
 		D4643082184E6E61008BB0C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4643081184E6E61008BB0C5 /* Foundation.framework */; };
 		D4643084184E6E61008BB0C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4643083184E6E61008BB0C5 /* CoreGraphics.framework */; };
@@ -26,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesModel.h; sourceTree = "<group>"; };
+		D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesModel.m; sourceTree = "<group>"; };
+		D44BACE2184FA60B00CD0C62 /* dota_english.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dota_english.txt; sourceTree = "<group>"; };
+		D44BACE4184FA61E00CD0C62 /* items.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = items.txt; sourceTree = "<group>"; };
+		D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_abilities.txt; sourceTree = "<group>"; };
+		D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_heroes.txt; sourceTree = "<group>"; };
 		D464307C184E6E61008BB0C5 /* Dota Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D464307F184E6E61008BB0C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D4643081184E6E61008BB0C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +79,86 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D44BACDA184FA4B300CD0C62 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D44BACE4184FA61E00CD0C62 /* items.txt */,
+				D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */,
+				D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */,
+				D44BACE2184FA60B00CD0C62 /* dota_english.txt */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		D44BACDB184FA4C100CD0C62 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				D46430AC184E705A008BB0C5 /* eluUtil.h */,
+				D46430AD184E705A008BB0C5 /* eluUtil.m */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		D44BACDC184FA4CE00CD0C62 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D46430AA184E6FB2008BB0C5 /* EMRAKUL.jpg */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		D44BACDD184FA4D700CD0C62 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				D44BACE1184FA51900CD0C62 /* Controllers */,
+				D44BACE0184FA51100CD0C62 /* Models */,
+				D44BACDF184FA4FD00CD0C62 /* Views */,
+				D44BACDE184FA4E800CD0C62 /* App */,
+				D44BACDB184FA4C100CD0C62 /* Misc */,
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
+		D44BACDE184FA4E800CD0C62 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D464308E184E6E62008BB0C5 /* ELUAppDelegate.h */,
+				D464308F184E6E62008BB0C5 /* ELUAppDelegate.m */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		D44BACDF184FA4FD00CD0C62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4643097184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard */,
+				D464309A184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard */,
+				D46430B0184E7EBB008BB0C5 /* ELUCardView.h */,
+				D46430B1184E7EBB008BB0C5 /* ELUCardView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D44BACE0184FA51100CD0C62 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D46430B3184E7FAC008BB0C5 /* ELUHero.h */,
+				D46430B4184E7FAD008BB0C5 /* ELUHero.m */,
+				D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */,
+				D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D44BACE1184FA51900CD0C62 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D464309D184E6E65008BB0C5 /* ELUViewController.h */,
+				D464309E184E6E65008BB0C5 /* ELUViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		D4643073184E6E5F008BB0C5 = {
 			isa = PBXGroup;
 			children = (
@@ -99,19 +190,9 @@
 		D4643085184E6E61008BB0C5 /* Dota Companion */ = {
 			isa = PBXGroup;
 			children = (
-				D46430AC184E705A008BB0C5 /* eluUtil.h */,
-				D46430AD184E705A008BB0C5 /* eluUtil.m */,
-				D46430AA184E6FB2008BB0C5 /* EMRAKUL.jpg */,
-				D464308E184E6E62008BB0C5 /* ELUAppDelegate.h */,
-				D464308F184E6E62008BB0C5 /* ELUAppDelegate.m */,
-				D46430B0184E7EBB008BB0C5 /* ELUCardView.h */,
-				D46430B1184E7EBB008BB0C5 /* ELUCardView.m */,
-				D46430B3184E7FAC008BB0C5 /* ELUHero.h */,
-				D46430B4184E7FAD008BB0C5 /* ELUHero.m */,
-				D4643097184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard */,
-				D464309A184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard */,
-				D464309D184E6E65008BB0C5 /* ELUViewController.h */,
-				D464309E184E6E65008BB0C5 /* ELUViewController.m */,
+				D44BACDD184FA4D700CD0C62 /* Code */,
+				D44BACDC184FA4CE00CD0C62 /* Assets */,
+				D44BACDA184FA4B300CD0C62 /* Data */,
 				D4643086184E6E62008BB0C5 /* Supporting Files */,
 			);
 			path = "Dota Companion";
@@ -190,6 +271,10 @@
 				D4643099184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				D464309C184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard in Resources */,
 				D46430AB184E6FB2008BB0C5 /* EMRAKUL.jpg in Resources */,
+				D44BACE3184FA60B00CD0C62 /* dota_english.txt in Resources */,
+				D44BACE7184FA61E00CD0C62 /* items.txt in Resources */,
+				D44BACE8184FA61E00CD0C62 /* npc_abilities.txt in Resources */,
+				D44BACE9184FA61E00CD0C62 /* npc_heroes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +290,7 @@
 				D464309F184E6E65008BB0C5 /* ELUViewController.m in Sources */,
 				D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */,
 				D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */,
+				D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +423,7 @@
 				D46430A4184E6E65008BB0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
