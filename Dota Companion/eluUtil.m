@@ -140,4 +140,8 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
     return dotaStringsDict;
 }
 
++ (void) logRect:(CGRect)rect {
+    NSLog(@"%g %g %g %g", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+}
+
 @end
