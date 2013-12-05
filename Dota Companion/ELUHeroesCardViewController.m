@@ -7,7 +7,7 @@
 //
 
 #import "eluUtil.h"
-#import "ELUViewController.h"
+#import "ELUHeroesCardViewController.h"
 #import "ELUHeroesModel.h"
 #import "ELUCardView.h"
 
@@ -15,7 +15,7 @@
 
 #define kHeroesFile @"npc_heroes.txt"
 
-@interface ELUViewController ()
+@interface ELUHeroesCardViewController ()
 @property(strong, nonatomic) ELUHeroesModel *heroesModel;
 
 @property double rotation;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation ELUViewController
+@implementation ELUHeroesCardViewController
 
 - (void)viewDidLoad
 {

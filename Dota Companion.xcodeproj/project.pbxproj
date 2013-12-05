@@ -25,7 +25,7 @@
 		D4643096184E6E62008BB0C5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4643095184E6E62008BB0C5 /* Default-568h@2x.png */; };
 		D4643099184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4643097184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard */; };
 		D464309C184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D464309A184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard */; };
-		D464309F184E6E65008BB0C5 /* ELUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D464309E184E6E65008BB0C5 /* ELUViewController.m */; };
+		D464309F184E6E65008BB0C5 /* ELUHeroesCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */; };
 		D46430AB184E6FB2008BB0C5 /* EMRAKUL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D46430AA184E6FB2008BB0C5 /* EMRAKUL.jpg */; };
 		D46430AF184E736C008BB0C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46430AE184E736C008BB0C5 /* QuartzCore.framework */; };
 		D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B1184E7EBB008BB0C5 /* ELUCardView.m */; };
@@ -57,8 +57,8 @@
 		D4643095184E6E62008BB0C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D4643098184E6E63008BB0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		D464309B184E6E65008BB0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		D464309D184E6E65008BB0C5 /* ELUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELUViewController.h; sourceTree = "<group>"; };
-		D464309E184E6E65008BB0C5 /* ELUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELUViewController.m; sourceTree = "<group>"; };
+		D464309D184E6E65008BB0C5 /* ELUHeroesCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELUHeroesCardViewController.h; sourceTree = "<group>"; };
+		D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesCardViewController.m; sourceTree = "<group>"; };
 		D46430AA184E6FB2008BB0C5 /* EMRAKUL.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EMRAKUL.jpg; sourceTree = "<group>"; };
 		D46430AC184E705A008BB0C5 /* eluUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eluUtil.h; sourceTree = "<group>"; };
 		D46430AD184E705A008BB0C5 /* eluUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eluUtil.m; sourceTree = "<group>"; };
@@ -163,8 +163,8 @@
 		D44BACE1184FA51900CD0C62 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D464309D184E6E65008BB0C5 /* ELUViewController.h */,
-				D464309E184E6E65008BB0C5 /* ELUViewController.m */,
+				D464309D184E6E65008BB0C5 /* ELUHeroesCardViewController.h */,
+				D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -306,7 +306,7 @@
 			files = (
 				D464308C184E6E62008BB0C5 /* main.m in Sources */,
 				D4643090184E6E62008BB0C5 /* ELUAppDelegate.m in Sources */,
-				D464309F184E6E65008BB0C5 /* ELUViewController.m in Sources */,
+				D464309F184E6E65008BB0C5 /* ELUHeroesCardViewController.m in Sources */,
 				D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */,
 				D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */,
 				D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */,
