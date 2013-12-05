@@ -12,8 +12,8 @@
 #import "AsyncImageView.h"
 
 #define kNumColumnsPerCategory 4
-#define kThumbWidth 29
-#define kThumbHeight 16
+#define kThumbWidth 59
+#define kThumbHeight 33
 #define kPadding 5.0
 
 static const NSString *kAttrPrefix = @"DOTA_Hero_Selection_";
@@ -60,6 +60,7 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
     
     [self fillHeroImageViews];
     [self.scrollView addSubview:self.heroImageViews];
+    self.scrollView.contentSize = self.heroImageViews.frame.size;
 }
 
 - (void) fillHeroImageViews {
@@ -93,7 +94,7 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
         curY += maxPoint.y;
     }
     
-    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (maxPoint.x + 2) + kThumbWidth * (maxPoint.x - 1), kPadding * (maxPoint.y + 2) + kThumbHeight * (maxPoint.y - 1));
+    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (maxPoint.x + 2) + kThumbWidth * (maxPoint.x), kPadding * (maxPoint.y + 2) + kThumbHeight * (maxPoint.y));
 }
 
 @end
