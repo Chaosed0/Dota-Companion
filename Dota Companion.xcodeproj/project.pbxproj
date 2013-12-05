@@ -35,6 +35,7 @@
 		D4A9865E1851142A00766D7E /* overviewicon_agi.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865B1851142A00766D7E /* overviewicon_agi.png */; };
 		D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865C1851142A00766D7E /* overviewicon_int.png */; };
 		D4A986601851142A00766D7E /* overviewicon_str.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865D1851142A00766D7E /* overviewicon_str.png */; };
+		D4A9866318511C9100766D7E /* ELUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9866218511C9000766D7E /* ELUConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,8 @@
 		D4A9865B1851142A00766D7E /* overviewicon_agi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_agi.png; sourceTree = "<group>"; };
 		D4A9865C1851142A00766D7E /* overviewicon_int.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_int.png; sourceTree = "<group>"; };
 		D4A9865D1851142A00766D7E /* overviewicon_str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_str.png; sourceTree = "<group>"; };
+		D4A9866118511C9000766D7E /* ELUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUConstants.h; sourceTree = "<group>"; };
+		D4A9866218511C9000766D7E /* ELUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				D46430AC184E705A008BB0C5 /* eluUtil.h */,
 				D46430AD184E705A008BB0C5 /* eluUtil.m */,
 				D4A9865A1851134D00766D7E /* Constants.h */,
+				D4A9866118511C9000766D7E /* ELUConstants.h */,
+				D4A9866218511C9000766D7E /* ELUConstants.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -333,6 +338,7 @@
 				D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */,
 				D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */,
 				D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */,
+				D4A9866318511C9100766D7E /* ELUConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

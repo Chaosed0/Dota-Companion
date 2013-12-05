@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 EDWARD LU. All rights reserved.
 //
 
-#import "eluUtil.h"
 #import "ELUHeroesCardViewController.h"
 #import "ELUHeroesModel.h"
 #import "ELUCardView.h"

@@ -8,22 +8,20 @@
 
 #import "ELUHeroesTableViewController.h"
 #import "ELUHeroesModel.h"
-#import "eluUtil.h"
 
 #define kNumColumnsPerCategory 4
 
 static const NSString *kAttrPrefix = @"DOTA_Hero_Selection_";
-static const NSString *kStrengthString = @"STR";
-static const NSString *kAgilityString = @"AGI";
-static const NSString *kIntelligenceString = @"INT";
 static const NSString *kStrIconFile = @"overviewicon_str.png";
 static const NSString *kAgiIconFile = @"overviewicon_agi.png";
 static const NSString *kIntIconFile = @"overviewicon_int.png";
 
 @interface ELUHeroesTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) NSArray *heroImageViews;
+
 @property (strong, nonatomic) UIImageView *strImageView;
 @property (strong, nonatomic) UIImageView *agiImageView;
 @property (strong, nonatomic) UIImageView *intImageView;
@@ -40,7 +38,9 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.heroesModel = [ELUHeroesModel sharedInstance];
+    
     self.strLabel = [[UILabel alloc] init];
     self.agiLabel = [[UILabel alloc] init];
     self.intLabel = [[UILabel alloc] init];
@@ -52,6 +52,11 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
     self.strLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kStrengthString]];
     self.agiLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kAgilityString]];
     self.intLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kIntelligenceString]];
+}
+
+- (void) fillHeroImageViews {
+    NSMutableArray *heroImageViews = [NSMutableArray arrayWithCapacity:self.heroesModel.count];
+    self.heroImageViews = heroImageViews;
 }
 
 @end

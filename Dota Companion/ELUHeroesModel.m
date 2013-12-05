@@ -8,7 +8,6 @@
 
 #import "ELUHeroesModel.h"
 #import "ELUHero.h"
-#import "eluUtil.h"
 
 #define kInitialCapacity 30
 
@@ -17,6 +16,7 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
 @interface ELUHeroesModel ()
 
 @property (strong, nonatomic) NSArray *heroes;
+@property (strong, nonatomic) NSDictionary *heroesByType;
 
 @end
 
@@ -30,8 +30,19 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
     return model;
 }
 
-- (NSArray*) fillHeroesFromDict: (NSDictionary*) heroesDict stringsDict: (NSDictionary*)dotaStrings {
+- (void) fillHeroesFromDict: (NSDictionary*) heroesDict stringsDict: (NSDictionary*)dotaStrings {
     NSMutableArray *heroes = [NSMutableArray arrayWithCapacity:kInitialCapacity];
+    NSMutableDictionary *heroesByType = [[NSMutableDictionary alloc] init];
+    
+    [heroesByType setValue:[NSMutableDictionary dictionary] forKey:kGoodTeamString];
+    [heroesByType setValue:[NSMutableDictionary dictionary] forKey:kBadTeamString];
+    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kStrengthString];
+    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kStrengthString];
+    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kAgilityString];
+    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kAgilityString];
+    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kIntelligenceString];
+    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kIntelligenceString];
+    
     NSDictionary *heroesDictHeroes = heroesDict[@"DOTAHeroes"];
     for(NSString* heroID in heroesDictHeroes) {
         if([heroID hasPrefix:@"npc_dota_hero_"] && ![heroID hasSuffix:@"base"]) {
@@ -39,22 +50,27 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
             NSDictionary *heroInfo = heroesDictHeroes[heroID];
             ELUHero *hero = [[ELUHero alloc] initWithDict:heroInfo heroID:heroID stringsDict:dotaStrings];
             [heroes addObject:hero];
+            [heroesByType[hero.isGood?kGoodTeamString:kBadTeamString][hero.primaryAttribute] addObject:hero];
         }
     }
-    return heroes;
+    self.heroes = heroes;
 }
 
 - (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings {
     self = [super init];
     if(self) {
         NSDictionary *heroesDict = [eluUtil parseDotaFile:heroesFileName];
-        self.heroes = [self fillHeroesFromDict:heroesDict stringsDict:dotaStrings];
+        [self fillHeroesFromDict:heroesDict stringsDict:dotaStrings];
     }
     return self;
 }
 
 - (NSUInteger) count {
     return [self.heroes count];
+}
+
+- (NSArray*) heroesForTeam:(NSString*)team primaryAttribute:(NSString*)primaryAttribute {
+    return self.heroesByType[team][primaryAttribute];
 }
 
 - (ELUHero*) heroAtIndex:(NSUInteger)index {

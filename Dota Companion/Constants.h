@@ -9,9 +9,4 @@
 #ifndef Dota_Companion_Constants_h
 #define Dota_Companion_Constants_h
 
-namespace Constants {
-
-}
-
-
 #endif

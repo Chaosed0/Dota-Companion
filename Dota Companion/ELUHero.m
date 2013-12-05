@@ -9,8 +9,9 @@
 #import "ELUHero.h"
 #import "eluUtil.h"
 
+static const NSString *kAttackString = @"AttackCapabilities";
+static const NSString *kPrimaryAttributeString = @"AttributePrimary";
 static const NSString *kMeleeString = @"DOTA_UNIT_CAP_MELEE_ATTACK";
-static const NSString *kRangeString = @"DOTA_UNIT_CAP_RANGED_ATTACK";
 static const NSString *kRolePrefix = @"DOTA_Hero_Selection_AdvFilter_";
 static const NSString *kRangedPrettyString = @"Attack_Ranged";
 static const NSString *kMeleePrettyString = @"Attack_Melee";
@@ -20,11 +21,15 @@ static const NSString *kMediumHeroImageSuffix = @"_hphover.png";
 static const NSString *kSmallHeroImageSuffix = @"_sb.png";
 static const NSString *kHeroPortraitImageSuffix = @"_vert.jpg";
 static const NSString *kheroIdPrefix = @"npc_dota_hero_";
+static const NSString *kTeamString = @"Team";
+static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
 
 @interface ELUHero ()
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *roles;
+@property BOOL isGood;
+@property (strong, nonatomic) NSString *primaryAttribute;
 @property (strong, nonatomic) NSURL *image_small_url;
 @property (strong, nonatomic) NSURL *image_medium_url;
 @property (strong, nonatomic) NSURL *image_large_url;
@@ -40,10 +45,12 @@ static const NSString *kheroIdPrefix = @"npc_dota_hero_";
         self.name = stringsDict[heroId];
         
         NSString *roleString = (NSString*)heroDict[@"Role"];
-        BOOL isMelee = [heroDict[@"AttackCapabilities"] isEqualToString:(NSString*)kMeleeString];
+        BOOL isMelee = [heroDict[kAttackString] isEqualToString:(NSString*)kMeleeString];
         
         NSArray *roles = [roleString componentsSeparatedByString:@","];
         self.roles = [self rolesFromArray:roles isMelee:isMelee stringsDict:stringsDict];
+        self.isGood = [heroDict[kTeamString] isEqualToString:(NSString*)kGoodTeamString];
+        self.primaryAttribute = [heroDict[kPrimaryAttributeString] substringFromIndex:kAttributePrefix.length];
         
         NSString *imageName = [heroId substringFromIndex:kheroIdPrefix.length];
         self.image_small_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kSmallHeroImageSuffix]];
