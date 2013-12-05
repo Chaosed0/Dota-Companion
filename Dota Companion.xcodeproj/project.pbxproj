@@ -31,6 +31,10 @@
 		D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B1184E7EBB008BB0C5 /* ELUCardView.m */; };
 		D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B4184E7FAD008BB0C5 /* ELUHero.m */; };
 		D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47CE8FA18500ED0005F95DA /* AsyncImageView.m */; };
+		D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */; };
+		D4A9865E1851142A00766D7E /* overviewicon_agi.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865B1851142A00766D7E /* overviewicon_agi.png */; };
+		D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865C1851142A00766D7E /* overviewicon_int.png */; };
+		D4A986601851142A00766D7E /* overviewicon_str.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865D1851142A00766D7E /* overviewicon_str.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +73,12 @@
 		D46430B4184E7FAD008BB0C5 /* ELUHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHero.m; sourceTree = "<group>"; };
 		D47CE8F918500ED0005F95DA /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		D47CE8FA18500ED0005F95DA /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
+		D4A9865418510E2500766D7E /* ELUHeroesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesTableViewController.h; sourceTree = "<group>"; };
+		D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesTableViewController.m; sourceTree = "<group>"; };
+		D4A9865A1851134D00766D7E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D4A9865B1851142A00766D7E /* overviewicon_agi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_agi.png; sourceTree = "<group>"; };
+		D4A9865C1851142A00766D7E /* overviewicon_int.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_int.png; sourceTree = "<group>"; };
+		D4A9865D1851142A00766D7E /* overviewicon_str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_str.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,7 @@
 				D47CE8F818500ED0005F95DA /* AsyncImageView */,
 				D46430AC184E705A008BB0C5 /* eluUtil.h */,
 				D46430AD184E705A008BB0C5 /* eluUtil.m */,
+				D4A9865A1851134D00766D7E /* Constants.h */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -110,6 +121,9 @@
 		D44BACDC184FA4CE00CD0C62 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D4A9865B1851142A00766D7E /* overviewicon_agi.png */,
+				D4A9865C1851142A00766D7E /* overviewicon_int.png */,
+				D4A9865D1851142A00766D7E /* overviewicon_str.png */,
 				D46430AA184E6FB2008BB0C5 /* EMRAKUL.jpg */,
 			);
 			name = Assets;
@@ -165,6 +179,8 @@
 			children = (
 				D464309D184E6E65008BB0C5 /* ELUHeroesCardViewController.h */,
 				D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */,
+				D4A9865418510E2500766D7E /* ELUHeroesTableViewController.h */,
+				D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -294,6 +310,9 @@
 				D44BACE7184FA61E00CD0C62 /* items.txt in Resources */,
 				D44BACE8184FA61E00CD0C62 /* npc_abilities.txt in Resources */,
 				D44BACE9184FA61E00CD0C62 /* npc_heroes.txt in Resources */,
+				D4A9865E1851142A00766D7E /* overviewicon_agi.png in Resources */,
+				D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */,
+				D4A986601851142A00766D7E /* overviewicon_str.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +332,7 @@
 				D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */,
 				D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */,
 				D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */,
+				D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

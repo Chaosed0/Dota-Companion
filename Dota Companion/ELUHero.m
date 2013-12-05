@@ -15,14 +15,20 @@ static const NSString *kRolePrefix = @"DOTA_Hero_Selection_AdvFilter_";
 static const NSString *kRangedPrettyString = @"Attack_Ranged";
 static const NSString *kMeleePrettyString = @"Attack_Melee";
 static const NSString *kBaseImageURL = @"http://cdn.dota2.com/apps/dota2/images/heroes/";
+static const NSString *kFullHeroImageSuffix = @"_full";
+static const NSString *kMediumHeroImageSuffix = @"_hphover";
+static const NSString *kSmallHeroImageSuffix = @"_sb";
+static const NSString *kHeroPortraitImageSuffix = @"_vert";
 static const NSString *kheroIdPrefix = @"npc_dota_hero_";
 
 @interface ELUHero ()
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSArray *roles;
+@property (strong, nonatomic) NSURL *image_small_url;
 @property (strong, nonatomic) NSURL *image_medium_url;
 @property (strong, nonatomic) NSURL *image_large_url;
+@property (strong, nonatomic) NSURL *image_portrait_url;
 
 @end
 
@@ -40,9 +46,10 @@ static const NSString *kheroIdPrefix = @"npc_dota_hero_";
         self.roles = [self rolesFromArray:roles isMelee:isMelee stringsDict:stringsDict];
         
         NSString *imageName = [heroId substringFromIndex:kheroIdPrefix.length];
-        NSString *imageURL = [NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, @"_full.png"];
-        self.image_medium_url = [NSURL URLWithString:imageURL];
-        self.image_large_url = [NSURL URLWithString:@""];
+        self.image_small_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kSmallHeroImageSuffix]];
+        self.image_medium_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kMediumHeroImageSuffix]];
+        self.image_large_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kFullHeroImageSuffix]];
+        self.image_portrait_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kHeroPortraitImageSuffix]];
     }
     return self;
 }
