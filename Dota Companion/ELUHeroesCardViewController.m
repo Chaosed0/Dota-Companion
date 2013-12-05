@@ -13,8 +13,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#define kHeroesFile @"npc_heroes.txt"
-
 @interface ELUHeroesCardViewController ()
 @property(strong, nonatomic) ELUHeroesModel *heroesModel;
 
@@ -33,7 +31,7 @@
     [super viewDidLoad];
     self.rotation = 0.0;
     self.currentHero = 0;
-    self.heroesModel = [[ELUHeroesModel alloc] initWithHeroesFile:[eluUtil resourcePathLoc:kHeroesFile] stringsDict:[eluUtil dotaStrings]];
+    self.heroesModel = [ELUHeroesModel sharedInstance];
     [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
 }
 

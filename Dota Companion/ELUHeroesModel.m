@@ -12,6 +12,8 @@
 
 #define kInitialCapacity 30
 
+const static NSString *kHeroesDictFile = @"npc_heroes.txt";
+
 @interface ELUHeroesModel ()
 
 @property (strong, nonatomic) NSArray *heroes;
@@ -19,6 +21,14 @@
 @end
 
 @implementation ELUHeroesModel
+
++ (ELUHeroesModel*) sharedInstance {
+    static ELUHeroesModel *model = nil;
+    if(!model) {
+        model = [[ELUHeroesModel alloc] initWithHeroesFile:kHeroesDictFile stringsDict:[eluUtil dotaStrings]];
+    }
+    return model;
+}
 
 - (NSArray*) fillHeroesFromDict: (NSDictionary*) heroesDict stringsDict: (NSDictionary*)dotaStrings {
     NSMutableArray *heroes = [NSMutableArray arrayWithCapacity:kInitialCapacity];
