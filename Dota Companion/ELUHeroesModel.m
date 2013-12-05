@@ -53,7 +53,9 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
             [heroesByType[hero.isGood?kGoodTeamString:kBadTeamString][hero.primaryAttribute] addObject:hero];
         }
     }
+    
     self.heroes = heroes;
+    self.heroesByType = heroesByType;
 }
 
 - (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings {

@@ -15,6 +15,7 @@
 - (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings;
 - (NSUInteger) count;
 - (ELUHero*) heroAtIndex:(NSUInteger)index;
+- (NSArray*) heroesForTeam:(NSString*)team primaryAttribute:(NSString*)primaryAttribute;
 + (ELUHeroesModel*) sharedInstance;
 
 @end

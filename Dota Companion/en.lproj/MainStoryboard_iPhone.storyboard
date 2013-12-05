@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ViY-5M-Lj5">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -69,9 +69,30 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7rO-o0-wUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="48" y="743"/>
+            <point key="canvasLocation" x="183" y="833"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ELUCardView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUCardView.h"/>
+        </class>
+        <class className="ELUHeroesCardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroesCardViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="playButtonPressed:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="cardView" candidateClass="ELUCardView"/>
+            </relationships>
+        </class>
+        <class className="ELUHeroesTableViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroesTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

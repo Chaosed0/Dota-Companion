@@ -8,8 +8,13 @@
 
 #import "ELUHeroesTableViewController.h"
 #import "ELUHeroesModel.h"
+#import "ELUHero.h"
+#import "AsyncImageView.h"
 
 #define kNumColumnsPerCategory 4
+#define kThumbWidth 59
+#define kThumbHeight 33
+#define kPadding 5.0
 
 static const NSString *kAttrPrefix = @"DOTA_Hero_Selection_";
 static const NSString *kStrIconFile = @"overviewicon_str.png";
@@ -20,7 +25,7 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (strong, nonatomic) NSArray *heroImageViews;
+@property (strong, nonatomic) UIView *heroImageViews;
 
 @property (strong, nonatomic) UIImageView *strImageView;
 @property (strong, nonatomic) UIImageView *agiImageView;
@@ -52,11 +57,43 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
     self.strLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kStrengthString]];
     self.agiLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kAgilityString]];
     self.intLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kIntelligenceString]];
+    
+    [self fillHeroImageViews];
+    [self.scrollView addSubview:self.heroImageViews];
 }
 
 - (void) fillHeroImageViews {
-    NSMutableArray *heroImageViews = [NSMutableArray arrayWithCapacity:self.heroesModel.count];
-    self.heroImageViews = heroImageViews;
+    self.heroImageViews = [[UIView alloc] init];
+    
+    CGPoint curPoint = CGPointMake(0, 0);
+    CGPoint maxPoint = CGPointMake(0, 0);
+    NSInteger curY = 0;
+    
+    for(NSString *team in @[kGoodTeamString, kBadTeamString]) {
+        //Strength is first, then agi, then int
+        for(NSString *primaryAttribute in @[kStrengthString, kAgilityString, kIntelligenceString]) {
+            NSInteger attrCounter = 0;
+            for(ELUHero *hero in [self.heroesModel heroesForTeam:kGoodTeamString primaryAttribute:kStrengthString]) {
+                AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
+                heroImageView.imageURL = hero.image_small_url;
+                heroImageView.frame = CGRectMake(kPadding*(curPoint.x+1) + kThumbWidth*curPoint.x, kPadding*(curPoint.y +1) + kThumbHeight*curPoint.y, kThumbWidth, kThumbHeight);
+                [self.heroImageViews addSubview:heroImageView];
+                curPoint.x++;
+                if(curPoint.x > kNumColumnsPerCategory) {
+                    curPoint.x = attrCounter*kNumColumnsPerCategory;
+                    curPoint.y++;
+                }
+            }
+            maxPoint.x = MAX(maxPoint.x, curPoint.x+1);
+            maxPoint.y = MAX(maxPoint.y, curPoint.y+1);
+            attrCounter++;
+            curPoint.x = attrCounter*kNumColumnsPerCategory;
+            curPoint.y = curY;
+        }
+        curY += maxPoint.y;
+    }
+    
+    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (curPoint.x + 2) + kThumbWidth * (maxPoint.x - 1), kPadding * (curPoint.y + 2) + kThumbHeight * (maxPoint.y - 1));
 }
 
 @end
