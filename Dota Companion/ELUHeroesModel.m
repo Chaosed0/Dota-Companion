@@ -25,7 +25,7 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
 + (ELUHeroesModel*) sharedInstance {
     static ELUHeroesModel *model = nil;
     if(!model) {
-        model = [[ELUHeroesModel alloc] initWithHeroesFile:kHeroesDictFile stringsDict:[eluUtil dotaStrings]];
+        model = [[ELUHeroesModel alloc] initWithHeroesFile:[eluUtil resourcePathLoc:(NSString*)kHeroesDictFile] stringsDict:[eluUtil dotaStrings]];
     }
     return model;
 }
