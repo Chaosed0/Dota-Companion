@@ -13,5 +13,6 @@
 + (NSDictionary*)parseDotaFile:(NSString*)dotaFileName;
 + (NSString*)resourcePathLoc:(NSString*)resource;
 + (NSDictionary*)dotaStrings;
++ (void) logRect:(CGRect)rect;
 
 @end
