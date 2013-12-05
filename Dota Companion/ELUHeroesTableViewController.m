@@ -15,6 +15,7 @@
 #define kThumbWidth 59
 #define kThumbHeight 33
 #define kPadding 5.0
+#define kCategoryPadding 15.0
 
 static const NSString *kAttrPrefix = @"DOTA_Hero_Selection_";
 static const NSString *kStrIconFile = @"overviewicon_str.png";
@@ -67,17 +68,18 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
     self.heroImageViews = [[UIView alloc] init];
     
     CGPoint maxPoint = CGPointMake(0, 0);
+    CGPoint categoryBorders = CGPointMake(0, 0);
     NSInteger curY = 0;
     
-    for(NSString *team in @[kGoodTeamString, kBadTeamString]) {
+    for(NSString *team in [ELUConstants sharedInstance].teams) {
         CGPoint curPoint = CGPointMake(0, curY);
         //Strength is first, then agi, then int
         NSInteger attrCounter = 0;
-        for(NSString *primaryAttribute in @[kStrengthString, kAgilityString, kIntellectString]) {
+        for(NSString *primaryAttribute in [ELUConstants sharedInstance].attributes) {
             for(ELUHero *hero in [self.heroesModel heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
                 heroImageView.imageURL = hero.image_small_url;
-                heroImageView.frame = CGRectMake(kPadding*(curPoint.x+1) + kThumbWidth*curPoint.x, kPadding*(curPoint.y +1) + kThumbHeight*curPoint.y, kThumbWidth, kThumbHeight);
+                heroImageView.frame = CGRectMake(kPadding*(curPoint.x+1) + kThumbWidth*curPoint.x + categoryBorders.x*kCategoryPadding,  kPadding*(curPoint.y +1) + kThumbHeight*curPoint.y + categoryBorders.y*kCategoryPadding, kThumbWidth, kThumbHeight);
                 [self.heroImageViews addSubview:heroImageView];
                 curPoint.x++;
                 if(curPoint.x >= attrCounter*kNumColumnsPerCategory + kNumColumnsPerCategory) {
@@ -90,11 +92,14 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
             attrCounter++;
             curPoint.x = attrCounter*kNumColumnsPerCategory;
             curPoint.y = curY;
+            categoryBorders.x++;
         }
         curY += maxPoint.y;
+        categoryBorders.x = 0;
+        categoryBorders.y++;
     }
     
-    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (maxPoint.x + 2) + kThumbWidth * (maxPoint.x), kPadding * (maxPoint.y + 2) + kThumbHeight * (maxPoint.y));
+    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (maxPoint.x + 2) + kThumbWidth * (maxPoint.x) + kCategoryPadding * [ELUConstants sharedInstance].teams.count, kPadding * (maxPoint.y + 2) + kThumbHeight * (maxPoint.y) + kCategoryPadding * [ELUConstants sharedInstance].attributes.count);
 }
 
 @end

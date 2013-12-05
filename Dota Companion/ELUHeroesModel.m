@@ -34,14 +34,12 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
     NSMutableArray *heroes = [NSMutableArray arrayWithCapacity:kInitialCapacity];
     NSMutableDictionary *heroesByType = [[NSMutableDictionary alloc] init];
     
-    [heroesByType setValue:[NSMutableDictionary dictionary] forKey:kGoodTeamString];
-    [heroesByType setValue:[NSMutableDictionary dictionary] forKey:kBadTeamString];
-    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kStrengthString];
-    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kStrengthString];
-    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kAgilityString];
-    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kAgilityString];
-    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kIntellectString];
-    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kIntellectString];
+    for (NSString *team in [ELUConstants sharedInstance].teams) {
+        [heroesByType setValue:[NSMutableDictionary dictionary] forKey:team];
+        for(NSString *attribute in [ELUConstants sharedInstance].attributes) {
+            [heroesByType[team] setValue:[NSMutableArray array] forKey:attribute];
+        }
+    }
     
     NSDictionary *heroesDictHeroes = heroesDict[@"DOTAHeroes"];
     for(NSString* heroID in heroesDictHeroes) {

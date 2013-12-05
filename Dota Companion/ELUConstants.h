@@ -15,3 +15,11 @@ FOUNDATION_EXPORT NSString *const kAgilityString;
 FOUNDATION_EXPORT NSString *const kIntellectString;
 FOUNDATION_EXPORT NSString *const kTeamGood;
 FOUNDATION_EXPORT NSString *const kTeamBad;
+
+@interface ELUConstants : NSObject
+
+@property (strong, nonatomic, readonly) NSArray *teams;
+@property (strong, nonatomic, readonly) NSArray *attributes;
++(ELUConstants*)sharedInstance;
+
+@end
