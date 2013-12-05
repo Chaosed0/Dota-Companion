@@ -65,28 +65,25 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
 - (void) fillHeroImageViews {
     self.heroImageViews = [[UIView alloc] init];
     
-    CGPoint curPoint = CGPointMake(0, 0);
     CGPoint maxPoint = CGPointMake(0, 0);
     NSInteger curY = 0;
     
     for(NSString *team in @[kGoodTeamString, kBadTeamString]) {
+        CGPoint curPoint = CGPointMake(0, curY);
         //Strength is first, then agi, then int
         NSInteger attrCounter = 0;
         for(NSString *primaryAttribute in @[kStrengthString, kAgilityString, kIntellectString]) {
             for(ELUHero *hero in [self.heroesModel heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
                 heroImageView.imageURL = hero.image_small_url;
-                //NSLog(@"%@ at (%g, %g)", hero.name, curPoint.x, curPoint.y);
                 heroImageView.frame = CGRectMake(kPadding*(curPoint.x+1) + kThumbWidth*curPoint.x, kPadding*(curPoint.y +1) + kThumbHeight*curPoint.y, kThumbWidth, kThumbHeight);
                 [self.heroImageViews addSubview:heroImageView];
                 curPoint.x++;
                 if(curPoint.x >= attrCounter*kNumColumnsPerCategory + kNumColumnsPerCategory) {
-                    NSLog(@"Starting new row at (%g, %g)", curPoint.x, curPoint.y);
                     curPoint.x = attrCounter*kNumColumnsPerCategory;
                     curPoint.y++;
                 }
             }
-            NSLog(@"Finished %@ %@ heroes", team, primaryAttribute);
             maxPoint.x = MAX(maxPoint.x, curPoint.x+1);
             maxPoint.y = MAX(maxPoint.y, curPoint.y+1);
             attrCounter++;
@@ -96,7 +93,7 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
         curY += maxPoint.y;
     }
     
-    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (curPoint.x + 2) + kThumbWidth * (maxPoint.x - 1), kPadding * (curPoint.y + 2) + kThumbHeight * (maxPoint.y - 1));
+    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (maxPoint.x + 2) + kThumbWidth * (maxPoint.x - 1), kPadding * (maxPoint.y + 2) + kThumbHeight * (maxPoint.y - 1));
 }
 
 @end
