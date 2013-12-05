@@ -12,8 +12,8 @@
 #import "AsyncImageView.h"
 
 #define kNumColumnsPerCategory 4
-#define kThumbWidth 59
-#define kThumbHeight 33
+#define kThumbWidth 29
+#define kThumbHeight 16
 #define kPadding 5.0
 
 static const NSString *kAttrPrefix = @"DOTA_Hero_Selection_";
@@ -56,7 +56,7 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
     NSDictionary *dotaStrings = [eluUtil dotaStrings];
     self.strLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kStrengthString]];
     self.agiLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kAgilityString]];
-    self.intLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kIntelligenceString]];
+    self.intLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kIntellectString]];
     
     [self fillHeroImageViews];
     [self.scrollView addSubview:self.heroImageViews];
@@ -71,19 +71,22 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
     
     for(NSString *team in @[kGoodTeamString, kBadTeamString]) {
         //Strength is first, then agi, then int
-        for(NSString *primaryAttribute in @[kStrengthString, kAgilityString, kIntelligenceString]) {
-            NSInteger attrCounter = 0;
-            for(ELUHero *hero in [self.heroesModel heroesForTeam:kGoodTeamString primaryAttribute:kStrengthString]) {
+        NSInteger attrCounter = 0;
+        for(NSString *primaryAttribute in @[kStrengthString, kAgilityString, kIntellectString]) {
+            for(ELUHero *hero in [self.heroesModel heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
                 heroImageView.imageURL = hero.image_small_url;
+                //NSLog(@"%@ at (%g, %g)", hero.name, curPoint.x, curPoint.y);
                 heroImageView.frame = CGRectMake(kPadding*(curPoint.x+1) + kThumbWidth*curPoint.x, kPadding*(curPoint.y +1) + kThumbHeight*curPoint.y, kThumbWidth, kThumbHeight);
                 [self.heroImageViews addSubview:heroImageView];
                 curPoint.x++;
-                if(curPoint.x > kNumColumnsPerCategory) {
+                if(curPoint.x >= attrCounter*kNumColumnsPerCategory + kNumColumnsPerCategory) {
+                    NSLog(@"Starting new row at (%g, %g)", curPoint.x, curPoint.y);
                     curPoint.x = attrCounter*kNumColumnsPerCategory;
                     curPoint.y++;
                 }
             }
+            NSLog(@"Finished %@ %@ heroes", team, primaryAttribute);
             maxPoint.x = MAX(maxPoint.x, curPoint.x+1);
             maxPoint.y = MAX(maxPoint.y, curPoint.y+1);
             attrCounter++;

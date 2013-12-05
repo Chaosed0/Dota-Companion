@@ -76,7 +76,6 @@
 		D47CE8FA18500ED0005F95DA /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		D4A9865418510E2500766D7E /* ELUHeroesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesTableViewController.h; sourceTree = "<group>"; };
 		D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesTableViewController.m; sourceTree = "<group>"; };
-		D4A9865A1851134D00766D7E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D4A9865B1851142A00766D7E /* overviewicon_agi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_agi.png; sourceTree = "<group>"; };
 		D4A9865C1851142A00766D7E /* overviewicon_int.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_int.png; sourceTree = "<group>"; };
 		D4A9865D1851142A00766D7E /* overviewicon_str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_str.png; sourceTree = "<group>"; };
@@ -116,7 +115,6 @@
 				D47CE8F818500ED0005F95DA /* AsyncImageView */,
 				D46430AC184E705A008BB0C5 /* eluUtil.h */,
 				D46430AD184E705A008BB0C5 /* eluUtil.m */,
-				D4A9865A1851134D00766D7E /* Constants.h */,
 				D4A9866118511C9000766D7E /* ELUConstants.h */,
 				D4A9866218511C9000766D7E /* ELUConstants.m */,
 			);

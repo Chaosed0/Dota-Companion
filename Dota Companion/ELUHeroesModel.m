@@ -40,8 +40,8 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
     [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kStrengthString];
     [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kAgilityString];
     [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kAgilityString];
-    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kIntelligenceString];
-    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kIntelligenceString];
+    [heroesByType[kGoodTeamString] setValue:[NSMutableArray array] forKey:kIntellectString];
+    [heroesByType[kBadTeamString] setValue:[NSMutableArray array] forKey:kIntellectString];
     
     NSDictionary *heroesDictHeroes = heroesDict[@"DOTAHeroes"];
     for(NSString* heroID in heroesDictHeroes) {
