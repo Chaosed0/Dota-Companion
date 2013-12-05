@@ -12,9 +12,9 @@
 
 @property (strong, nonatomic, readonly) NSString *name;
 @property (strong, nonatomic, readonly) NSArray *roles;
-@property (strong, nonatomic, readonly) UIImage *image_medium;
-@property (strong, nonatomic, readonly) UIImage *image_large;
+@property (strong, nonatomic, readonly) NSURL *image_medium_url;
+@property (strong, nonatomic, readonly) NSURL *image_large_url;
 
-+(id)heroFromDict:(NSDictionary*)heroDict heroID:(NSString*) heroId stringsDict:(NSDictionary*)stringsDict;
+-(id)initWithDict:(NSDictionary*)heroDict heroID:(NSString*) heroId stringsDict:(NSDictionary*)stringsDict;
 
 @end

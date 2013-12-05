@@ -30,6 +30,7 @@
 		D46430AF184E736C008BB0C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46430AE184E736C008BB0C5 /* QuartzCore.framework */; };
 		D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B1184E7EBB008BB0C5 /* ELUCardView.m */; };
 		D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B4184E7FAD008BB0C5 /* ELUHero.m */; };
+		D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47CE8FA18500ED0005F95DA /* AsyncImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		D46430B1184E7EBB008BB0C5 /* ELUCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUCardView.m; sourceTree = "<group>"; };
 		D46430B3184E7FAC008BB0C5 /* ELUHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHero.h; sourceTree = "<group>"; };
 		D46430B4184E7FAD008BB0C5 /* ELUHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHero.m; sourceTree = "<group>"; };
+		D47CE8F918500ED0005F95DA /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
+		D47CE8FA18500ED0005F95DA /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,7 @@
 		D44BACDB184FA4C100CD0C62 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				D47CE8F818500ED0005F95DA /* AsyncImageView */,
 				D46430AC184E705A008BB0C5 /* eluUtil.h */,
 				D46430AD184E705A008BB0C5 /* eluUtil.m */,
 			);
@@ -218,6 +222,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D47CE8F818500ED0005F95DA /* AsyncImageView */ = {
+			isa = PBXGroup;
+			children = (
+				D47CE8F918500ED0005F95DA /* AsyncImageView.h */,
+				D47CE8FA18500ED0005F95DA /* AsyncImageView.m */,
+			);
+			path = AsyncImageView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,6 +312,7 @@
 				D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */,
 				D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */,
 				D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */,
+				D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
