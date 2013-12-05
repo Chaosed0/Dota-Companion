@@ -14,7 +14,8 @@ static const NSString *kRangeString = @"DOTA_UNIT_CAP_RANGED_ATTACK";
 static const NSString *kRolePrefix = @"DOTA_Hero_Selection_AdvFilter_";
 static const NSString *kRangedPrettyString = @"Attack_Ranged";
 static const NSString *kMeleePrettyString = @"Attack_Melee";
-static const NSString *baseImageURL = @"http://cdn.dota2.com/apps/dota2/images/heroes/";
+static const NSString *kBaseImageURL = @"http://cdn.dota2.com/apps/dota2/images/heroes/";
+static const NSString *kheroIdPrefix = @"npc_dota_hero_";
 
 @interface ELUHero ()
 
@@ -38,8 +39,8 @@ static const NSString *baseImageURL = @"http://cdn.dota2.com/apps/dota2/images/h
         NSArray *roles = [roleString componentsSeparatedByString:@","];
         self.roles = [self rolesFromArray:roles isMelee:isMelee stringsDict:stringsDict];
         
-        NSString *imageName = [[[self.name lowercaseString] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@"_"];
-        NSString *imageURL = [NSString stringWithFormat:@"%@%@%@", baseImageURL, imageName, @"_full.png"];
+        NSString *imageName = [heroId substringFromIndex:kheroIdPrefix.length];
+        NSString *imageURL = [NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, @"_full.png"];
         self.image_medium_url = [NSURL URLWithString:imageURL];
         self.image_large_url = [NSURL URLWithString:@""];
     }
