@@ -15,10 +15,10 @@ static const NSString *kRolePrefix = @"DOTA_Hero_Selection_AdvFilter_";
 static const NSString *kRangedPrettyString = @"Attack_Ranged";
 static const NSString *kMeleePrettyString = @"Attack_Melee";
 static const NSString *kBaseImageURL = @"http://cdn.dota2.com/apps/dota2/images/heroes/";
-static const NSString *kFullHeroImageSuffix = @"_full";
-static const NSString *kMediumHeroImageSuffix = @"_hphover";
-static const NSString *kSmallHeroImageSuffix = @"_sb";
-static const NSString *kHeroPortraitImageSuffix = @"_vert";
+static const NSString *kFullHeroImageSuffix = @"_full.png";
+static const NSString *kMediumHeroImageSuffix = @"_hphover.png";
+static const NSString *kSmallHeroImageSuffix = @"_sb.png";
+static const NSString *kHeroPortraitImageSuffix = @"_vert.jpg";
 static const NSString *kheroIdPrefix = @"npc_dota_hero_";
 
 @interface ELUHero ()
