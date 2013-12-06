@@ -52,6 +52,9 @@
     if([segueId isEqualToString:@"PortraitHeroSegue"]) {
         ELUHeroViewController *viewController = segue.destinationViewController;
         viewController.hero = [self.heroesModel heroAtIndex:self.currentHero];
+        viewController.onCompletion = ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
     }
 }
 

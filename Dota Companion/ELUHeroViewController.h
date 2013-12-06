@@ -13,5 +13,6 @@
 @interface ELUHeroViewController : UIViewController
 
 @property (strong, nonatomic) ELUHero *hero;
+@property (copy, nonatomic) void (^onCompletion)(void);
 
 @end

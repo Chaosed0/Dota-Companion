@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *abilityImageViews;
 @property (weak, nonatomic) IBOutlet AsyncImageView *heroImageView;
 @property (weak, nonatomic) IBOutlet UILabel *heroBioLabel;
+- (IBAction)backPressed:(UIBarButtonItem *)sender;
 
 @end
 
@@ -28,4 +29,7 @@
     self.heroBioLabel.text = @"A bio";
 }
 
+- (IBAction)backPressed:(UIBarButtonItem *)sender {
+    self.onCompletion();
+}
 @end

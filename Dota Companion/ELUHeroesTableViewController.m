@@ -60,6 +60,9 @@ static const NSString *kIconPrefix = @"overviewicon_";
     if([segueId isEqualToString:@"LandscapeHeroSegue"]) {
         ELUHeroViewController *viewController = segue.destinationViewController;
         viewController.hero = self.heroTapped;
+        viewController.onCompletion = ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
     }
 }
 
