@@ -20,24 +20,13 @@
 
 static const NSInteger kCategoryWidth = kPadding * (kNumColumnsPerCategory - 1) + kThumbWidth * kNumColumnsPerCategory;
 
-static const NSString *kAttrPrefix = @"DOTA_Hero_Selection_";
-static const NSString *kStrIconFile = @"overviewicon_str.png";
-static const NSString *kAgiIconFile = @"overviewicon_agi.png";
-static const NSString *kIntIconFile = @"overviewicon_int.png";
+static const NSString *kIconPrefix = @"overviewicon_";
 
 @interface ELUHeroesTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) UIView *heroImageViews;
-
-@property (strong, nonatomic) UIImageView *strImageView;
-@property (strong, nonatomic) UIImageView *agiImageView;
-@property (strong, nonatomic) UIImageView *intImageView;
-@property (strong, nonatomic) UILabel *strLabel;
-@property (strong, nonatomic) UILabel *agiLabel;
-@property (strong, nonatomic) UILabel *intLabel;
-
 @property (strong, nonatomic) ELUHeroesModel *heroesModel;
 
 @end
@@ -49,18 +38,6 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
     [super viewDidLoad];
     
     self.heroesModel = [ELUHeroesModel sharedInstance];
-    
-    self.strLabel = [[UILabel alloc] init];
-    self.agiLabel = [[UILabel alloc] init];
-    self.intLabel = [[UILabel alloc] init];
-    self.strImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:(NSString*)kStrIconFile]];
-    self.agiImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:(NSString*)kAgiIconFile]];
-    self.intImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:(NSString*)kIntIconFile]];
-    
-    NSDictionary *dotaStrings = [eluUtil dotaStrings];
-    self.strLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kStrengthString]];
-    self.agiLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kAgilityString]];
-    self.intLabel.text = dotaStrings[[NSString stringWithFormat:@"%@%@", kAttrPrefix, kIntellectString]];
     
     [self fillHeroImageViews];
     [self.scrollView addSubview:self.heroImageViews];
@@ -113,7 +90,7 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
         
         UILabel *attrLabel = [[UILabel alloc] init];
         attrLabel.text = attribute;
-        NSString *imageName = [NSString stringWithFormat:@"%@%@%@", @"overviewicon_", [[attribute substringToIndex:3] lowercaseString], @".png"];
+        NSString *imageName = [NSString stringWithFormat:@"%@%@%@", kIconPrefix, [[attribute substringToIndex:3] lowercaseString], @".png"];
         UIImageView *attrImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
         attrImage.frame = CGRectMake(0, 0, attrImage.image.size.width, attrImage.image.size.height);
         [attrLabel sizeToFit];
