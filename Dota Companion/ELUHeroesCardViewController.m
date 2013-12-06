@@ -17,6 +17,7 @@
 
 @property double rotation;
 @property NSUInteger currentHero;
+@property BOOL isShowingLandscapeView;
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet ELUCardView *cardView;
@@ -30,8 +31,24 @@
     [super viewDidLoad];
     self.rotation = 0.0;
     self.currentHero = 0;
+    self.isShowingLandscapeView = NO;
     self.heroesModel = [ELUHeroesModel sharedInstance];
     [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)orientationChanged:(NSNotification*)notification {
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation) && !self.isShowingLandscapeView) {
+        [self performSegueWithIdentifier:@"OrientationChangeSegue" sender:self];
+        self.isShowingLandscapeView = YES;
+    }
+    
+    else if (UIDeviceOrientationIsPortrait(deviceOrientation) && self.isShowingLandscapeView) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+        self.isShowingLandscapeView = NO;
+    }
 }
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
