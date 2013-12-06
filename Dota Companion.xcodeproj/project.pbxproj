@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D4252396185218D2004B1ACE /* ELUHeroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4252395185218D2004B1ACE /* ELUHeroViewController.m */; };
+		D425239B18522466004B1ACE /* dota_english.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239718522466004B1ACE /* dota_english.txt */; };
+		D425239C18522466004B1ACE /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239818522466004B1ACE /* items.txt */; };
+		D425239D18522466004B1ACE /* npc_abilities.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239918522466004B1ACE /* npc_abilities.txt */; };
+		D425239E18522466004B1ACE /* npc_heroes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239A18522466004B1ACE /* npc_heroes.txt */; };
 		D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */; };
-		D44BACE3184FA60B00CD0C62 /* dota_english.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE2184FA60B00CD0C62 /* dota_english.txt */; };
-		D44BACE7184FA61E00CD0C62 /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE4184FA61E00CD0C62 /* items.txt */; };
-		D44BACE8184FA61E00CD0C62 /* npc_abilities.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */; };
-		D44BACE9184FA61E00CD0C62 /* npc_heroes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */; };
 		D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */; };
 		D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430AD184E705A008BB0C5 /* eluUtil.m */; };
 		D4643080184E6E61008BB0C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D464307F184E6E61008BB0C5 /* UIKit.framework */; };
@@ -42,12 +42,12 @@
 /* Begin PBXFileReference section */
 		D4252394185218D2004B1ACE /* ELUHeroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroViewController.h; sourceTree = "<group>"; };
 		D4252395185218D2004B1ACE /* ELUHeroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroViewController.m; sourceTree = "<group>"; };
+		D425239718522466004B1ACE /* dota_english.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dota_english.txt; sourceTree = "<group>"; };
+		D425239818522466004B1ACE /* items.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = items.txt; sourceTree = "<group>"; };
+		D425239918522466004B1ACE /* npc_abilities.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_abilities.txt; sourceTree = "<group>"; };
+		D425239A18522466004B1ACE /* npc_heroes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_heroes.txt; sourceTree = "<group>"; };
 		D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesModel.h; sourceTree = "<group>"; };
 		D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesModel.m; sourceTree = "<group>"; };
-		D44BACE2184FA60B00CD0C62 /* dota_english.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dota_english.txt; sourceTree = "<group>"; };
-		D44BACE4184FA61E00CD0C62 /* items.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = items.txt; sourceTree = "<group>"; };
-		D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_abilities.txt; sourceTree = "<group>"; };
-		D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_heroes.txt; sourceTree = "<group>"; };
 		D44BACEA184FAA9900CD0C62 /* ELUHeroAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroAbility.h; sourceTree = "<group>"; };
 		D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroAbility.m; sourceTree = "<group>"; };
 		D464307C184E6E61008BB0C5 /* Dota Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,10 +104,10 @@
 		D44BACDA184FA4B300CD0C62 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				D44BACE4184FA61E00CD0C62 /* items.txt */,
-				D44BACE5184FA61E00CD0C62 /* npc_abilities.txt */,
-				D44BACE6184FA61E00CD0C62 /* npc_heroes.txt */,
-				D44BACE2184FA60B00CD0C62 /* dota_english.txt */,
+				D425239818522466004B1ACE /* items.txt */,
+				D425239918522466004B1ACE /* npc_abilities.txt */,
+				D425239718522466004B1ACE /* dota_english.txt */,
+				D425239A18522466004B1ACE /* npc_heroes.txt */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -314,13 +314,13 @@
 				D4643099184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				D464309C184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard in Resources */,
 				D46430AB184E6FB2008BB0C5 /* EMRAKUL.jpg in Resources */,
-				D44BACE3184FA60B00CD0C62 /* dota_english.txt in Resources */,
-				D44BACE7184FA61E00CD0C62 /* items.txt in Resources */,
-				D44BACE8184FA61E00CD0C62 /* npc_abilities.txt in Resources */,
-				D44BACE9184FA61E00CD0C62 /* npc_heroes.txt in Resources */,
 				D4A9865E1851142A00766D7E /* overviewicon_agi.png in Resources */,
 				D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */,
 				D4A986601851142A00766D7E /* overviewicon_str.png in Resources */,
+				D425239B18522466004B1ACE /* dota_english.txt in Resources */,
+				D425239C18522466004B1ACE /* items.txt in Resources */,
+				D425239D18522466004B1ACE /* npc_abilities.txt in Resources */,
+				D425239E18522466004B1ACE /* npc_heroes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
