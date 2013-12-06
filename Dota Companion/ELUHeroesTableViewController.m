@@ -32,7 +32,7 @@ static const NSString *kIconPrefix = @"overviewicon_";
 @property (strong, nonatomic) UIView *heroImageViews;
 @property (strong, nonatomic) ELUHeroesModel *heroesModel;
 
-@property (strong, nonatomic) ELUHeroesModel *heroTapped;
+@property (strong, nonatomic) ELUHero *heroTapped;
 
 @end
 
