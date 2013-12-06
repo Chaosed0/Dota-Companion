@@ -15,7 +15,10 @@
 #define kThumbWidth 59
 #define kThumbHeight 33
 #define kPadding 5.0
+#define kHeaderSize 50.0
 #define kCategoryPadding 15.0
+
+static const NSInteger kCategoryWidth = kPadding * (kNumColumnsPerCategory - 1) + kThumbWidth * kNumColumnsPerCategory;
 
 static const NSString *kAttrPrefix = @"DOTA_Hero_Selection_";
 static const NSString *kStrIconFile = @"overviewicon_str.png";
@@ -66,20 +69,24 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
 
 - (void) fillHeroImageViews {
     self.heroImageViews = [[UIView alloc] init];
+    NSArray *attributes = [ELUConstants sharedInstance].attributes;
+    NSArray *teams = [ELUConstants sharedInstance].teams;
     
     CGPoint maxPoint = CGPointMake(0, 0);
     CGPoint categoryBorders = CGPointMake(0, 0);
     NSInteger curY = 0;
     
-    for(NSString *team in [ELUConstants sharedInstance].teams) {
+    for(NSString *team in teams) {
         CGPoint curPoint = CGPointMake(0, curY);
         //Strength is first, then agi, then int
         NSInteger attrCounter = 0;
-        for(NSString *primaryAttribute in [ELUConstants sharedInstance].attributes) {
+        for(NSString *primaryAttribute in attributes) {
             for(ELUHero *hero in [self.heroesModel heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
                 heroImageView.imageURL = hero.image_small_url;
-                heroImageView.frame = CGRectMake(kPadding*(curPoint.x+1) + kThumbWidth*curPoint.x + categoryBorders.x*kCategoryPadding,  kPadding*(curPoint.y +1) + kThumbHeight*curPoint.y + categoryBorders.y*kCategoryPadding, kThumbWidth, kThumbHeight);
+                NSInteger xLocation = kPadding * (curPoint.x + 1 - categoryBorders.x) + kThumbWidth * curPoint.x + categoryBorders.x * kCategoryPadding;
+                NSInteger yLocation = kPadding * (curPoint.y + 1 - categoryBorders.y) + kHeaderSize + kThumbHeight * curPoint.y + categoryBorders.y * kCategoryPadding;
+                heroImageView.frame = CGRectMake(xLocation, yLocation, kThumbWidth, kThumbHeight);
                 [self.heroImageViews addSubview:heroImageView];
                 curPoint.x++;
                 if(curPoint.x >= attrCounter*kNumColumnsPerCategory + kNumColumnsPerCategory) {
@@ -89,17 +96,42 @@ static const NSString *kIntIconFile = @"overviewicon_int.png";
             }
             maxPoint.x = MAX(maxPoint.x, curPoint.x+1);
             maxPoint.y = MAX(maxPoint.y, curPoint.y+1);
+            
             attrCounter++;
             curPoint.x = attrCounter*kNumColumnsPerCategory;
             curPoint.y = curY;
             categoryBorders.x++;
         }
-        curY += maxPoint.y;
+        curY = maxPoint.y;
         categoryBorders.x = 0;
         categoryBorders.y++;
     }
+
+    //Create a label and image for the attribute
+    NSInteger attrCounter = 0;
+    for (NSString *attribute in attributes) {
+        
+        UILabel *attrLabel = [[UILabel alloc] init];
+        attrLabel.text = attribute;
+        NSString *imageName = [NSString stringWithFormat:@"%@%@%@", @"overviewicon_", [[attribute substringToIndex:3] lowercaseString], @".png"];
+        UIImageView *attrImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+        attrImage.frame = CGRectMake(0, 0, attrImage.image.size.width, attrImage.image.size.height);
+        [attrLabel sizeToFit];
+        attrLabel.center = CGPointMake(attrImage.frame.size.width + kPadding + attrLabel.frame.size.width/2.0, attrImage.frame.size.height/2.0);
+        
+        UIView *attrBox = [[UIView alloc] init];
+        [attrBox addSubview:attrImage];
+        [attrBox addSubview:attrLabel];
+        attrBox.bounds = CGRectMake(0, 0, attrImage.frame.size.width + kPadding + attrLabel.frame.size.width, MAX(attrImage.frame.size.height, attrLabel.frame.size.height));
+        attrBox.center = CGPointMake((kCategoryPadding + kCategoryWidth) * attrCounter + kPadding + kCategoryWidth/2.0, kPadding + kHeaderSize/2.0);
+        
+        [self.heroImageViews addSubview:attrBox];
+        attrCounter++;
+    }
     
-    self.heroImageViews.frame = CGRectMake(0, 0, kPadding * (maxPoint.x + 2) + kThumbWidth * (maxPoint.x) + kCategoryPadding * [ELUConstants sharedInstance].teams.count, kPadding * (maxPoint.y + 2) + kThumbHeight * (maxPoint.y) + kCategoryPadding * [ELUConstants sharedInstance].attributes.count);
+    NSInteger totalWidth = kPadding * 2 + kCategoryPadding * (attributes.count - 1) + kCategoryWidth * attributes.count;
+    NSInteger totalHeight = kPadding * 2 + kCategoryPadding * (teams.count - 1) + kPadding * (maxPoint.y - teams.count) + kThumbHeight * maxPoint.y + kHeaderSize;
+    self.heroImageViews.frame = CGRectMake(0, 0, totalWidth, totalHeight);
 }
 
 @end
