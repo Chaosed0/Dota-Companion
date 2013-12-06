@@ -14,6 +14,7 @@
 @property (strong, nonatomic, readonly) NSArray *roles;
 @property (readonly) BOOL isGood;
 @property (strong, nonatomic, readonly) NSString *primaryAttribute;
+@property (strong, nonatomic, readonly) NSString *bio;
 @property (strong, nonatomic, readonly) NSURL *image_small_url;
 @property (strong, nonatomic, readonly) NSURL *image_medium_url;
 @property (strong, nonatomic, readonly) NSURL *image_large_url;

@@ -106,8 +106,8 @@
 			children = (
 				D425239818522466004B1ACE /* items.txt */,
 				D425239918522466004B1ACE /* npc_abilities.txt */,
-				D425239718522466004B1ACE /* dota_english.txt */,
 				D425239A18522466004B1ACE /* npc_heroes.txt */,
+				D425239718522466004B1ACE /* dota_english.txt */,
 			);
 			name = Data;
 			sourceTree = "<group>";

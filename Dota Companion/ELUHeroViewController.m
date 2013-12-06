@@ -14,8 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *heroNameLabel;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *abilityImageViews;
 @property (weak, nonatomic) IBOutlet AsyncImageView *heroImageView;
-@property (weak, nonatomic) IBOutlet UILabel *heroBioLabel;
 - (IBAction)backPressed:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet UITextView *heroBioTextView;
 
 @end
 
@@ -26,7 +26,7 @@
     [super viewDidLoad];
     self.heroNameLabel.text = self.hero.name;
     self.heroImageView.imageURL = self.hero.image_large_url;
-    self.heroBioLabel.text = @"A bio";
+    self.heroBioTextView.text = self.hero.bio;
 }
 
 - (IBAction)backPressed:(UIBarButtonItem *)sender {

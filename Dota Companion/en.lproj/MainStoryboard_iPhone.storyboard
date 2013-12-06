@@ -51,38 +51,31 @@
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="HERO_NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nmm-S3-ZgQ">
                                 <rect key="frame" x="20" y="8" width="280" height="39"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="4Nd-0B-rkN" customClass="AsyncImageView">
                                 <rect key="frame" x="20" y="55" width="280" height="130"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="pMK-6s-pKd">
                                 <rect key="frame" x="20" y="193" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="dFM-zk-1bA">
                                 <rect key="frame" x="92" y="193" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="U6K-J3-OT6">
                                 <rect key="frame" x="164" y="193" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="SGp-Rl-Rab">
                                 <rect key="frame" x="236" y="193" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="HERO_BIO" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1jT-yu-bX7">
-                                <rect key="frame" x="20" y="265" width="280" height="227"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ddk-AL-mst">
                                 <rect key="frame" x="0.0" y="504" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -94,12 +87,20 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="sJV-uO-B96">
+                                <rect key="frame" x="20" y="265" width="280" height="221"/>
+                                <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="peB-rq-sZZ"/>
                     <connections>
-                        <outlet property="heroBioLabel" destination="1jT-yu-bX7" id="lza-sV-g2b"/>
+                        <outlet property="heroBioTextView" destination="sJV-uO-B96" id="MsL-pW-k4U"/>
                         <outlet property="heroImageView" destination="4Nd-0B-rkN" id="v4K-w6-sUy"/>
                         <outlet property="heroNameLabel" destination="nmm-S3-ZgQ" id="xQj-wT-DpA"/>
                         <outletCollection property="abilityImageViews" destination="pMK-6s-pKd" id="5yk-xF-xq4"/>
@@ -110,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c8C-9D-6p9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="720" y="4"/>
+            <point key="canvasLocation" x="785" y="138"/>
         </scene>
         <!--Heroes Table View Controller-->
         <scene sceneID="TT3-s4-OFb">
@@ -148,7 +149,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backPressed:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="heroBioLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="heroBioTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="heroImageView" candidateClass="AsyncImageView"/>
                 <relationship kind="outlet" name="heroNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outletCollection" name="abilityImageViews" candidateClass="UIImageView"/>

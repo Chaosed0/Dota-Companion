@@ -21,6 +21,7 @@ static const NSString *kMediumHeroImageSuffix = @"_hphover.png";
 static const NSString *kSmallHeroImageSuffix = @"_sb.png";
 static const NSString *kHeroPortraitImageSuffix = @"_vert.jpg";
 static const NSString *kheroIdPrefix = @"npc_dota_hero_";
+static const NSString *kBioSuffix = @"_bio";
 static const NSString *kTeamString = @"Team";
 static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
 
@@ -30,6 +31,7 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
 @property (strong, nonatomic) NSArray *roles;
 @property BOOL isGood;
 @property (strong, nonatomic) NSString *primaryAttribute;
+@property (strong, nonatomic) NSString *bio;
 @property (strong, nonatomic) NSURL *image_small_url;
 @property (strong, nonatomic) NSURL *image_medium_url;
 @property (strong, nonatomic) NSURL *image_large_url;
@@ -51,6 +53,7 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
         self.roles = [self rolesFromArray:roles isMelee:isMelee stringsDict:stringsDict];
         self.isGood = [heroDict[kTeamString] isEqualToString:(NSString*)kGoodTeamString];
         self.primaryAttribute = [heroDict[kPrimaryAttributeString] substringFromIndex:kAttributePrefix.length];
+        self.bio = stringsDict[[NSString stringWithFormat:@"%@%@", heroId, kBioSuffix]];
         
         NSString *imageName = [heroId substringFromIndex:kheroIdPrefix.length];
         self.image_small_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kSmallHeroImageSuffix]];
