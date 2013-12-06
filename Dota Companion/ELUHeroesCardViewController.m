@@ -58,9 +58,9 @@
     }
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+/*- (void)viewDidDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-}
+}*/
 
 - (void)orientationChanged:(NSNotification*)notification {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
