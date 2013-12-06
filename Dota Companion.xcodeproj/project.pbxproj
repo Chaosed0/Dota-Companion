@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4252396185218D2004B1ACE /* ELUHeroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4252395185218D2004B1ACE /* ELUHeroViewController.m */; };
 		D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */; };
 		D44BACE3184FA60B00CD0C62 /* dota_english.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE2184FA60B00CD0C62 /* dota_english.txt */; };
 		D44BACE7184FA61E00CD0C62 /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = D44BACE4184FA61E00CD0C62 /* items.txt */; };
@@ -39,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D4252394185218D2004B1ACE /* ELUHeroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroViewController.h; sourceTree = "<group>"; };
+		D4252395185218D2004B1ACE /* ELUHeroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroViewController.m; sourceTree = "<group>"; };
 		D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesModel.h; sourceTree = "<group>"; };
 		D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesModel.m; sourceTree = "<group>"; };
 		D44BACE2184FA60B00CD0C62 /* dota_english.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dota_english.txt; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */,
 				D4A9865418510E2500766D7E /* ELUHeroesTableViewController.h */,
 				D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */,
+				D4252394185218D2004B1ACE /* ELUHeroViewController.h */,
+				D4252395185218D2004B1ACE /* ELUHeroViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -337,6 +342,7 @@
 				D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */,
 				D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */,
 				D4A9866318511C9100766D7E /* ELUConstants.m in Sources */,
+				D4252396185218D2004B1ACE /* ELUHeroViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
