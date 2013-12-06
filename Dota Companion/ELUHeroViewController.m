@@ -7,11 +7,13 @@
 //
 
 #import "ELUHeroViewController.h"
+#import "ELUHero.h"
+#import "AsyncImageView.h"
 
 @interface ELUHeroViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *heroNameLabel;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *abilityImageViews;
-@property (weak, nonatomic) IBOutlet UIImageView *heroImageView;
+@property (weak, nonatomic) IBOutlet AsyncImageView *heroImageView;
 @property (weak, nonatomic) IBOutlet UILabel *heroBioLabel;
 
 @end
@@ -21,7 +23,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.heroNameLabel.text = self.hero.name;
+    self.heroImageView.imageURL = self.hero.image_large_url;
+    self.heroBioLabel.text = @"A bio";
 }
 
 @end

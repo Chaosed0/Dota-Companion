@@ -7,6 +7,7 @@
 //
 
 #import "ELUHeroesCardViewController.h"
+#import "ELUHeroViewController.h"
 #import "ELUHeroesModel.h"
 #import "ELUCardView.h"
 
@@ -34,8 +35,24 @@
     self.isShowingLandscapeView = NO;
     self.heroesModel = [ELUHeroesModel sharedInstance];
     [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
+    self.cardView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped)];
+    gestureRecognizer.numberOfTapsRequired = 1;
+    [self.cardView addGestureRecognizer:gestureRecognizer];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void) cardTapped {
+    [self performSegueWithIdentifier:@"PortraitHeroSegue" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueId = segue.identifier;
+    if([segueId isEqualToString:@"PortraitHeroSegue"]) {
+        ELUHeroViewController *viewController = segue.destinationViewController;
+        viewController.hero = [self.heroesModel heroAtIndex:self.currentHero];
+    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

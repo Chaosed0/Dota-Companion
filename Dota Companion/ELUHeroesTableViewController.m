@@ -7,9 +7,12 @@
 //
 
 #import "ELUHeroesTableViewController.h"
+#import "ELUHeroViewController.h"
 #import "ELUHeroesModel.h"
 #import "ELUHero.h"
 #import "AsyncImageView.h"
+
+#import <objc/runtime.h>
 
 #define kNumColumnsPerCategory 4
 #define kThumbWidth 59
@@ -29,6 +32,8 @@ static const NSString *kIconPrefix = @"overviewicon_";
 @property (strong, nonatomic) UIView *heroImageViews;
 @property (strong, nonatomic) ELUHeroesModel *heroesModel;
 
+@property (strong, nonatomic) ELUHeroesModel *heroTapped;
+
 @end
 
 @implementation ELUHeroesTableViewController
@@ -38,10 +43,24 @@ static const NSString *kIconPrefix = @"overviewicon_";
     [super viewDidLoad];
     
     self.heroesModel = [ELUHeroesModel sharedInstance];
+    self.heroTapped = nil;
     
     [self fillHeroImageViews];
     [self.scrollView addSubview:self.heroImageViews];
     self.scrollView.contentSize = self.heroImageViews.frame.size;
+}
+
+- (void) gotoHeroView:(UITapGestureRecognizer *) gestureRecognizer {
+    self.heroTapped = objc_getAssociatedObject(gestureRecognizer, @"hero");
+    [self performSegueWithIdentifier:@"LandscapeHeroSegue" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueId = segue.identifier;
+    if([segueId isEqualToString:@"LandscapeHeroSegue"]) {
+        ELUHeroViewController *viewController = segue.destinationViewController;
+        viewController.hero = self.heroTapped;
+    }
 }
 
 - (void) fillHeroImageViews {
@@ -64,7 +83,15 @@ static const NSString *kIconPrefix = @"overviewicon_";
                 NSInteger xLocation = kPadding * (curPoint.x + 1 - categoryBorders.x) + kThumbWidth * curPoint.x + categoryBorders.x * kCategoryPadding;
                 NSInteger yLocation = kPadding * (curPoint.y + 1 - categoryBorders.y) + kHeaderSize + kThumbHeight * curPoint.y + categoryBorders.y * kCategoryPadding;
                 heroImageView.frame = CGRectMake(xLocation, yLocation, kThumbWidth, kThumbHeight);
+                
+                heroImageView.userInteractionEnabled = YES;
+                UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoHeroView:)];
+                tapRecognizer.numberOfTapsRequired = 1;
+                objc_setAssociatedObject(tapRecognizer, @"hero", hero, OBJC_ASSOCIATION_ASSIGN);
+                [heroImageView addGestureRecognizer:tapRecognizer];
+                
                 [self.heroImageViews addSubview:heroImageView];
+                
                 curPoint.x++;
                 if(curPoint.x >= attrCounter*kNumColumnsPerCategory + kNumColumnsPerCategory) {
                     curPoint.x = attrCounter*kNumColumnsPerCategory;
