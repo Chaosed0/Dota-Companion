@@ -37,7 +37,6 @@
 		D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865C1851142A00766D7E /* overviewicon_int.png */; };
 		D4A986601851142A00766D7E /* overviewicon_str.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865D1851142A00766D7E /* overviewicon_str.png */; };
 		D4A9866318511C9100766D7E /* ELUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9866218511C9000766D7E /* ELUConstants.m */; };
-		D4AF75F61853BFC3005AE214 /* ELUAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AF75F51853BFC3005AE214 /* ELUAbility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,8 +84,6 @@
 		D4A9865D1851142A00766D7E /* overviewicon_str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_str.png; sourceTree = "<group>"; };
 		D4A9866118511C9000766D7E /* ELUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUConstants.h; sourceTree = "<group>"; };
 		D4A9866218511C9000766D7E /* ELUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUConstants.m; sourceTree = "<group>"; };
-		D4AF75F41853BFC3005AE214 /* ELUAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUAbility.h; sourceTree = "<group>"; };
-		D4AF75F51853BFC3005AE214 /* ELUAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUAbility.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,8 +172,6 @@
 			children = (
 				D46430B3184E7FAC008BB0C5 /* ELUHero.h */,
 				D46430B4184E7FAD008BB0C5 /* ELUHero.m */,
-				D4AF75F41853BFC3005AE214 /* ELUAbility.h */,
-				D4AF75F51853BFC3005AE214 /* ELUAbility.m */,
 				D44BACEA184FAA9900CD0C62 /* ELUHeroAbility.h */,
 				D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */,
 				D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */,
@@ -348,7 +343,6 @@
 				D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */,
 				D4A9866318511C9100766D7E /* ELUConstants.m in Sources */,
 				D4252396185218D2004B1ACE /* ELUHeroViewController.m in Sources */,
-				D4AF75F61853BFC3005AE214 /* ELUAbility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

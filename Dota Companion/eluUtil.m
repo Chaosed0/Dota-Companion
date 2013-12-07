@@ -20,6 +20,10 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
     return [NSString stringWithFormat:@"%@/%@", [NSBundle mainBundle].resourcePath, resource];
 }
 
++ (NSString*)concatString:(NSString*)str1 and:(NSString*)str2 {
+    return [NSString stringWithFormat:@"%@%@", str1, str2];
+}
+
 + (NSDictionary*)parseDotaFile:(NSString*)dotaFileName {
     static int length = 100;
     NSError *error;
@@ -30,7 +34,9 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
     NSUInteger current = 0;
     NSUInteger start = 0;
     
-    return [eluUtil parseStrings:strings curBuffer:&buffer bufferStart:&start bufferLen:length bufferLoc:&current];
+    NSDictionary *stringsDict = [eluUtil parseStrings:strings curBuffer:&buffer bufferStart:&start bufferLen:length bufferLoc:&current];
+    free(buffer);
+    return stringsDict;
 }
 
 + (NSDictionary*)parseStrings:(NSString*)string curBuffer:(unichar**)buffer bufferStart:(NSUInteger*)start bufferLen:(NSUInteger)bufferLen bufferLoc:(NSUInteger*)loc {

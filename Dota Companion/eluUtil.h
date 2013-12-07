@@ -11,6 +11,7 @@
 @interface eluUtil : NSObject
 
 + (NSDictionary*)parseDotaFile:(NSString*)dotaFileName;
++ (NSString*)concatString:(NSString*)str1 and:(NSString*)str2;
 + (NSString*)resourcePathLoc:(NSString*)resource;
 + (NSDictionary*)dotaStrings;
 + (void) logRect:(CGRect)rect;
