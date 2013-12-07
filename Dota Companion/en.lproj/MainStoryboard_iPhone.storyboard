@@ -34,7 +34,7 @@
                     </view>
                     <connections>
                         <outlet property="cardView" destination="WVz-4I-VAB" id="uoI-ax-5MW"/>
-                        <segue destination="ViY-5M-Lj5" kind="modal" identifier="OrientationChangeSegue" animates="NO" id="vD0-KC-XKz"/>
+                        <segue destination="ViY-5M-Lj5" kind="modal" identifier="OrientationChangeSegue" modalTransitionStyle="crossDissolve" id="vD0-KC-XKz"/>
                         <segue destination="dDz-Qo-wi6" kind="modal" identifier="PortraitHeroSegue" id="b1K-bI-XNg"/>
                     </connections>
                 </viewController>

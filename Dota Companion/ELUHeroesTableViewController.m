@@ -50,9 +50,23 @@ static const NSString *kIconPrefix = @"overviewicon_";
     self.scrollView.contentSize = self.heroImageViews.frame.size;
 }
 
-- (void) gotoHeroView:(UITapGestureRecognizer *) gestureRecognizer {
-    self.heroTapped = objc_getAssociatedObject(gestureRecognizer, @"hero");
-    [self performSegueWithIdentifier:@"LandscapeHeroSegue" sender:self];
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self checkOrientation];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+}
+
+- (void)checkOrientation {
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsPortrait(deviceOrientation)) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -88,7 +102,7 @@ static const NSString *kIconPrefix = @"overviewicon_";
                 heroImageView.frame = CGRectMake(xLocation, yLocation, kThumbWidth, kThumbHeight);
                 
                 heroImageView.userInteractionEnabled = YES;
-                UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoHeroView:)];
+                UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(heroImageTapped:)];
                 tapRecognizer.numberOfTapsRequired = 1;
                 objc_setAssociatedObject(tapRecognizer, @"hero", hero, OBJC_ASSOCIATION_ASSIGN);
                 [heroImageView addGestureRecognizer:tapRecognizer];
@@ -139,6 +153,11 @@ static const NSString *kIconPrefix = @"overviewicon_";
     NSInteger totalWidth = kPadding * 2 + kCategoryPadding * (attributes.count - 1) + kCategoryWidth * attributes.count;
     NSInteger totalHeight = kPadding * 2 + kCategoryPadding * (teams.count - 1) + kPadding * (maxPoint.y - teams.count) + kThumbHeight * maxPoint.y + kHeaderSize;
     self.heroImageViews.frame = CGRectMake(0, 0, totalWidth, totalHeight);
+}
+
+- (void) heroImageTapped:(UITapGestureRecognizer *) gestureRecognizer {
+    self.heroTapped = objc_getAssociatedObject(gestureRecognizer, @"hero");
+    [self performSegueWithIdentifier:@"LandscapeHeroSegue" sender:self];
 }
 
 @end

@@ -18,7 +18,6 @@
 
 @property double rotation;
 @property NSUInteger currentHero;
-@property BOOL isShowingLandscapeView;
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet ELUCardView *cardView;
@@ -32,7 +31,6 @@
     [super viewDidLoad];
     self.rotation = 0.0;
     self.currentHero = 0;
-    self.isShowingLandscapeView = NO;
     self.heroesModel = [ELUHeroesModel sharedInstance];
     [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
     self.cardView.userInteractionEnabled = YES;
@@ -40,38 +38,24 @@
     gestureRecognizer.numberOfTapsRequired = 1;
     [self.cardView addGestureRecognizer:gestureRecognizer];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
-- (void) cardTapped {
-    [self performSegueWithIdentifier:@"PortraitHeroSegue" sender:self];
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSString *segueId = segue.identifier;
-    if([segueId isEqualToString:@"PortraitHeroSegue"]) {
-        ELUHeroViewController *viewController = segue.destinationViewController;
-        viewController.hero = [self.heroesModel heroAtIndex:self.currentHero];
-        viewController.onCompletion = ^{
-            [self dismissViewControllerAnimated:YES completion:nil];
-        };
-    }
+- (void)viewDidAppear:(BOOL)animated {
+    [self checkOrientation];
 }
 
-/*- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-}*/
+}
 
-- (void)orientationChanged:(NSNotification*)notification {
+- (void)checkOrientation {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    if (UIDeviceOrientationIsLandscape(deviceOrientation) && !self.isShowingLandscapeView) {
+    if (UIDeviceOrientationIsLandscape(deviceOrientation)) {
         [self performSegueWithIdentifier:@"OrientationChangeSegue" sender:self];
-        self.isShowingLandscapeView = YES;
-    }
-    
-    else if (UIDeviceOrientationIsPortrait(deviceOrientation) && self.isShowingLandscapeView) {
-        [self dismissViewControllerAnimated:NO completion:nil];
-        self.isShowingLandscapeView = NO;
     }
 }
 
@@ -88,5 +72,20 @@
         self.cardView.frame = CGRectMake(320, self.view.frame.size.height/2.0 - self.cardView.image.size.height/2.0, 0, self.view.frame.size.height/2.0);
     } completion:^(BOOL complete){
     }];*/
+}
+
+- (void) cardTapped {
+    [self performSegueWithIdentifier:@"PortraitHeroSegue" sender:self];
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSString *segueId = segue.identifier;
+    if([segueId isEqualToString:@"PortraitHeroSegue"]) {
+        ELUHeroViewController *viewController = segue.destinationViewController;
+        viewController.hero = [self.heroesModel heroAtIndex:self.currentHero];
+        viewController.onCompletion = ^{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        };
+    }
 }
 @end
