@@ -104,17 +104,24 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
             //We are ending a dictionary; we want to advance the character first
             stop = true;
         }
+        
+        //Advance to the next character; we want to do this even if we're stopping, so as to skip the end brace. This should be robust enough to handle the case where the \0 is at the end of the buffer, too.
         (*loc)++;
         if(*loc >= bufferLen) {
+            //We've hit the end of the buffer; get some more characters
             *loc = 0;
             *start += bufferLen;
+            //For some reason, getCharacters doesn't like it if you go past the end of the string; check for this
             if(*start + bufferLen < string.length) {
+                //Just get characters as usual
                 [string getCharacters:(*buffer) range: NSMakeRange((*start), bufferLen)];
             } else {
+                //Get characters until the end of the string and null terminate it
                 [string getCharacters:(*buffer) range: NSMakeRange((*start), string.length - *start)];
                 (*buffer)[string.length - *start + 1] = '\0';
             }
         }
+        //Don't try to recurse if we're stopping. (is this necessary?)
         if(!stop) {
             if(recurse) {
                 value = [eluUtil parseStrings:string curBuffer:buffer bufferStart:start bufferLen:bufferLen bufferLoc:loc];
@@ -128,6 +135,7 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
         }
     }
     
+    //Ok, we're done.
     return result;
 }
 
