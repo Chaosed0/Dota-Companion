@@ -18,6 +18,7 @@ const NSString *const kAgilityStringShort = @"AGI";
 const NSString *const kIntelligenceStringShort = @"INT";
 const NSString *const kTeamGood = @"Team_Good";
 const NSString *const kTeamBad = @"Team_Bad";
+const NSString *const kHeroIdPrefix = @"npc_dota_hero_";
 
 
 @interface ELUConstants ()

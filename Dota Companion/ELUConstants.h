@@ -15,6 +15,8 @@ FOUNDATION_EXPORT NSString *const kAgilityString;
 FOUNDATION_EXPORT NSString *const kIntellectString;
 FOUNDATION_EXPORT NSString *const kTeamGood;
 FOUNDATION_EXPORT NSString *const kTeamBad;
+FOUNDATION_EXPORT NSString *const kHeroIdPrefix;
+
 
 @interface ELUConstants : NSObject
 

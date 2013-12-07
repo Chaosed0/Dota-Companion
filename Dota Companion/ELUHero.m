@@ -20,7 +20,6 @@ static const NSString *kFullHeroImageSuffix = @"_full.png";
 static const NSString *kMediumHeroImageSuffix = @"_hphover.png";
 static const NSString *kSmallHeroImageSuffix = @"_sb.png";
 static const NSString *kHeroPortraitImageSuffix = @"_vert.jpg";
-static const NSString *kheroIdPrefix = @"npc_dota_hero_";
 static const NSString *kBioSuffix = @"_bio";
 static const NSString *kTeamString = @"Team";
 static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
@@ -55,7 +54,7 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
         self.primaryAttribute = [heroDict[kPrimaryAttributeString] substringFromIndex:kAttributePrefix.length];
         self.bio = stringsDict[[NSString stringWithFormat:@"%@%@", heroId, kBioSuffix]];
         
-        NSString *imageName = [heroId substringFromIndex:kheroIdPrefix.length];
+        NSString *imageName = [heroId substringFromIndex:kHeroIdPrefix.length];
         self.image_small_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kSmallHeroImageSuffix]];
         self.image_medium_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kMediumHeroImageSuffix]];
         self.image_large_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kFullHeroImageSuffix]];

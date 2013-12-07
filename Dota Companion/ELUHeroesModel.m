@@ -12,6 +12,7 @@
 #define kInitialCapacity 30
 
 const static NSString *kHeroesDictFile = @"npc_heroes.txt";
+const static NSString *kHeroEnabledKey = @"Enabled";
 
 @interface ELUHeroesModel ()
 
@@ -43,7 +44,7 @@ const static NSString *kHeroesDictFile = @"npc_heroes.txt";
     
     NSDictionary *heroesDictHeroes = heroesDict[@"DOTAHeroes"];
     for(NSString* heroID in heroesDictHeroes) {
-        if([heroID hasPrefix:@"npc_dota_hero_"] && ![heroID hasSuffix:@"base"]) {
+        if([heroID hasPrefix:kHeroIdPrefix] && [heroesDictHeroes[heroID][kHeroEnabledKey] isEqualToString:@"1"]) {
             //Valid hero, this is an NSDictionary
             NSDictionary *heroInfo = heroesDictHeroes[heroID];
             ELUHero *hero = [[ELUHero alloc] initWithDict:heroInfo heroID:heroID stringsDict:dotaStrings];
