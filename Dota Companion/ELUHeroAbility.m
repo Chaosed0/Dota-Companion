@@ -20,8 +20,8 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
 @property (strong, nonatomic, readwrite) NSURL *imageUrlSmall;
 @property (strong, nonatomic, readwrite) NSURL *imageUrlMedium;
 @property (strong, nonatomic, readwrite) NSString *simpleDescription;
-@property (strong, nonatomic, readwrite) NSArray *statNotes;
-@property (strong, nonatomic, readwrite) NSArray *notes;
+@property (strong, nonatomic, readwrite) NSArray *numericalNotes;
+@property (strong, nonatomic, readwrite) NSArray *stringNotes;
 @property (strong, nonatomic, readwrite) NSString *lore;
 
 @end
@@ -102,34 +102,34 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
     
     self.simpleDescription = simpleDescription;
     
-    NSMutableArray *statNotes = [NSMutableArray array];
+    NSMutableArray *numericalNotes = [NSMutableArray array];
     
     //Iterate through the remaining elements in the abilitySpecial dictionary
     for(NSString *key in reformedAbilitySpecial) {
         NSString *value = dotaStrings[[eluUtil concatString:baseDotaString and:key]];
         if(value) {
-            NSMutableString *statNote = [NSMutableString string];
-            [statNote appendString:@"\n"];
-            [statNote appendString:value];
-            [statNote appendString:@": "];
-            [statNote appendString:reformedAbilitySpecial[key]];
-            [statNotes addObject:statNote];
+            NSMutableString *note = [NSMutableString string];
+            [note appendString:@"\n"];
+            [note appendString:value];
+            [note appendString:@": "];
+            [note appendString:reformedAbilitySpecial[key]];
+            [numericalNotes addObject:note];
         }
     }
     
-    self.statNotes = statNotes;
+    self.numericalNotes = numericalNotes;
     
-    NSMutableArray *notes = [NSMutableArray array];
+    NSMutableArray *stringNotes = [NSMutableArray array];
     
     int i = 0;
     NSString *notePrefix = [eluUtil concatString:baseDotaString and:@"Note"];
     NSString *note = [eluUtil concatString:notePrefix and:[NSString stringWithFormat:@"%d", i]];
     while(dotaStrings[note]) {
-        [notes addObject:dotaStrings[note]];
+        [stringNotes addObject:dotaStrings[note]];
         i++;
         note = [eluUtil concatString:notePrefix and:[NSString stringWithFormat:@"%d", i]];
     }
-    self.notes = notes;
+    self.stringNotes = stringNotes;
     
     self.lore = dotaStrings[[eluUtil concatString:baseDotaString and:@"Lore"]];
     return YES;
