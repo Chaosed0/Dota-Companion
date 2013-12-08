@@ -37,7 +37,6 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped)];
     gestureRecognizer.numberOfTapsRequired = 1;
     [self.cardView addGestureRecognizer:gestureRecognizer];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
