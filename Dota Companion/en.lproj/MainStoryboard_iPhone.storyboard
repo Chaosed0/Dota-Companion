@@ -50,30 +50,30 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="HERO_NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nmm-S3-ZgQ">
-                                <rect key="frame" x="20" y="8" width="280" height="39"/>
+                                <rect key="frame" x="20" y="0.0" width="280" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="4Nd-0B-rkN" customClass="AsyncImageView">
-                                <rect key="frame" x="20" y="55" width="280" height="130"/>
+                                <rect key="frame" x="20" y="42" width="280" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="pMK-6s-pKd" customClass="AsyncImageView">
-                                <rect key="frame" x="20" y="193" width="64" height="64"/>
+                                <rect key="frame" x="20" y="180" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="dFM-zk-1bA" customClass="AsyncImageView">
-                                <rect key="frame" x="92" y="193" width="64" height="64"/>
+                                <rect key="frame" x="92" y="180" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="U6K-J3-OT6" customClass="AsyncImageView">
-                                <rect key="frame" x="164" y="193" width="64" height="64"/>
+                                <rect key="frame" x="164" y="180" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="SGp-Rl-Rab" customClass="AsyncImageView">
-                                <rect key="frame" x="236" y="193" width="64" height="64"/>
+                                <rect key="frame" x="236" y="180" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="ddk-AL-mst">
@@ -88,7 +88,7 @@
                                 </items>
                             </toolbar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="sJV-uO-B96">
-                                <rect key="frame" x="20" y="265" width="280" height="221"/>
+                                <rect key="frame" x="20" y="247" width="280" height="252"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -103,6 +103,7 @@
                         <outlet property="heroBioTextView" destination="sJV-uO-B96" id="MsL-pW-k4U"/>
                         <outlet property="heroImageView" destination="4Nd-0B-rkN" id="v4K-w6-sUy"/>
                         <outlet property="heroNameLabel" destination="nmm-S3-ZgQ" id="xQj-wT-DpA"/>
+                        <outlet property="toolbar" destination="ddk-AL-mst" id="Rec-4I-eMw"/>
                         <outletCollection property="abilityImageViews" destination="pMK-6s-pKd" id="5yk-xF-xq4"/>
                         <outletCollection property="abilityImageViews" destination="dFM-zk-1bA" id="cHQ-1J-HgF"/>
                         <outletCollection property="abilityImageViews" destination="U6K-J3-OT6" id="F70-N1-G0J"/>
@@ -152,6 +153,7 @@
                 <relationship kind="outlet" name="heroBioTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="heroImageView" candidateClass="AsyncImageView"/>
                 <relationship kind="outlet" name="heroNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
                 <relationship kind="outletCollection" name="abilityImageViews" candidateClass="UIImageView"/>
             </relationships>
         </class>

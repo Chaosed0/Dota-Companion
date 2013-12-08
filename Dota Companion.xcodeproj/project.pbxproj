@@ -13,7 +13,6 @@
 		D425239D18522466004B1ACE /* npc_abilities.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239918522466004B1ACE /* npc_abilities.txt */; };
 		D425239E18522466004B1ACE /* npc_heroes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239A18522466004B1ACE /* npc_heroes.txt */; };
 		D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */; };
-		D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */; };
 		D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430AD184E705A008BB0C5 /* eluUtil.m */; };
 		D4643080184E6E61008BB0C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D464307F184E6E61008BB0C5 /* UIKit.framework */; };
 		D4643082184E6E61008BB0C5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4643081184E6E61008BB0C5 /* Foundation.framework */; };
@@ -32,6 +31,7 @@
 		D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B1184E7EBB008BB0C5 /* ELUCardView.m */; };
 		D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B4184E7FAD008BB0C5 /* ELUHero.m */; };
 		D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47CE8FA18500ED0005F95DA /* AsyncImageView.m */; };
+		D498BEFF1854FC2B00CC0306 /* ELUHeroAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */; };
 		D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */; };
 		D4A9865E1851142A00766D7E /* overviewicon_agi.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865B1851142A00766D7E /* overviewicon_agi.png */; };
 		D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865C1851142A00766D7E /* overviewicon_int.png */; };
@@ -333,12 +333,12 @@
 			files = (
 				D464308C184E6E62008BB0C5 /* main.m in Sources */,
 				D4643090184E6E62008BB0C5 /* ELUAppDelegate.m in Sources */,
+				D498BEFF1854FC2B00CC0306 /* ELUHeroAbility.m in Sources */,
 				D464309F184E6E65008BB0C5 /* ELUHeroesCardViewController.m in Sources */,
 				D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */,
 				D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */,
 				D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */,
 				D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */,
-				D44BACEC184FAA9900CD0C62 /* ELUHeroAbility.m in Sources */,
 				D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */,
 				D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */,
 				D4A9866318511C9100766D7E /* ELUConstants.m in Sources */,
