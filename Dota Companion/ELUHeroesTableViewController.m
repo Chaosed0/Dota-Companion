@@ -96,7 +96,7 @@ static const NSString *kIconPrefix = @"overviewicon_";
         for(NSString *primaryAttribute in attributes) {
             for(ELUHero *hero in [self.heroesModel heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
-                heroImageView.imageURL = hero.image_small_url;
+                heroImageView.imageURL = hero.imageUrlSmall;
                 NSInteger xLocation = kPadding * (curPoint.x + 1 - categoryBorders.x) + kThumbWidth * curPoint.x + categoryBorders.x * kCategoryPadding;
                 NSInteger yLocation = kPadding * (curPoint.y + 1 - categoryBorders.y) + kHeaderSize + kThumbHeight * curPoint.y + categoryBorders.y * kCategoryPadding;
                 heroImageView.frame = CGRectMake(xLocation, yLocation, kThumbWidth, kThumbHeight);

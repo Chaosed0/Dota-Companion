@@ -7,6 +7,7 @@
 //
 
 #import "ELUHero.h"
+#import "ELUHeroAbility.h"
 #import "eluUtil.h"
 
 static const NSString *kAttackString = @"AttackCapabilities";
@@ -24,17 +25,20 @@ static const NSString *kBioSuffix = @"_bio";
 static const NSString *kTeamString = @"Team";
 static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
 
+#define kDefaultNumAbilities 4
+
 @interface ELUHero ()
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSArray *roles;
-@property BOOL isGood;
-@property (strong, nonatomic) NSString *primaryAttribute;
-@property (strong, nonatomic) NSString *bio;
-@property (strong, nonatomic) NSURL *image_small_url;
-@property (strong, nonatomic) NSURL *image_medium_url;
-@property (strong, nonatomic) NSURL *image_large_url;
-@property (strong, nonatomic) NSURL *image_portrait_url;
+@property (strong, nonatomic, readwrite) NSString *name;
+@property (strong, nonatomic, readwrite) NSArray *roles;
+@property (strong, nonatomic, readwrite) NSArray *abilities;
+@property (readwrite) BOOL isGood;
+@property (strong, nonatomic, readwrite) NSString *primaryAttribute;
+@property (strong, nonatomic, readwrite) NSString *bio;
+@property (strong, nonatomic, readwrite) NSURL *imageUrlSmall;
+@property (strong, nonatomic, readwrite) NSURL *imageUrlMedium;
+@property (strong, nonatomic, readwrite) NSURL *imageUrlLarge;
+@property (strong, nonatomic, readwrite) NSURL *imageUrlPortrait;
 
 @end
 
@@ -55,10 +59,27 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
         self.bio = stringsDict[[NSString stringWithFormat:@"%@%@", heroId, kBioSuffix]];
         
         NSString *imageName = [heroId substringFromIndex:kHeroIdPrefix.length];
-        self.image_small_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kSmallHeroImageSuffix]];
-        self.image_medium_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kMediumHeroImageSuffix]];
-        self.image_large_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kFullHeroImageSuffix]];
-        self.image_portrait_url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kHeroPortraitImageSuffix]];
+        self.imageUrlSmall = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kSmallHeroImageSuffix]];
+        self.imageUrlMedium = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kMediumHeroImageSuffix]];
+        self.imageUrlLarge = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kFullHeroImageSuffix]];
+        self.imageUrlPortrait = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kBaseImageURL, imageName, kHeroPortraitImageSuffix]];
+        
+        int i = 0;
+        NSMutableArray *abilities = [NSMutableArray arrayWithCapacity:kDefaultNumAbilities];
+        NSString *key = [NSString stringWithFormat:@"%@%d", @"Ability", i+1];
+        NSString *value = heroDict[key];
+        while(value) {
+            ELUHeroAbility *ability = [[ELUHeroAbility alloc] initWithAbilityId:value];
+            if(ability) {
+                [abilities addObject:ability];
+            }
+            
+            i++;
+            key = [NSString stringWithFormat:@"%@%d", @"Ability", i+1];
+            value = heroDict[key];
+        }
+        
+        self.abilities = abilities;
     }
     return self;
 }

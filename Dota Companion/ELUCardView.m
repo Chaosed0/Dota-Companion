@@ -75,7 +75,7 @@
 - (void) setupWithHero: (ELUHero*) hero {
     self.heroNameLabel.text = hero.name;
     self.heroRolesLabel.text = [hero.roles componentsJoinedByString:@" - "];
-    self.heroImageView.imageURL = hero.image_portrait_url;
+    self.heroImageView.imageURL = hero.imageUrlPortrait;
 }
 
 - (void)layoutSubviews {

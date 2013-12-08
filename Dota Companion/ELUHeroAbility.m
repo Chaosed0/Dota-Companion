@@ -10,21 +10,25 @@
 
 const NSString *kAbilityFileName = @"npc_abilities.txt";
 const NSString *kAbilityStringPrefix = @"DOTA_Tooltip_ability_";
+const NSString *kAbilityImageUrlSmallSuffix = @"_hp1.png";
+const NSString *kAbilityImageUrlMediumSuffix = @"_hp2.png";
+const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/images/abilities/";
 
 @interface ELUHeroAbility ()
 
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSURL *imageURL;
-@property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) NSString *lore;
-@property (strong, nonatomic) NSArray *notes;
+@property (strong, nonatomic, readwrite) NSString *name;
+@property (strong, nonatomic, readwrite) NSURL *imageUrlSmall;
+@property (strong, nonatomic, readwrite) NSURL *imageUrlMedium;
+@property (strong, nonatomic, readwrite) NSString *simpleDescription;
+@property (strong, nonatomic, readwrite) NSArray *statNotes;
+@property (strong, nonatomic, readwrite) NSArray *notes;
+@property (strong, nonatomic, readwrite) NSString *lore;
 
 @end
 
 @implementation ELUHeroAbility
 
 -(id) initWithAbilityId:(NSString*)abilityId {
-    NSDictionary *dotaStrings = [eluUtil dotaStrings];
     NSDictionary *abilityDict = [[ELUHeroAbility sharedAbilityDict] objectForKey:abilityId];
     if(!abilityDict) {
         return nil;
@@ -32,75 +36,111 @@ const NSString *kAbilityStringPrefix = @"DOTA_Tooltip_ability_";
     
     self = [super init];
     if(self) {
-        NSString *baseDotaString = [eluUtil concatString:(NSString*)kAbilityStringPrefix and:abilityId];
-        self.name = dotaStrings[baseDotaString];
-        self.description = dotaStrings[[eluUtil concatString:baseDotaString and:@"Description"]];
+        BOOL success = [self createDescriptionStringsForAbilityId:abilityId abilityDict:abilityDict];
+        if(!success) {
+            return nil;
+        }
+        self.imageUrlSmall = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kAbilityImageUrlPrefix, abilityId, kAbilityImageUrlSmallSuffix]];
     }
     return self;
 }
 
-+(NSString*)createDescriptionStringForAbilityId:(NSString*)abilityId abilityDict:(NSDictionary*)abilityDict {
-    static const NSInteger bufferLen = 100;
+-(BOOL) createDescriptionStringsForAbilityId:(NSString*)abilityId abilityDict:(NSDictionary*)abilityDict {
     NSDictionary *dotaStrings = [eluUtil dotaStrings];
     NSString *baseDotaString = [eluUtil concatString:(NSString*)kAbilityStringPrefix and:abilityId];
-    NSString *description = [eluUtil concatString:baseDotaString and:@"Description"];
-    NSDictionary *abilitySpecial = abilityDict[abilityId][@"AbilitySpecial"];
-    NSMutableDictionary *reformedAbilitySpecial;
+    self.name = dotaStrings[baseDotaString];
+    
+    baseDotaString = [baseDotaString stringByAppendingString:@"_"];
+    NSDictionary *abilitySpecial = abilityDict[@"AbilitySpecial"];
+    NSMutableDictionary *reformedAbilitySpecial = [NSMutableDictionary dictionary];
     for (NSString *key in abilitySpecial) {
-        for(NSString *key2 in abilitySpecial[key]) {
-            if(![key2 isEqualToString: @"var_type"]) {
-                [reformedAbilitySpecial setValue:abilitySpecial[key][key2] forKey:key2];
+        for(NSString *actualKey in abilitySpecial[key]) {
+            if(![actualKey isEqualToString: @"var_type"]) {
+                NSString *value = abilitySpecial[key][actualKey];
+                [reformedAbilitySpecial setValue:value forKey:actualKey];
             }
         }
     }
     
-    NSMutableString *finalDescription = [NSMutableString string];
+    NSString *description = dotaStrings[[eluUtil concatString:baseDotaString and:@"Description"]];
+    if(!description) {
+        return NO;
+    }
+    NSMutableString *simpleDescription = [NSMutableString string];
     
-    bool firstEscape = YES;
+    BOOL firstEscape = YES;
+    BOOL foundDoubleEscape = NO;
     NSUInteger lastEscapeLocation = -1;
     
     while(lastEscapeLocation != NSNotFound) {
-        NSRange range = [description rangeOfString:@"%" options:nil range:NSMakeRange(lastEscapeLocation + 1, description.length - lastEscapeLocation - 1)];
+        NSRange range = [description rangeOfString:@"%" options:NSLiteralSearch range:NSMakeRange(lastEscapeLocation + 1, description.length - lastEscapeLocation - 1)];
         
-        if(firstEscape) {
-            [finalDescription appendString:[description substringWithRange:NSMakeRange(lastEscapeLocation + 1, range.location - lastEscapeLocation - 2)]];
-        }
-               
-        lastEscapeLocation = range.location;
-        
-        if(firstEscape && [description characterAtIndex:range.location+1] == '%') {
-            [finalDescription appendString:@"%"];
-            lastEscapeLocation++;
-        } else if(firstEscape) {
-            firstEscape = NO;
+        if(range.location != NSNotFound) {
+            if(firstEscape) {
+                [simpleDescription appendString:[description substringWithRange:NSMakeRange(lastEscapeLocation + 1, range.location - lastEscapeLocation - 1)]];
+            }
+            
+            if(firstEscape && [description characterAtIndex:range.location+1] == '%') {
+                [simpleDescription appendString:@"%"];
+                foundDoubleEscape = YES;
+            } else if(firstEscape) {
+                firstEscape = NO;
+            } else {
+                NSString *key = [description substringWithRange:NSMakeRange(lastEscapeLocation + 1, range.location - lastEscapeLocation - 1)];
+                [simpleDescription appendString:reformedAbilitySpecial[key]];
+                firstEscape = YES;
+            }
         } else {
-            NSString *key = [description substringWithRange:NSMakeRange(lastEscapeLocation + 1, range.location - lastEscapeLocation - 2)];
-            [finalDescription appendString:reformedAbilitySpecial[key]];
-            firstEscape = YES;
+            [simpleDescription appendString:[description substringWithRange:NSMakeRange(lastEscapeLocation + 1, description.length - lastEscapeLocation - 1)]];
+        }
+        lastEscapeLocation = range.location;
+        if(foundDoubleEscape) {
+            lastEscapeLocation++;
+            foundDoubleEscape = NO;
         }
     }
+    
+    self.simpleDescription = simpleDescription;
+    
+    NSMutableArray *statNotes = [NSMutableArray array];
     
     //Iterate through the remaining elements in the abilitySpecial dictionary
     for(NSString *key in reformedAbilitySpecial) {
         NSString *value = dotaStrings[[eluUtil concatString:baseDotaString and:key]];
         if(value) {
-            [finalDescription appendString:@"\n"];
-            [finalDescription appendString:value];
-            [finalDescription appendString:@": "];
-            [finalDescription appendString:reformedAbilitySpecial[key]];
+            NSMutableString *statNote = [NSMutableString string];
+            [statNote appendString:@"\n"];
+            [statNote appendString:value];
+            [statNote appendString:@": "];
+            [statNote appendString:reformedAbilitySpecial[key]];
+            [statNotes addObject:statNote];
         }
     }
     
-    //Ok, we're done.
-    return finalDescription;
+    self.statNotes = statNotes;
+    
+    NSMutableArray *notes = [NSMutableArray array];
+    
+    int i = 0;
+    NSString *notePrefix = [eluUtil concatString:baseDotaString and:@"Note"];
+    NSString *note = [eluUtil concatString:notePrefix and:[NSString stringWithFormat:@"%d", i]];
+    while(dotaStrings[note]) {
+        [notes addObject:dotaStrings[note]];
+        i++;
+        note = [eluUtil concatString:notePrefix and:[NSString stringWithFormat:@"%d", i]];
+    }
+    self.notes = notes;
+    
+    self.lore = dotaStrings[[eluUtil concatString:baseDotaString and:@"Lore"]];
+    return YES;
 }
 
 +(NSDictionary*)sharedAbilityDict {
     static NSDictionary *abilityDict = nil;
     if(!abilityDict) {
-        abilityDict = [eluUtil parseDotaFile:(NSString*)kAbilityFileName];
+        abilityDict = [eluUtil parseDotaFile:[eluUtil resourcePathLoc:(NSString*)kAbilityFileName]];
     }
-    return abilityDict;
+    return abilityDict[@"DOTAAbilities"];
 }
 
 @end

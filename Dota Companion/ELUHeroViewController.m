@@ -8,6 +8,7 @@
 
 #import "ELUHeroViewController.h"
 #import "ELUHero.h"
+#import "ELUHeroAbility.h"
 #import "AsyncImageView.h"
 
 @interface ELUHeroViewController ()
@@ -25,7 +26,12 @@
 {
     [super viewDidLoad];
     self.heroNameLabel.text = self.hero.name;
-    self.heroImageView.imageURL = self.hero.image_large_url;
+    self.heroImageView.imageURL = self.hero.imageUrlLarge;
+    for(int i = 0; i < self.abilityImageViews.count; i++) {
+        AsyncImageView *imageView = self.abilityImageViews[i];
+        ELUHeroAbility *ability = self.hero.abilities[i];
+        imageView.imageURL = ability.imageUrlSmall;
+    }
     self.heroBioTextView.text = self.hero.bio;
 }
 

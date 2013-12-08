@@ -60,19 +60,19 @@
                                 <rect key="frame" x="20" y="55" width="280" height="130"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="pMK-6s-pKd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="pMK-6s-pKd" customClass="AsyncImageView">
                                 <rect key="frame" x="20" y="193" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="dFM-zk-1bA">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="dFM-zk-1bA" customClass="AsyncImageView">
                                 <rect key="frame" x="92" y="193" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="U6K-J3-OT6">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="U6K-J3-OT6" customClass="AsyncImageView">
                                 <rect key="frame" x="164" y="193" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="SGp-Rl-Rab">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="SGp-Rl-Rab" customClass="AsyncImageView">
                                 <rect key="frame" x="236" y="193" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
