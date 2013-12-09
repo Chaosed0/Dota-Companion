@@ -38,15 +38,26 @@
     self.heroBioTextView.text = self.hero.bio;
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self checkOrientation:self.interfaceOrientation];
+}
+
 - (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self checkOrientation:toInterfaceOrientation];
+}
+
+- (void)checkOrientation:(UIInterfaceOrientation)orientation {
+    CGSize frameSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
     NSInteger toolbarHeight = self.toolbar.frame.size.height;
-    if(UIDeviceOrientationIsLandscape(toInterfaceOrientation)) {
+    NSLog(@"%g %g", frameSize.height, frameSize.height - toolbarHeight - kPadding*2);
+    [eluUtil logRect:self.view.bounds];
+    if(UIInterfaceOrientationIsLandscape(orientation)) {
         NSInteger xPosition = self.heroImageView.frame.origin.x + self.heroImageView.frame.size.width + kPadding;
-        self.heroBioTextView.frame = CGRectMake(xPosition, kPadding, self.view.frame.size.height - xPosition - kPadding*2, self.view.frame.size.width - toolbarHeight - kPadding*2);
-    } else if(UIDeviceOrientationIsPortrait(toInterfaceOrientation)) {
+        self.heroBioTextView.frame = CGRectMake(xPosition, kPadding, frameSize.width - xPosition - kPadding*2, frameSize.height - toolbarHeight - kPadding*2);
+    } else if(UIInterfaceOrientationIsPortrait(orientation)) {
         AsyncImageView *abilityView = (AsyncImageView*)self.abilityImageViews[0];
-        NSInteger yPosition = abilityView.frame.origin.y + abilityView.frame.size.height + kPadding;
-        self.heroBioTextView.frame = CGRectMake(kPadding, yPosition, self.view.frame.size.width - kPadding * 2, self.view.frame.size.height - yPosition - kPadding*2 - toolbarHeight);
+        NSInteger yPosition = abilityView.frame.origin.y + abilityView.frame.size.width + kPadding;
+        self.heroBioTextView.frame = CGRectMake(kPadding, yPosition, frameSize.width - kPadding * 2, frameSize.height - yPosition - kPadding*2 - toolbarHeight);
     }
 }
 
