@@ -14951,7 +14951,7 @@
 		"Ability1"					"gyrocopter_rocket_barrage"				// Ability 1
 		"Ability2"					"gyrocopter_homing_missile"				// Ability 2
 		"Ability3"					"gyrocopter_flak_cannon"				// Ability 3
-		"Ability6"					"gyrocopter_call_down"					// Ability 6
+		"Ability4"					"gyrocopter_call_down"					// Ability 6
 		"Ability5"					"attribute_bonus"				// Ability 7
 
 		// Armor

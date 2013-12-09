@@ -21,7 +21,7 @@
 #define kHeaderSize 50.0
 #define kCategoryPadding 15.0
 
-static const NSInteger kCategoryWidth = kPadding * (kNumColumnsPerCategory - 1) + kThumbWidth * kNumColumnsPerCategory;
+//static const NSInteger kCategoryWidth = kPadding * (kNumColumnsPerCategory - 1) + kThumbWidth * kNumColumnsPerCategory;
 
 static const NSString *kIconPrefix = @"overviewicon_";
 
@@ -48,6 +48,15 @@ static const NSString *kIconPrefix = @"overviewicon_";
     [self fillHeroImageViews];
     [self.scrollView addSubview:self.heroImageViews];
     self.scrollView.contentSize = self.heroImageViews.frame.size;
+    self.scrollView.delegate = self;
+    
+    self.scrollView.minimumZoomScale = MIN(self.scrollView.bounds.size.height / self.heroImageViews.bounds.size.width, self.scrollView.bounds.size.width / self.heroImageViews.bounds.size.height);
+    self.scrollView.maximumZoomScale = 1.0;
+    self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
+}
+
+- (UIView*) viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.heroImageViews;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -85,6 +94,9 @@ static const NSString *kIconPrefix = @"overviewicon_";
     NSArray *attributes = [ELUConstants sharedInstance].attributes;
     NSArray *teams = [ELUConstants sharedInstance].teams;
     
+    //const CGSize heroImageSize = CGSizeMake(self.view.bounds.size.height / kThumbWidth, self.view.bounds.size.width / kThumbHeight);
+    const NSInteger categoryWidth = kPadding * (kNumColumnsPerCategory - 1) + kThumbWidth * kNumColumnsPerCategory;
+    
     CGPoint maxPoint = CGPointMake(0, 0);
     CGPoint categoryBorders = CGPointMake(0, 0);
     NSInteger curY = 0;
@@ -97,7 +109,8 @@ static const NSString *kIconPrefix = @"overviewicon_";
             for(ELUHero *hero in [self.heroesModel heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
                 heroImageView.imageURL = hero.imageUrlSmall;
-                NSInteger xLocation = kPadding * (curPoint.x + 1 - categoryBorders.x) + kThumbWidth * curPoint.x + categoryBorders.x * kCategoryPadding;
+                NSInteger xLocation = kPadding * (curPoint.x + 1 - categoryBorders.x) + kThumbWidth
+                * curPoint.x + categoryBorders.x * kCategoryPadding;
                 NSInteger yLocation = kPadding * (curPoint.y + 1 - categoryBorders.y) + kHeaderSize + kThumbHeight * curPoint.y + categoryBorders.y * kCategoryPadding;
                 heroImageView.frame = CGRectMake(xLocation, yLocation, kThumbWidth, kThumbHeight);
                 
@@ -144,13 +157,13 @@ static const NSString *kIconPrefix = @"overviewicon_";
         [attrBox addSubview:attrImage];
         [attrBox addSubview:attrLabel];
         attrBox.bounds = CGRectMake(0, 0, attrImage.frame.size.width + kPadding + attrLabel.frame.size.width, MAX(attrImage.frame.size.height, attrLabel.frame.size.height));
-        attrBox.center = CGPointMake((kCategoryPadding + kCategoryWidth) * attrCounter + kPadding + kCategoryWidth/2.0, kPadding + kHeaderSize/2.0);
+        attrBox.center = CGPointMake((kCategoryPadding + categoryWidth) * attrCounter + kPadding + categoryWidth/2.0, kPadding + kHeaderSize/2.0);
         
         [self.heroImageViews addSubview:attrBox];
         attrCounter++;
     }
     
-    NSInteger totalWidth = kPadding * 2 + kCategoryPadding * (attributes.count - 1) + kCategoryWidth * attributes.count;
+    NSInteger totalWidth = kPadding * 2 + kCategoryPadding * (attributes.count - 1) + categoryWidth * attributes.count;
     NSInteger totalHeight = kPadding * 2 + kCategoryPadding * (teams.count - 1) + kPadding * (maxPoint.y - teams.count) + kThumbHeight * maxPoint.y + kHeaderSize;
     self.heroImageViews.frame = CGRectMake(0, 0, totalWidth, totalHeight);
 }

@@ -49,8 +49,6 @@
 - (void)checkOrientation:(UIInterfaceOrientation)orientation {
     CGSize frameSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
     NSInteger toolbarHeight = self.toolbar.frame.size.height;
-    NSLog(@"%g %g", frameSize.height, frameSize.height - toolbarHeight - kPadding*2);
-    [eluUtil logRect:self.view.bounds];
     if(UIInterfaceOrientationIsLandscape(orientation)) {
         NSInteger xPosition = self.heroImageView.frame.origin.x + self.heroImageView.frame.size.width + kPadding;
         self.heroBioTextView.frame = CGRectMake(xPosition, kPadding, frameSize.width - xPosition - kPadding*2, frameSize.height - toolbarHeight - kPadding*2);

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ELUHeroesTableViewController : UIViewController
+@interface ELUHeroesTableViewController : UIViewController<UIScrollViewDelegate>
 
 @end
