@@ -13,14 +13,21 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#define kMainCardWidth 0.8
+#define kMainCardHeight 0.8
+#define kSideCardWidth 0.5
+#define kSideCardHeight 0.5
+#define kSideCardPadding 50
+
 @interface ELUHeroesCardViewController ()
 @property(strong, nonatomic) ELUHeroesModel *heroesModel;
 
-@property double rotation;
-@property NSUInteger currentHero;
+@property (strong, nonatomic) NSMutableArray *cardViews;
 
-- (IBAction)playButtonPressed:(UIBarButtonItem *)sender;
-@property (weak, nonatomic) IBOutlet ELUCardView *cardView;
+@property NSUInteger currentHero;
+@property NSInteger curCard;
+
+- (IBAction)playButtonPressed:(UIButton *)sender;
 
 @end
 
@@ -29,25 +36,58 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.rotation = 0.0;
     self.currentHero = 0;
     self.heroesModel = [ELUHeroesModel sharedInstance];
-    [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
-    self.cardView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped)];
-    gestureRecognizer.numberOfTapsRequired = 1;
-    [self.cardView addGestureRecognizer:gestureRecognizer];
+    
+    self.cardViews = [NSMutableArray arrayWithCapacity:3];
+    
+    for(int i = 0; i < 3; i++) {
+        ELUCardView *cardView = [[ELUCardView alloc] initWithFrame:self.view.bounds];
+        [cardView setupWithHero:[self.heroesModel heroAtIndex:i]];
+        cardView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped)];
+        gestureRecognizer.numberOfTapsRequired = 1;
+        [cardView addGestureRecognizer:gestureRecognizer];
+        
+        [self.cardViews addObject:cardView];
+    }
+    
+    for(int i = 2; i >= 0; i--) {
+        [self.view addSubview:self.cardViews[i]];
+    }
+    
+    {
+    ELUCardView *cardView = self.cardViews[0];
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kMainCardWidth, kMainCardHeight);
+    cardView.transform = scaleTransform;
+    }
+    
+    {
+    ELUCardView *cardView = self.cardViews[1];
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
+    cardView.transform = scaleTransform;
+    cardView.center = CGPointMake(self.view.bounds.size.width - kSideCardPadding, self.view.bounds.size.height/2.0);
+    }
+       {
+    ELUCardView *cardView = self.cardViews[2];
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
+    cardView.transform = scaleTransform;
+    cardView.center = CGPointMake(self.view.bounds.size.width, self.view.bounds.size.height/2.0);
+       }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self checkOrientation];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
@@ -60,17 +100,7 @@
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
     self.currentHero++;
-    [self.cardView setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
-    /*self.rotation += M_PI * 0.5;
-    CATransform3D rotationAndPerspective = CATransform3DIdentity;
-    rotationAndPerspective.m34 = 1.0 / - 1000.0;
-    rotationAndPerspective = CATransform3DRotate(rotationAndPerspective, self.rotation, 0.0, 1.0, 0.0);
-    [UIView animateWithDuration:0.5f animations:^{
-        self.cardView.layer.anchorPoint = CGPointMake(0.5, 0.5);
-        self.cardView.layer.transform = rotationAndPerspective;
-        self.cardView.frame = CGRectMake(320, self.view.frame.size.height/2.0 - self.cardView.image.size.height/2.0, 0, self.view.frame.size.height/2.0);
-    } completion:^(BOOL complete){
-    }];*/
+    [self.cardViews[0] setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
 }
 
 - (void) cardTapped {

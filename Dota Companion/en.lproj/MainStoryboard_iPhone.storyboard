@@ -12,28 +12,25 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="d2i-6M-tCR">
-                                <rect key="frame" x="0.0" y="504" width="320" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="kRM-li-LRG"/>
-                                    <barButtonItem systemItem="play" id="0fH-dp-dc1">
-                                        <connections>
-                                            <action selector="playButtonPressed:" destination="2" id="edp-qw-olZ"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="2Hi-L1-eEc"/>
-                                </items>
-                            </toolbar>
-                            <view contentMode="scaleToFill" id="WVz-4I-VAB" customClass="ELUCardView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2lv-xd-aWb">
+                                <rect key="frame" x="132" y="505" width="57" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="argh">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playButtonPressed:" destination="2" eventType="touchUpInside" id="wCC-TH-Qh9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cardView" destination="WVz-4I-VAB" id="uoI-ax-5MW"/>
                         <segue destination="ViY-5M-Lj5" kind="modal" identifier="OrientationChangeSegue" modalTransitionStyle="crossDissolve" id="vD0-KC-XKz"/>
                         <segue destination="dDz-Qo-wi6" kind="modal" identifier="PortraitHeroSegue" id="b1K-bI-XNg"/>
                     </connections>
@@ -249,45 +246,13 @@
             <point key="canvasLocation" x="182" y="2592"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AsyncImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AsyncImageView.h"/>
-        </class>
-        <class className="ELUCardView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUCardView.h"/>
-        </class>
-        <class className="ELUHeroViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backPressed:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="heroBioTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="heroImageView" candidateClass="AsyncImageView"/>
-                <relationship kind="outlet" name="heroNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outletCollection" name="abilityImageViews" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ELUHeroesCardViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroesCardViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="playButtonPressed:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="cardView" candidateClass="ELUCardView"/>
-            </relationships>
-        </class>
-        <class className="ELUHeroesTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroesTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="b1K-bI-XNg"/>
         <segue reference="jDy-kR-bGG"/>
-        <segue reference="WWw-yX-qMw"/>
     </inferredMetricsTieBreakers>
 </document>

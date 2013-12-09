@@ -10,6 +10,8 @@
 #import "ELUCardView.h"
 #import "ELUHero.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface ELUCardView ()
 
 @property (strong, nonatomic) UILabel *heroNameLabel;
@@ -28,6 +30,7 @@
 @implementation ELUCardView
 
 - (void)baseInit {
+    self.backgroundColor = [UIColor grayColor];
     self.topMargin = 20.0;
     self.imageMargin = 20.0;
     self.imageHeight = 0.4;
@@ -42,6 +45,14 @@
     self.heroRolesLabel.textAlignment = NSTextAlignmentCenter;
     self.heroRolesLabel.numberOfLines = 0;
     
+    self.heroNameLabel.frame = CGRectMake(self.sideMargin, self.topMargin, self.frame.size.width - self.sideMargin * 2, self.nameLabelHeight);
+    self.heroImageView.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin, self.frame.size.width - self.sideMargin * 2, self.frame.size.height * self.imageHeight);
+    self.heroRolesLabel.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin * 2 + self.heroImageView.frame.size.height, self.frame.size.width - self.sideMargin * 2, self.rolesLabelHeight);
+    
+    self.heroNameLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
+    self.heroImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.heroRolesLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+    
     [self addSubview:self.heroNameLabel];
     [self addSubview:self.heroImageView];
     [self addSubview:self.heroRolesLabel];
@@ -55,8 +66,7 @@
     }
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self baseInit];
@@ -78,11 +88,11 @@
     self.heroImageView.imageURL = hero.imageUrlPortrait;
 }
 
-- (void)layoutSubviews {
+/*- (void)layoutSubviews {
     [super layoutSubviews];
     self.heroNameLabel.frame = CGRectMake(self.sideMargin, self.topMargin, self.frame.size.width - self.sideMargin * 2, self.nameLabelHeight);
     self.heroImageView.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin, self.frame.size.width - self.sideMargin * 2, self.frame.size.height * self.imageHeight);
     self.heroRolesLabel.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin * 2 + self.heroImageView.frame.size.height, self.frame.size.width - self.sideMargin * 2, self.rolesLabelHeight);
-}
+}*/
 
 @end
