@@ -15,9 +15,9 @@
 
 #define kMainCardWidth 0.7
 #define kMainCardHeight 0.7
-#define kSideCardWidth 0.5
-#define kSideCardHeight 0.5
-#define kSideCardPadding 50
+#define kSideCardWidth 0.6
+#define kSideCardHeight 0.6
+#define kSideCardPadding 90
 
 @interface ELUHeroesCardViewController ()
 @property(strong, nonatomic) ELUHeroesModel *heroesModel;
@@ -38,6 +38,11 @@
     [super viewDidLoad];
     self.currentHero = 0;
     self.heroesModel = [ELUHeroesModel sharedInstance];
+    
+    UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(nextHero)];
+    [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:swipeRecognizer];
+    self.view.userInteractionEnabled = YES;
     
     self.cardViews = [NSMutableArray arrayWithCapacity:5];
     [self.cardViews addObject:[[ELUCardView alloc] initWithFrame:self.view.bounds]];
@@ -118,6 +123,10 @@
 }
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
+    [self nextHero];
+}
+
+- (void) nextHero {
     self.currentHero++;
     
     ELUCardView *tempCardView = self.cardViews[0];
@@ -127,15 +136,19 @@
         ELUCardView *cardView = self.cardViews[i];
         CGAffineTransform swapTransform = cardView.transform;
         CGRect swapFrame = cardView.frame;
-        cardView.transform = tempTransform;
-        cardView.frame = tempFrame;
+        [UIView animateWithDuration:0.5 animations:^{
+            cardView.transform = tempTransform;
+            cardView.frame = tempFrame;
+        }];
         tempTransform = swapTransform;
         tempFrame = swapFrame;
         self.cardViews[i-1] = cardView;
     }
     
-    tempCardView.transform = tempTransform;
-    tempCardView.frame = tempFrame;
+    [UIView animateWithDuration:0.5 animations:^{
+        tempCardView.transform = tempTransform;
+        tempCardView.frame = tempFrame;
+    }];
     self.cardViews[4] = tempCardView;
     
     [self.view bringSubviewToFront:self.cardViews[0]];
