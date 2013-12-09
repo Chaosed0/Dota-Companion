@@ -45,16 +45,20 @@
     self.view.userInteractionEnabled = YES;
     
     self.cardViews = [NSMutableArray arrayWithCapacity:5];
-    [self.cardViews addObject:[[ELUCardView alloc] initWithFrame:self.view.bounds]];
-    [self.cardViews addObject:[[ELUCardView alloc] initWithFrame:self.view.bounds]];
     
-    for(int i = 0; i < 3; i++) {
+    for(int i = 0; i < 5; i++) {
         ELUCardView *cardView = [[ELUCardView alloc] initWithFrame:self.view.bounds];
-        [cardView setupWithHero:[self.heroesModel heroAtIndex:i]];
-        cardView.userInteractionEnabled = YES;
         UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped)];
         gestureRecognizer.numberOfTapsRequired = 1;
         [cardView addGestureRecognizer:gestureRecognizer];
+        cardView.userInteractionEnabled = NO;
+        
+        if(i > 1) {
+            [cardView setupWithHero:[self.heroesModel heroAtIndex:i-2]];
+            if(i == 2) {
+                cardView.userInteractionEnabled = YES;
+            }
+        }
         
         [self.cardViews addObject:cardView];
     }
@@ -143,13 +147,15 @@
         tempTransform = swapTransform;
         tempFrame = swapFrame;
         self.cardViews[i-1] = cardView;
+        
+        cardView.userInteractionEnabled = NO;
     }
     
-    [UIView animateWithDuration:0.5 animations:^{
-        tempCardView.transform = tempTransform;
-        tempCardView.frame = tempFrame;
-    }];
+    tempCardView.transform = tempTransform;
+    tempCardView.frame = tempFrame;
     self.cardViews[4] = tempCardView;
+    
+    [(UIView*)self.cardViews[2] setUserInteractionEnabled:YES];
     
     [self.view bringSubviewToFront:self.cardViews[0]];
     [self.view bringSubviewToFront:self.cardViews[4]];
