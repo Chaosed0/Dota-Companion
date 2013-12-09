@@ -13,8 +13,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#define kMainCardWidth 0.8
-#define kMainCardHeight 0.8
+#define kMainCardWidth 0.7
+#define kMainCardHeight 0.7
 #define kSideCardWidth 0.5
 #define kSideCardHeight 0.5
 #define kSideCardPadding 50
@@ -27,7 +27,7 @@
 @property NSUInteger currentHero;
 @property NSInteger curCard;
 
-- (IBAction)playButtonPressed:(UIButton *)sender;
+- (IBAction)playButtonPressed:(UIBarButtonItem *)sender;
 
 @end
 
@@ -39,7 +39,9 @@
     self.currentHero = 0;
     self.heroesModel = [ELUHeroesModel sharedInstance];
     
-    self.cardViews = [NSMutableArray arrayWithCapacity:3];
+    self.cardViews = [NSMutableArray arrayWithCapacity:5];
+    [self.cardViews addObject:[[ELUCardView alloc] initWithFrame:self.view.bounds]];
+    [self.cardViews addObject:[[ELUCardView alloc] initWithFrame:self.view.bounds]];
     
     for(int i = 0; i < 3; i++) {
         ELUCardView *cardView = [[ELUCardView alloc] initWithFrame:self.view.bounds];
@@ -52,28 +54,45 @@
         [self.cardViews addObject:cardView];
     }
     
-    for(int i = 2; i >= 0; i--) {
-        [self.view addSubview:self.cardViews[i]];
+    [self.view addSubview:self.cardViews[0]];
+    [self.view addSubview:self.cardViews[4]];
+    [self.view addSubview:self.cardViews[1]];
+    [self.view addSubview:self.cardViews[3]];
+    [self.view addSubview:self.cardViews[2]];
+    
+    {
+        ELUCardView *cardView = self.cardViews[0];
+        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);
+        cardView.transform = scaleTransform;
+        cardView.center = CGPointMake(0, self.view.bounds.size.height/2.0);
     }
     
     {
-    ELUCardView *cardView = self.cardViews[0];
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kMainCardWidth, kMainCardHeight);
-    cardView.transform = scaleTransform;
+        ELUCardView *cardView = self.cardViews[1];
+        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);
+        cardView.transform = scaleTransform;
+        cardView.center = CGPointMake(kSideCardPadding, self.view.bounds.size.height/2.0);
     }
     
     {
-    ELUCardView *cardView = self.cardViews[1];
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
-    cardView.transform = scaleTransform;
-    cardView.center = CGPointMake(self.view.bounds.size.width - kSideCardPadding, self.view.bounds.size.height/2.0);
+        ELUCardView *cardView = self.cardViews[2];
+        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kMainCardWidth, kMainCardHeight);
+        cardView.transform = scaleTransform;
     }
-       {
-    ELUCardView *cardView = self.cardViews[2];
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
-    cardView.transform = scaleTransform;
-    cardView.center = CGPointMake(self.view.bounds.size.width, self.view.bounds.size.height/2.0);
-       }
+    
+    {
+        ELUCardView *cardView = self.cardViews[3];
+        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
+        cardView.transform = scaleTransform;
+        cardView.center = CGPointMake(self.view.bounds.size.width - kSideCardPadding, self.view.bounds.size.height/2.0);
+    }
+    
+    {
+        ELUCardView *cardView = self.cardViews[4];
+        CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
+        cardView.transform = scaleTransform;
+        cardView.center = CGPointMake(self.view.bounds.size.width, self.view.bounds.size.height/2.0);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -100,7 +119,32 @@
 
 - (IBAction)playButtonPressed:(UIBarButtonItem *)sender {
     self.currentHero++;
-    [self.cardViews[0] setupWithHero:[self.heroesModel heroAtIndex:self.currentHero]];
+    
+    ELUCardView *tempCardView = self.cardViews[0];
+    CGAffineTransform tempTransform = [(UIView*)self.cardViews[0] transform];
+    CGRect tempFrame = [(UIView*)self.cardViews[0] frame];
+    for (int i = 1; i < self.cardViews.count; i++) {
+        ELUCardView *cardView = self.cardViews[i];
+        CGAffineTransform swapTransform = cardView.transform;
+        CGRect swapFrame = cardView.frame;
+        cardView.transform = tempTransform;
+        cardView.frame = tempFrame;
+        tempTransform = swapTransform;
+        tempFrame = swapFrame;
+        self.cardViews[i-1] = cardView;
+    }
+    
+    tempCardView.transform = tempTransform;
+    tempCardView.frame = tempFrame;
+    self.cardViews[4] = tempCardView;
+    
+    [self.view bringSubviewToFront:self.cardViews[0]];
+    [self.view bringSubviewToFront:self.cardViews[4]];
+    [self.view bringSubviewToFront:self.cardViews[1]];
+    [self.view bringSubviewToFront:self.cardViews[3]];
+    [self.view bringSubviewToFront:self.cardViews[2]];
+    
+    [self.cardViews[4] setupWithHero:[self.heroesModel heroAtIndex:self.currentHero+2]];
 }
 
 - (void) cardTapped {
