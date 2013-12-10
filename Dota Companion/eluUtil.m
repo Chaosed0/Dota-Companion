@@ -24,6 +24,11 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
     return [NSString stringWithFormat:@"%@%@", str1, str2];
 }
 
+//Credit goes to http://stackoverflow.com/questions/3504173/detect-retina-display
++ (BOOL)deviceIsRetina {
+    return [[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0);
+}
+
 + (NSDictionary*)parseDotaFile:(NSString*)dotaFileName {
     static int length = 100;
     NSError *error;

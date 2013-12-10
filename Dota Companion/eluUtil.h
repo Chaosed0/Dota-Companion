@@ -15,5 +15,6 @@
 + (NSString*)resourcePathLoc:(NSString*)resource;
 + (NSDictionary*)dotaStrings;
 + (void) logRect:(CGRect)rect;
++ (BOOL) deviceIsRetina;
 
 @end
