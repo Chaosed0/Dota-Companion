@@ -141,9 +141,6 @@
     if(right && self.currentHero > 0) {
         //Previous hero
         self.currentHero--;
-        if(self.currentHero == 0) {
-            NSLog(@"aaa");
-        }
                
         ELUCardView *tempCardView = self.cardViews[4];
         CGAffineTransform tempTransform = [(UIView*)self.cardViews[4] transform];
