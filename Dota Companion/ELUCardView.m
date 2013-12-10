@@ -18,25 +18,18 @@
 @property (strong, nonatomic) AsyncImageView *heroImageView;
 @property (strong, nonatomic) UILabel *heroRolesLabel;
 
-@property double topMargin;
-@property double imageMargin;
-@property double sideMargin;
-@property double imageHeight;
-@property double nameLabelHeight;
-@property double rolesLabelHeight;
-
 @end
 
 @implementation ELUCardView
 
 - (void)baseInit {
     self.backgroundColor = [UIColor grayColor];
-    self.topMargin = 20.0;
-    self.imageMargin = 20.0;
-    self.imageHeight = 0.4;
-    self.sideMargin = 20.0;
-    self.nameLabelHeight = 50.0;
-    self.rolesLabelHeight = 100.0;
+    static const float topMargin = 20.0;
+    static const float bottomMargin = 20.0;
+    static const float imageMargin = 20.0;
+    static const float sideMargin = 20.0;
+    static const float nameLabelHeight = 50.0;
+    static const float rolesLabelHeight = 100.0;
     self.heroNameLabel = [[UILabel alloc] init];
     self.heroImageView = [[AsyncImageView alloc] init];
     self.heroRolesLabel = [[UILabel alloc] init];
@@ -45,9 +38,9 @@
     self.heroRolesLabel.textAlignment = NSTextAlignmentCenter;
     self.heroRolesLabel.numberOfLines = 0;
     
-    self.heroNameLabel.frame = CGRectMake(self.sideMargin, self.topMargin, self.frame.size.width - self.sideMargin * 2, self.nameLabelHeight);
-    self.heroImageView.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin, self.frame.size.width - self.sideMargin * 2, self.frame.size.height * self.imageHeight);
-    self.heroRolesLabel.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin * 2 + self.heroImageView.frame.size.height, self.frame.size.width - self.sideMargin * 2, self.rolesLabelHeight);
+    self.heroNameLabel.frame = CGRectMake(sideMargin, topMargin, self.bounds.size.width - sideMargin * 2, nameLabelHeight);
+    self.heroRolesLabel.frame = CGRectMake(sideMargin, self.bounds.size.height - bottomMargin - rolesLabelHeight, self.bounds.size.width - sideMargin * 2, rolesLabelHeight);
+    self.heroImageView.frame = CGRectMake(sideMargin, self.heroNameLabel.frame.origin.y + self.heroNameLabel.frame.size.height + imageMargin, self.bounds.size.width - sideMargin * 2, self.bounds.size.height - self.heroNameLabel.frame.size.height - self.heroRolesLabel.frame.size.height - topMargin - bottomMargin - imageMargin*2);
     
     self.heroNameLabel.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
     self.heroImageView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

@@ -33,6 +33,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-322" y="-32"/>
         </scene>
         <!--Hero View Controller-->
         <scene sceneID="sUe-lJ-e0P">
@@ -106,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c8C-9D-6p9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="785" y="138"/>
+            <point key="canvasLocation" x="493" y="182"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="X6H-nk-OBZ">
@@ -120,7 +121,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ISJ-c2-9yr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1423" y="138"/>
+            <point key="canvasLocation" x="1147" y="182"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zvS-T9-Goi">
@@ -166,7 +167,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="blB-le-9rR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-795" y="1296"/>
+            <point key="canvasLocation" x="-1647" y="1224"/>
         </scene>
         <!--Heroes Table View Controller-->
         <scene sceneID="TT3-s4-OFb">
@@ -190,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7rO-o0-wUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="183" y="833"/>
+            <point key="canvasLocation" x="-322" y="793"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="uGm-lH-yJ9">
@@ -208,7 +209,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w99-7X-9NT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="182" y="1740"/>
+            <point key="canvasLocation" x="-322" y="1720"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="1rW-Ft-r0S">
@@ -222,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Te5-MI-K4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="899" y="2120"/>
+            <point key="canvasLocation" x="493" y="2100"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="LI8-DH-YOj">
@@ -239,44 +240,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TP8-qm-lrW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="182" y="2592"/>
+            <point key="canvasLocation" x="-322" y="2572"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AsyncImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AsyncImageView.h"/>
-        </class>
-        <class className="ELUHeroViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backPressed:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="heroBioTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="heroImageView" candidateClass="AsyncImageView"/>
-                <relationship kind="outlet" name="heroNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-                <relationship kind="outletCollection" name="abilityImageViews" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ELUHeroesCardViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroesCardViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="playButtonPressed:" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="ELUHeroesTableViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroesTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="b1K-bI-XNg"/>
+        <segue reference="WWw-yX-qMw"/>
         <segue reference="jDy-kR-bGG"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -53,8 +53,14 @@ const static NSString *kHeroEnabledKey = @"Enabled";
         }
     }
     
-    self.heroes = heroes;
+    [self.heroes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        ELUHero* hero1 = obj1;
+        ELUHero* hero2 = obj2;
+        return [hero1.name compare:hero2.name];
+    }];
+    
     self.heroesByType = heroesByType;
+    self.heroes = heroes;
 }
 
 - (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings {
