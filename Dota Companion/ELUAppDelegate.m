@@ -7,12 +7,17 @@
 //
 
 #import "ELUAppDelegate.h"
+#import "UILabel+Appearance.h"
 
 @implementation ELUAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[UILabel appearance] setTextColorAppearance:[ELUConstants sharedInstance].textColor];
+    [[UILabel appearance] setBackgroundColorAppearance:[UIColor clearColor]];
+    [[UITextView appearance] setTextColor:[ELUConstants sharedInstance].textColor];
+    [[UITextView appearance] setBackgroundColor:[UIColor clearColor]];
+    
     return YES;
 }
 							

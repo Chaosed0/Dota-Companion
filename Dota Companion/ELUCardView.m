@@ -23,13 +23,14 @@
 @implementation ELUCardView
 
 - (void)baseInit {
-    self.backgroundColor = [UIColor grayColor];
     static const float topMargin = 20.0;
     static const float bottomMargin = 20.0;
     static const float imageMargin = 20.0;
     static const float sideMargin = 20.0;
     static const float nameLabelHeight = 50.0;
     static const float rolesLabelHeight = 100.0;
+    
+    self.backgroundColor = [ELUConstants sharedInstance].lightBackColor;
     self.heroNameLabel = [[UILabel alloc] init];
     self.heroImageView = [[AsyncImageView alloc] init];
     self.heroRolesLabel = [[UILabel alloc] init];
@@ -80,12 +81,5 @@
     self.heroRolesLabel.text = [hero.roles componentsJoinedByString:@" - "];
     self.heroImageView.imageURL = hero.imageUrlPortrait;
 }
-
-/*- (void)layoutSubviews {
-    [super layoutSubviews];
-    self.heroNameLabel.frame = CGRectMake(self.sideMargin, self.topMargin, self.frame.size.width - self.sideMargin * 2, self.nameLabelHeight);
-    self.heroImageView.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin, self.frame.size.width - self.sideMargin * 2, self.frame.size.height * self.imageHeight);
-    self.heroRolesLabel.frame = CGRectMake(self.sideMargin, self.topMargin + self.nameLabelHeight + self.imageMargin * 2 + self.heroImageView.frame.size.height, self.frame.size.width - self.sideMargin * 2, self.rolesLabelHeight);
-}*/
 
 @end

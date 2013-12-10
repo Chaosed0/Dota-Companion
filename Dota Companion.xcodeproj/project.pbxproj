@@ -30,6 +30,7 @@
 		D46430AF184E736C008BB0C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46430AE184E736C008BB0C5 /* QuartzCore.framework */; };
 		D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B1184E7EBB008BB0C5 /* ELUCardView.m */; };
 		D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B4184E7FAD008BB0C5 /* ELUHero.m */; };
+		D472ED9B1857ADC300BE9F1E /* UILabel+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */; };
 		D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47CE8FA18500ED0005F95DA /* AsyncImageView.m */; };
 		D498BEFF1854FC2B00CC0306 /* ELUHeroAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */; };
 		D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */; };
@@ -76,6 +77,8 @@
 		D46430B1184E7EBB008BB0C5 /* ELUCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUCardView.m; sourceTree = "<group>"; };
 		D46430B3184E7FAC008BB0C5 /* ELUHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHero.h; sourceTree = "<group>"; };
 		D46430B4184E7FAD008BB0C5 /* ELUHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHero.m; sourceTree = "<group>"; };
+		D472ED991857ADC300BE9F1E /* UILabel+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Appearance.h"; sourceTree = "<group>"; };
+		D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Appearance.m"; sourceTree = "<group>"; };
 		D47CE8F918500ED0005F95DA /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		D47CE8FA18500ED0005F95DA /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		D4A9865418510E2500766D7E /* ELUHeroesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesTableViewController.h; sourceTree = "<group>"; };
@@ -162,6 +165,8 @@
 		D44BACDF184FA4FD00CD0C62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D472ED991857ADC300BE9F1E /* UILabel+Appearance.h */,
+				D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */,
 				D4643097184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard */,
 				D464309A184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard */,
 				D46430B0184E7EBB008BB0C5 /* ELUCardView.h */,
@@ -349,6 +354,7 @@
 				D4A9866318511C9100766D7E /* ELUConstants.m in Sources */,
 				D4252396185218D2004B1ACE /* ELUHeroViewController.m in Sources */,
 				D4F993E4185669C6005D5630 /* ELUAbilityViewController.m in Sources */,
+				D472ED9B1857ADC300BE9F1E /* UILabel+Appearance.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

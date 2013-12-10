@@ -36,6 +36,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [ELUConstants sharedInstance].darkBackColor;
+    
     self.currentHero = 0;
     self.heroesModel = [ELUHeroesModel sharedInstance];
     
@@ -141,7 +144,7 @@
     if(right && self.currentHero > 0) {
         //Previous hero
         self.currentHero--;
-               
+        
         ELUCardView *tempCardView = self.cardViews[4];
         CGAffineTransform tempTransform = [(UIView*)self.cardViews[4] transform];
         CGRect tempFrame = [(UIView*)self.cardViews[4] frame];

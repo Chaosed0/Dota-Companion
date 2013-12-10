@@ -25,6 +25,10 @@ const NSString *const kHeroIdPrefix = @"npc_dota_hero_";
 
 @property (strong, nonatomic) NSArray *teams;
 @property (strong, nonatomic) NSArray *attributes;
+@property (strong, nonatomic) UIColor *lightBackColor;
+@property (strong, nonatomic) UIColor *darkBackColor;
+@property (strong, nonatomic) UIColor *textColor;
+@property (strong, nonatomic) UIColor *darkTextColor;
 
 @end
 
@@ -36,6 +40,11 @@ const NSString *const kHeroIdPrefix = @"npc_dota_hero_";
         constants = [[ELUConstants alloc] init];
         constants.teams = @[kGoodTeamString, kBadTeamString];
         constants.attributes = @[kStrengthString, kAgilityString, kIntellectString];
+        
+        constants.lightBackColor = [UIColor colorWithRed:49/255.0 green:49/255.0 blue:49/255.0 alpha:1.0];
+        constants.darkBackColor = [UIColor colorWithRed:39/255.0 green:39/255.0 blue:39/255.0 alpha:1.0];
+        constants.textColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
+        constants.darkTextColor = [UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0];
     }
     return constants;
 }

@@ -42,6 +42,8 @@ static const NSString *kIconPrefix = @"overviewicon_";
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [ELUConstants sharedInstance].darkBackColor;
+    
     self.heroesModel = [ELUHeroesModel sharedInstance];
     self.heroTapped = nil;
     

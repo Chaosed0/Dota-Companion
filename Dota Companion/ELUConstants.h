@@ -22,6 +22,10 @@ FOUNDATION_EXPORT NSString *const kHeroIdPrefix;
 
 @property (strong, nonatomic, readonly) NSArray *teams;
 @property (strong, nonatomic, readonly) NSArray *attributes;
+@property (strong, nonatomic, readonly) UIColor *lightBackColor;
+@property (strong, nonatomic, readonly) UIColor *darkBackColor;
+@property (strong, nonatomic, readonly) UIColor *textColor;
+@property (strong, nonatomic, readonly) UIColor *darkTextColor;
 +(ELUConstants*)sharedInstance;
 
 @end

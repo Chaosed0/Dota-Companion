@@ -28,6 +28,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [ELUConstants sharedInstance].darkBackColor;
+    
     self.heroNameLabel.text = self.hero.name;
     self.heroImageView.imageURL = self.hero.imageUrlLarge;
     for(int i = 0; i < self.abilityImageViews.count; i++) {
