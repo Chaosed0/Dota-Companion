@@ -8,6 +8,7 @@
 
 #import "ELUHeroesCardViewController.h"
 #import "ELUHeroViewController.h"
+#import "ELUHeroesTableViewController.h"
 #import "ELUHeroesModel.h"
 #import "ELUCardView.h"
 
@@ -132,6 +133,8 @@
 - (void)checkOrientation {
     UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
     if (UIDeviceOrientationIsLandscape(deviceOrientation)) {
+        [self.navigationController popViewControllerAnimated:NO];
+        [self.navigationController pushViewController:[[ELUHeroesTableViewController alloc] initWithNibName:<#(NSString *)#> bundle:<#(NSBundle *)#>] animated:NO]
         [self performSegueWithIdentifier:@"OrientationChangeSegue" sender:self];
     }
 }
@@ -232,7 +235,8 @@
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueId = segue.identifier;
     if([segueId isEqualToString:@"PortraitHeroSegue"]) {
-        ELUHeroViewController *viewController = segue.destinationViewController;
+        UINavigationController *navViewController = segue.destinationViewController;
+        ELUHeroViewController *viewController = navViewController.viewControllers[0];
         viewController.hero = [self.heroesModel heroAtIndex:self.currentHero];
         viewController.onCompletion = ^{
             [self dismissViewControllerAnimated:YES completion:nil];

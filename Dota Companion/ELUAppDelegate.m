@@ -17,6 +17,7 @@
     [[UILabel appearance] setBackgroundColorAppearance:[UIColor clearColor]];
     [[UITextView appearance] setTextColor:[ELUConstants sharedInstance].textColor];
     [[UITextView appearance] setBackgroundColor:[UIColor clearColor]];
+    [[UINavigationBar appearance] setTintColor:[ELUConstants sharedInstance].lightBackColor];
     
     return YES;
 }

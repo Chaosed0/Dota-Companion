@@ -21,8 +21,6 @@
 #define kHeaderSize 50.0
 #define kCategoryPadding 15.0
 
-//static const NSInteger kCategoryWidth = kPadding * (kNumColumnsPerCategory - 1) + kThumbWidth * kNumColumnsPerCategory;
-
 static const NSString *kIconPrefix = @"overviewicon_";
 
 @interface ELUHeroesTableViewController ()
@@ -83,7 +81,8 @@ static const NSString *kIconPrefix = @"overviewicon_";
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *segueId = segue.identifier;
     if([segueId isEqualToString:@"LandscapeHeroSegue"]) {
-        ELUHeroViewController *viewController = segue.destinationViewController;
+        UINavigationController *navViewController = segue.destinationViewController;
+        ELUHeroViewController *viewController = navViewController.viewControllers[0];
         viewController.hero = self.heroTapped;
         viewController.onCompletion = ^{
             [self dismissViewControllerAnimated:YES completion:nil];
