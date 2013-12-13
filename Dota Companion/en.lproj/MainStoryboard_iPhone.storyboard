@@ -14,13 +14,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="ViY-5M-Lj5" kind="push" identifier="OrientationChangeSegue" id="vD0-KC-XKz"/>
-                        <segue destination="dDz-Qo-wi6" kind="push" identifier="PortraitHeroSegue" id="goD-j7-Or1"/>
+                        <segue destination="dDz-Qo-wi6" kind="push" identifier="HeroSegue" id="goD-j7-Or1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-322" y="-32"/>
+            <point key="canvasLocation" x="-322" y="182"/>
         </scene>
         <!--Hero View Controller-->
         <scene sceneID="sUe-lJ-e0P">
@@ -133,30 +132,6 @@
             </objects>
             <point key="canvasLocation" x="-995" y="1234"/>
         </scene>
-        <!--Heroes Table View Controller-->
-        <scene sceneID="TT3-s4-OFb">
-            <objects>
-                <viewController id="ViY-5M-Lj5" customClass="ELUHeroesTableViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UcV-5H-0gc">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="keA-uB-GLg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="scrollView" destination="keA-uB-GLg" id="Q7X-O0-Ne5"/>
-                        <segue destination="dDz-Qo-wi6" kind="push" identifier="LandscapeHeroSegue" id="kOW-5L-N4X"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7rO-o0-wUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-322" y="793"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="uGm-lH-yJ9">
             <objects>
@@ -167,8 +142,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="sx4-Cg-OUJ" kind="modal" id="GyE-zC-Dpq"/>
-                        <segue destination="lRC-Lf-Qew" kind="modal" id="wFQ-Au-FTd"/>
+                        <segue destination="lRC-Lf-Qew" kind="modal" identifier="ItemSegue" id="wFQ-Au-FTd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w99-7X-9NT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -188,23 +162,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Te5-MI-K4o" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="493" y="2100"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="LI8-DH-YOj">
-            <objects>
-                <viewController id="sx4-Cg-OUJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="F0W-xp-XwO">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <segue destination="lRC-Lf-Qew" kind="modal" id="jDy-kR-bGG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TP8-qm-lrW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-322" y="2572"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ctQ-Gc-rCy">
@@ -227,8 +184,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="jDy-kR-bGG"/>
-        <segue reference="kOW-5L-N4X"/>
-    </inferredMetricsTieBreakers>
 </document>

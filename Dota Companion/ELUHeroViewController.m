@@ -41,25 +41,10 @@
     self.title = self.hero.name;
     self.heroImageView.imageURL = self.hero.imageUrlLarge;
     self.heroBioTextView.text = self.hero.bio;
-    
-    UINavigationItem *backItem = [[UINavigationItem alloc] initWithTitle:@"Heroes"];
-    self.titleItem = [[UINavigationItem alloc] initWithTitle:self.hero.name];
-    self.navigationController.navigationBar.items = @[backItem, self.titleItem];
-    //self.navigationController.navigationBar.delegate = self;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-}
-
-- (BOOL) navigationBar:(UINavigationBar *)navigationBar shouldPopItem:(UINavigationItem *)item {
-    if(item == self.titleItem) {
-        self.onCompletion();
-        return NO;
-    } else {
-        //[self.navigationController popViewControllerAnimated:YES];
-        return YES;
-    }
 }
 
 - (void)fillScrollView {

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ELUHeroesCardViewController : UIViewController
+#import "ELUHeroDelegate.h"
+
+@interface ELUHeroesCardViewController : UIViewController <ELUHeroDelegate>
 
 @end
