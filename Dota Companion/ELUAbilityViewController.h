@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class ELUHeroAbility;
+@class ELUAbility;
 
 @interface ELUAbilityViewController : UIViewController
 
-@property (strong, nonatomic) ELUHeroAbility *ability;
+@property (strong, nonatomic) ELUAbility *ability;
 
 @end

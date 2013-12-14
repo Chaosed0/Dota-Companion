@@ -7,7 +7,7 @@
 //
 
 #import "ELUHero.h"
-#import "ELUHeroAbility.h"
+#import "ELUAbility.h"
 #import "eluUtil.h"
 
 static const NSString *kAttackString = @"AttackCapabilities";
@@ -69,7 +69,7 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
         NSString *key = [NSString stringWithFormat:@"%@%d", @"Ability", i+1];
         NSString *value = heroDict[key];
         while(value) {
-            ELUHeroAbility *ability = [[ELUHeroAbility alloc] initWithAbilityId:value];
+            ELUAbility *ability = [[ELUAbility alloc] initWithAbilityId:value];
             if(ability) {
                 [abilities addObject:ability];
             }

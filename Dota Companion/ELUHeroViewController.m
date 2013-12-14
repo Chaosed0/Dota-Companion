@@ -8,7 +8,7 @@
 
 #import "ELUHeroViewController.h"
 #import "ELUHero.h"
-#import "ELUHeroAbility.h"
+#import "ELUAbility.h"
 #import "ELUAbilityViewController.h"
 #import "AsyncImageView.h"
 
@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *heroBioTextView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
-@property (strong, nonatomic) ELUHeroAbility *segueAbility;
+@property (strong, nonatomic) ELUAbility *segueAbility;
 @property (strong, nonatomic) UINavigationItem *titleItem;
 
 @end
@@ -53,7 +53,7 @@
     
     for(int i = 0; i < self.hero.abilities.count; i++) {
         AsyncImageView *imageView = [[AsyncImageView alloc] init];
-        ELUHeroAbility *ability = self.hero.abilities[i];
+        ELUAbility *ability = self.hero.abilities[i];
         //Let's just assume that all of these images are squares
         imageView.frame = CGRectMake(curX, 0, scrollViewHeight, scrollViewHeight);
         imageView.imageURL = ability.imageUrlSmall;

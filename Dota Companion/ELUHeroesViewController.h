@@ -10,6 +10,6 @@
 
 #import "ELUHeroDelegate.h"
 
-@interface ELUHeroesCardViewController : UIViewController <ELUHeroDelegate>
+@interface ELUHeroesViewController : UIViewController <ELUHeroDelegate>
 
 @end

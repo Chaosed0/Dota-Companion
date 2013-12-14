@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ELUHeroAbility : NSObject
+@interface ELUAbility : NSObject
 
 @property (strong, nonatomic, readonly) NSString *name;
 @property (strong, nonatomic, readonly) NSURL *imageUrlSmall;
@@ -16,6 +16,8 @@
 @property (strong, nonatomic, readonly) NSString *simpleDescription;
 @property (strong, nonatomic, readonly) NSArray *numericalNotes;
 @property (strong, nonatomic, readonly) NSArray *stringNotes;
+@property (strong, nonatomic, readonly) NSArray *manaCosts;
+@property (strong, nonatomic, readonly) NSArray *cooldowns;
 @property (strong, nonatomic, readonly) NSString *lore;
 
 -(id) initWithAbilityId:(NSString*)abilityId;

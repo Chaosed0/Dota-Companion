@@ -17,7 +17,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface ELUHeroesCardViewController ()
+@interface ELUHeroesViewController ()
 @property(strong, nonatomic) ELUHeroesModel *heroesModel;
 
 @property(strong, nonatomic) ELUHeroesCardView *cardView;
@@ -26,15 +26,12 @@
 
 @end
 
-@implementation ELUHeroesCardViewController
+@implementation ELUHeroesViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.heroesModel = [ELUHeroesModel sharedInstance];
-    
-    self.title = @"Heroes";
-    self.view.clipsToBounds = YES;
     
     self.cardView = [[ELUHeroesCardView alloc] initWithFrame:self.view.bounds delegate:self];
     self.cardView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
