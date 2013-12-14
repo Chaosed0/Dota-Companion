@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class ELUAbility;
+
 @interface ELUAbilityViewController : UIViewController
+
+@property (strong, nonatomic) ELUAbility *ability;
 
 @end

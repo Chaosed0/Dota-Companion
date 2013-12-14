@@ -12,6 +12,9 @@
 		D425239C18522466004B1ACE /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239818522466004B1ACE /* items.txt */; };
 		D425239D18522466004B1ACE /* npc_abilities.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239918522466004B1ACE /* npc_abilities.txt */; };
 		D425239E18522466004B1ACE /* npc_heroes.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239A18522466004B1ACE /* npc_heroes.txt */; };
+		D4410E0C185CC38E0008C3F2 /* ELUAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D4410E0B185CC38E0008C3F2 /* ELUAbility.m */; };
+		D4410E0E185CCB870008C3F2 /* mana.png in Resources */ = {isa = PBXBuildFile; fileRef = D4410E0D185CCB870008C3F2 /* mana.png */; };
+		D4410E10185CCB8C0008C3F2 /* cooldown.png in Resources */ = {isa = PBXBuildFile; fileRef = D4410E0F185CCB8C0008C3F2 /* cooldown.png */; };
 		D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */; };
 		D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430AD184E705A008BB0C5 /* eluUtil.m */; };
 		D4643080184E6E61008BB0C5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D464307F184E6E61008BB0C5 /* UIKit.framework */; };
@@ -25,15 +28,15 @@
 		D4643096184E6E62008BB0C5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4643095184E6E62008BB0C5 /* Default-568h@2x.png */; };
 		D4643099184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4643097184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard */; };
 		D464309C184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D464309A184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard */; };
-		D464309F184E6E65008BB0C5 /* ELUHeroesCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */; };
+		D464309F184E6E65008BB0C5 /* ELUHeroesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D464309E184E6E65008BB0C5 /* ELUHeroesViewController.m */; };
 		D46430AB184E6FB2008BB0C5 /* EMRAKUL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D46430AA184E6FB2008BB0C5 /* EMRAKUL.jpg */; };
 		D46430AF184E736C008BB0C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46430AE184E736C008BB0C5 /* QuartzCore.framework */; };
 		D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B1184E7EBB008BB0C5 /* ELUCardView.m */; };
 		D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B4184E7FAD008BB0C5 /* ELUHero.m */; };
 		D472ED9B1857ADC300BE9F1E /* UILabel+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */; };
 		D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47CE8FA18500ED0005F95DA /* AsyncImageView.m */; };
-		D498BEFF1854FC2B00CC0306 /* ELUHeroAbility.m in Sources */ = {isa = PBXBuildFile; fileRef = D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */; };
-		D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */; };
+		D495EB8B185BA60E00CB8E00 /* ELUHeroesCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D495EB8A185BA60E00CB8E00 /* ELUHeroesCardView.m */; };
+		D495EB90185BAAB700CB8E00 /* ELUHeroesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D495EB8F185BAAB700CB8E00 /* ELUHeroesTableView.m */; };
 		D4A9865E1851142A00766D7E /* overviewicon_agi.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865B1851142A00766D7E /* overviewicon_agi.png */; };
 		D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865C1851142A00766D7E /* overviewicon_int.png */; };
 		D4A986601851142A00766D7E /* overviewicon_str.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865D1851142A00766D7E /* overviewicon_str.png */; };
@@ -48,10 +51,12 @@
 		D425239818522466004B1ACE /* items.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = items.txt; sourceTree = "<group>"; };
 		D425239918522466004B1ACE /* npc_abilities.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_abilities.txt; sourceTree = "<group>"; };
 		D425239A18522466004B1ACE /* npc_heroes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = npc_heroes.txt; sourceTree = "<group>"; };
+		D4410E0A185CC38E0008C3F2 /* ELUAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUAbility.h; sourceTree = "<group>"; };
+		D4410E0B185CC38E0008C3F2 /* ELUAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUAbility.m; sourceTree = "<group>"; };
+		D4410E0D185CCB870008C3F2 /* mana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mana.png; sourceTree = "<group>"; };
+		D4410E0F185CCB8C0008C3F2 /* cooldown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cooldown.png; sourceTree = "<group>"; };
 		D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesModel.h; sourceTree = "<group>"; };
 		D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesModel.m; sourceTree = "<group>"; };
-		D44BACEA184FAA9900CD0C62 /* ELUHeroAbility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroAbility.h; sourceTree = "<group>"; };
-		D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroAbility.m; sourceTree = "<group>"; };
 		D464307C184E6E61008BB0C5 /* Dota Companion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Companion.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D464307F184E6E61008BB0C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D4643081184E6E61008BB0C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,8 +72,8 @@
 		D4643095184E6E62008BB0C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D4643098184E6E63008BB0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		D464309B184E6E65008BB0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		D464309D184E6E65008BB0C5 /* ELUHeroesCardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELUHeroesCardViewController.h; sourceTree = "<group>"; };
-		D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesCardViewController.m; sourceTree = "<group>"; };
+		D464309D184E6E65008BB0C5 /* ELUHeroesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELUHeroesViewController.h; sourceTree = "<group>"; };
+		D464309E184E6E65008BB0C5 /* ELUHeroesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesViewController.m; sourceTree = "<group>"; };
 		D46430AA184E6FB2008BB0C5 /* EMRAKUL.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = EMRAKUL.jpg; sourceTree = "<group>"; };
 		D46430AC184E705A008BB0C5 /* eluUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = eluUtil.h; sourceTree = "<group>"; };
 		D46430AD184E705A008BB0C5 /* eluUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eluUtil.m; sourceTree = "<group>"; };
@@ -81,8 +86,11 @@
 		D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Appearance.m"; sourceTree = "<group>"; };
 		D47CE8F918500ED0005F95DA /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		D47CE8FA18500ED0005F95DA /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
-		D4A9865418510E2500766D7E /* ELUHeroesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesTableViewController.h; sourceTree = "<group>"; };
-		D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesTableViewController.m; sourceTree = "<group>"; };
+		D495EB89185BA60E00CB8E00 /* ELUHeroesCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELUHeroesCardView.h; path = ../ELUHeroesCardView.h; sourceTree = "<group>"; };
+		D495EB8A185BA60E00CB8E00 /* ELUHeroesCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ELUHeroesCardView.m; path = ../ELUHeroesCardView.m; sourceTree = "<group>"; };
+		D495EB8D185BA77400CB8E00 /* ELUHeroDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELUHeroDelegate.h; sourceTree = "<group>"; };
+		D495EB8E185BAAB700CB8E00 /* ELUHeroesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroesTableView.h; sourceTree = "<group>"; };
+		D495EB8F185BAAB700CB8E00 /* ELUHeroesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroesTableView.m; sourceTree = "<group>"; };
 		D4A9865B1851142A00766D7E /* overviewicon_agi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_agi.png; sourceTree = "<group>"; };
 		D4A9865C1851142A00766D7E /* overviewicon_int.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_int.png; sourceTree = "<group>"; };
 		D4A9865D1851142A00766D7E /* overviewicon_str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_str.png; sourceTree = "<group>"; };
@@ -122,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				D47CE8F818500ED0005F95DA /* AsyncImageView */,
+				D495EB8D185BA77400CB8E00 /* ELUHeroDelegate.h */,
 				D46430AC184E705A008BB0C5 /* eluUtil.h */,
 				D46430AD184E705A008BB0C5 /* eluUtil.m */,
 				D4A9866118511C9000766D7E /* ELUConstants.h */,
@@ -133,6 +142,8 @@
 		D44BACDC184FA4CE00CD0C62 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D4410E0D185CCB870008C3F2 /* mana.png */,
+				D4410E0F185CCB8C0008C3F2 /* cooldown.png */,
 				D4A9865B1851142A00766D7E /* overviewicon_agi.png */,
 				D4A9865C1851142A00766D7E /* overviewicon_int.png */,
 				D4A9865D1851142A00766D7E /* overviewicon_str.png */,
@@ -165,12 +176,16 @@
 		D44BACDF184FA4FD00CD0C62 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D495EB89185BA60E00CB8E00 /* ELUHeroesCardView.h */,
+				D495EB8A185BA60E00CB8E00 /* ELUHeroesCardView.m */,
+				D495EB8E185BAAB700CB8E00 /* ELUHeroesTableView.h */,
+				D495EB8F185BAAB700CB8E00 /* ELUHeroesTableView.m */,
+				D46430B0184E7EBB008BB0C5 /* ELUCardView.h */,
+				D46430B1184E7EBB008BB0C5 /* ELUCardView.m */,
 				D472ED991857ADC300BE9F1E /* UILabel+Appearance.h */,
 				D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */,
 				D4643097184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard */,
 				D464309A184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard */,
-				D46430B0184E7EBB008BB0C5 /* ELUCardView.h */,
-				D46430B1184E7EBB008BB0C5 /* ELUCardView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -180,8 +195,8 @@
 			children = (
 				D46430B3184E7FAC008BB0C5 /* ELUHero.h */,
 				D46430B4184E7FAD008BB0C5 /* ELUHero.m */,
-				D44BACEA184FAA9900CD0C62 /* ELUHeroAbility.h */,
-				D44BACEB184FAA9900CD0C62 /* ELUHeroAbility.m */,
+				D4410E0A185CC38E0008C3F2 /* ELUAbility.h */,
+				D4410E0B185CC38E0008C3F2 /* ELUAbility.m */,
 				D44BACD1184FA44500CD0C62 /* ELUHeroesModel.h */,
 				D44BACD2184FA44500CD0C62 /* ELUHeroesModel.m */,
 			);
@@ -191,10 +206,8 @@
 		D44BACE1184FA51900CD0C62 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D464309D184E6E65008BB0C5 /* ELUHeroesCardViewController.h */,
-				D464309E184E6E65008BB0C5 /* ELUHeroesCardViewController.m */,
-				D4A9865418510E2500766D7E /* ELUHeroesTableViewController.h */,
-				D4A9865518510E2500766D7E /* ELUHeroesTableViewController.m */,
+				D464309D184E6E65008BB0C5 /* ELUHeroesViewController.h */,
+				D464309E184E6E65008BB0C5 /* ELUHeroesViewController.m */,
 				D4252394185218D2004B1ACE /* ELUHeroViewController.h */,
 				D4252395185218D2004B1ACE /* ELUHeroViewController.m */,
 				D4F993E2185669C6005D5630 /* ELUAbilityViewController.h */,
@@ -331,6 +344,8 @@
 				D425239C18522466004B1ACE /* items.txt in Resources */,
 				D425239D18522466004B1ACE /* npc_abilities.txt in Resources */,
 				D425239E18522466004B1ACE /* npc_heroes.txt in Resources */,
+				D4410E0E185CCB870008C3F2 /* mana.png in Resources */,
+				D4410E10185CCB8C0008C3F2 /* cooldown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,18 +358,19 @@
 			files = (
 				D464308C184E6E62008BB0C5 /* main.m in Sources */,
 				D4643090184E6E62008BB0C5 /* ELUAppDelegate.m in Sources */,
-				D498BEFF1854FC2B00CC0306 /* ELUHeroAbility.m in Sources */,
-				D464309F184E6E65008BB0C5 /* ELUHeroesCardViewController.m in Sources */,
+				D464309F184E6E65008BB0C5 /* ELUHeroesViewController.m in Sources */,
 				D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */,
 				D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */,
 				D44BACD3184FA44500CD0C62 /* ELUHeroesModel.m in Sources */,
 				D44BACED184FB7E000CD0C62 /* eluUtil.m in Sources */,
 				D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */,
-				D4A9865618510E2500766D7E /* ELUHeroesTableViewController.m in Sources */,
 				D4A9866318511C9100766D7E /* ELUConstants.m in Sources */,
 				D4252396185218D2004B1ACE /* ELUHeroViewController.m in Sources */,
 				D4F993E4185669C6005D5630 /* ELUAbilityViewController.m in Sources */,
 				D472ED9B1857ADC300BE9F1E /* UILabel+Appearance.m in Sources */,
+				D495EB8B185BA60E00CB8E00 /* ELUHeroesCardView.m in Sources */,
+				D495EB90185BAAB700CB8E00 /* ELUHeroesTableView.m in Sources */,
+				D4410E0C185CC38E0008C3F2 /* ELUAbility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

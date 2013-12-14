@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 EDWARD LU. All rights reserved.
 //
 
-#import "ELUHeroAbility.h"
+#import "ELUAbility.h"
 
 const NSString *kAbilityFileName = @"npc_abilities.txt";
 const NSString *kAbilityStringPrefix = @"DOTA_Tooltip_ability_";
@@ -14,22 +14,64 @@ const NSString *kAbilityImageUrlSmallSuffix = @"_hp1.png";
 const NSString *kAbilityImageUrlMediumSuffix = @"_hp2.png";
 const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/images/abilities/";
 
-@interface ELUHeroAbility ()
+const NSString *kCooldownString = @"AbilityCooldown";
+const NSString *kManaCostString = @"AbilityManaCost";
 
-@property (strong, nonatomic, readwrite) NSString *name;
-@property (strong, nonatomic, readwrite) NSURL *imageUrlSmall;
-@property (strong, nonatomic, readwrite) NSURL *imageUrlMedium;
-@property (strong, nonatomic, readwrite) NSString *simpleDescription;
-@property (strong, nonatomic, readwrite) NSArray *numericalNotes;
-@property (strong, nonatomic, readwrite) NSArray *stringNotes;
-@property (strong, nonatomic, readwrite) NSString *lore;
+const NSString *keyName = @"name";
+const NSString *keyImageUrlSmall = @"imageUrlSmall";
+const NSString *keyImageUrlMedium = @"imageUrlMedium";
+const NSString *keySimpleDescription = @"simpleDescription";
+const NSString *keyNumericalNotes = @"numericalNotes";
+const NSString *keyStringNotes = @"stringNotes";
+const NSString *keyManaCosts = @"manaCosts";
+const NSString *keyCooldowns = @"cooldowns";
+const NSString *keyLore = @"lore";
+
+@interface ELUAbility ()
+
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSURL *imageUrlSmall;
+@property (strong, nonatomic) NSURL *imageUrlMedium;
+@property (strong, nonatomic) NSString *simpleDescription;
+@property (strong, nonatomic) NSArray *numericalNotes;
+@property (strong, nonatomic) NSArray *stringNotes;
+@property (strong, nonatomic) NSArray *manaCosts;
+@property (strong, nonatomic) NSArray *cooldowns;
+@property (strong, nonatomic) NSString *lore;
 
 @end
 
-@implementation ELUHeroAbility
+@implementation ELUAbility
+
+-(id) initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super init]) {
+        self.name = [aDecoder decodeObjectForKey:(NSString*)keyName];
+        self.imageUrlSmall = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlSmall];
+        self.imageUrlMedium = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlMedium];
+        self.simpleDescription = [aDecoder decodeObjectForKey:(NSString*)keySimpleDescription];
+        self.numericalNotes = [aDecoder decodeObjectForKey:(NSString*)keyNumericalNotes];
+        self.stringNotes = [aDecoder decodeObjectForKey:(NSString*)keyStringNotes];
+        self.manaCosts = [aDecoder decodeObjectForKey:(NSString*)keyManaCosts];
+        self.cooldowns = [aDecoder decodeObjectForKey:(NSString*)keyCooldowns];
+        self.lore = [aDecoder decodeObjectForKey:(NSString*)keyLore];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:(NSString*)keyName];
+    [aCoder encodeObject:self.imageUrlSmall forKey:(NSString*)keyImageUrlSmall];
+    [aCoder encodeObject:self.imageUrlMedium forKey:(NSString*)keyImageUrlMedium];
+    [aCoder encodeObject:self.simpleDescription forKey:(NSString*)keySimpleDescription];
+    [aCoder encodeObject:self.numericalNotes forKey:(NSString*)keyNumericalNotes];
+    [aCoder encodeObject:self.stringNotes forKey:(NSString*)keyStringNotes];
+    [aCoder encodeObject:self.manaCosts forKey:(NSString*)keyManaCosts];
+    [aCoder encodeObject:self.cooldowns forKey:(NSString*)keyCooldowns];
+    [aCoder encodeObject:self.lore forKey:(NSString*)keyLore];
+}
 
 -(id) initWithAbilityId:(NSString*)abilityId {
-    NSDictionary *abilityDict = [[ELUHeroAbility sharedAbilityDict] objectForKey:abilityId];
+    NSDictionary *abilityDict = [[ELUAbility sharedAbilityDict] objectForKey:abilityId];
     if(!abilityDict) {
         return nil;
     }
@@ -41,6 +83,7 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
             return nil;
         }
         self.imageUrlSmall = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kAbilityImageUrlPrefix, abilityId, kAbilityImageUrlSmallSuffix]];
+        self.imageUrlMedium = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", kAbilityImageUrlPrefix, abilityId, kAbilityImageUrlMediumSuffix]];
     }
     return self;
 }
@@ -49,6 +92,9 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
     NSDictionary *dotaStrings = [eluUtil dotaStrings];
     NSString *baseDotaString = [eluUtil concatString:(NSString*)kAbilityStringPrefix and:abilityId];
     self.name = dotaStrings[baseDotaString];
+    
+    self.manaCosts = [abilityDict[kManaCostString] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.cooldowns = [abilityDict[kCooldownString] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     baseDotaString = [baseDotaString stringByAppendingString:@"_"];
     NSDictionary *abilitySpecial = abilityDict[@"AbilitySpecial"];
@@ -100,6 +146,8 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
         }
     }
     
+    //Newlines are represented as explicit "\n"; replace them
+    [simpleDescription replaceOccurrencesOfString:@"\\n" withString:@"\n" options:NSLiteralSearch range:NSMakeRange(0, simpleDescription.length)];
     self.simpleDescription = simpleDescription;
     
     NSMutableArray *numericalNotes = [NSMutableArray array];
@@ -108,12 +156,8 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
     for(NSString *key in reformedAbilitySpecial) {
         NSString *value = dotaStrings[[eluUtil concatString:baseDotaString and:key]];
         if(value) {
-            NSMutableString *note = [NSMutableString string];
-            [note appendString:@"\n"];
-            [note appendString:value];
-            [note appendString:@": "];
-            [note appendString:reformedAbilitySpecial[key]];
-            [numericalNotes addObject:note];
+            NSString *slashedNumericalAbility = [reformedAbilitySpecial[key] stringByReplacingOccurrencesOfString:@" " withString:@"/"];
+            [numericalNotes addObject:[NSString stringWithFormat:@"%@%@%@", value, @" ", slashedNumericalAbility]];
         }
     }
     
@@ -132,13 +176,16 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
     self.stringNotes = stringNotes;
     
     self.lore = dotaStrings[[eluUtil concatString:baseDotaString and:@"Lore"]];
+    if(self.lore == nil) {
+        self.lore = @"";
+    }
     return YES;
 }
 
 +(NSDictionary*)sharedAbilityDict {
     static NSDictionary *abilityDict = nil;
     if(!abilityDict) {
-        abilityDict = [eluUtil parseDotaFile:[eluUtil resourcePathLoc:(NSString*)kAbilityFileName]];
+        abilityDict = [eluUtil parseDotaFile:[eluUtil pathForResourceInMainBundle:(NSString*)kAbilityFileName]];
     }
     return abilityDict[@"DOTAAbilities"];
 }

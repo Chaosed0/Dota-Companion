@@ -1,18 +1,19 @@
 //
-//  ELUHeroesTableViewController.m
+//  ELUHeroesTableView.m
 //  Dota Companion
 //
-//  Created by EDWARD LU on 12/5/13.
+//  Created by EDWARD LU on 12/13/13.
 //  Copyright (c) 2013 EDWARD LU. All rights reserved.
 //
 
-#import "ELUHeroesTableViewController.h"
-#import "ELUHeroViewController.h"
-#import "ELUHeroesModel.h"
-#import "ELUHero.h"
 #import "AsyncImageView.h"
+#import "ELUHeroesTableView.h"
+#import "ELUHeroDelegate.h"
+#import "ELUHero.h"
 
 #import <objc/runtime.h>
+
+static const NSString *kIconPrefix = @"overviewicon_";
 
 #define kNumColumnsPerCategory 4
 #define kThumbWidth 59
@@ -21,78 +22,34 @@
 #define kHeaderSize 50.0
 #define kCategoryPadding 15.0
 
-//static const NSInteger kCategoryWidth = kPadding * (kNumColumnsPerCategory - 1) + kThumbWidth * kNumColumnsPerCategory;
-
-static const NSString *kIconPrefix = @"overviewicon_";
-
-@interface ELUHeroesTableViewController ()
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@interface ELUHeroesTableView ()
 
 @property (strong, nonatomic) UIView *heroImageViews;
-@property (strong, nonatomic) ELUHeroesModel *heroesModel;
-
-@property (strong, nonatomic) ELUHero *heroTapped;
 
 @end
 
-@implementation ELUHeroesTableViewController
+@implementation ELUHeroesTableView
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    self.view.backgroundColor = [ELUConstants sharedInstance].darkBackColor;
-    
-    self.heroesModel = [ELUHeroesModel sharedInstance];
-    self.heroTapped = nil;
-    
-    [self fillHeroImageViews];
-    [self.scrollView addSubview:self.heroImageViews];
-    self.scrollView.contentSize = self.heroImageViews.frame.size;
-    self.scrollView.delegate = self;
-    
-    self.scrollView.minimumZoomScale = MIN(self.scrollView.bounds.size.height / self.heroImageViews.bounds.size.width, self.scrollView.bounds.size.width / self.heroImageViews.bounds.size.height);
-    self.scrollView.maximumZoomScale = 1.0;
-    self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
-}
-
-- (UIView*) viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.heroImageViews;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkOrientation) name:UIDeviceOrientationDidChangeNotification object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self checkOrientation];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
-}
-
-- (void)checkOrientation {
-    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
-    if (UIDeviceOrientationIsPortrait(deviceOrientation)) {
-        [self dismissViewControllerAnimated:YES completion:nil];
+- (id)initWithFrame:(CGRect)frame delegate:(id<ELUHeroDelegate>)delegate {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = [ELUConstants sharedInstance].darkBackColor;
+        self.heroDelegate = delegate;
+        
+        self.heroImageViews = [self getHeroImageViews];
+        [self addSubview:self.heroImageViews];
+        self.contentSize = self.heroImageViews.frame.size;
+        self.delegate = self;
+        
+        self.minimumZoomScale = MIN(self.bounds.size.height / self.heroImageViews.bounds.size.width, self.bounds.size.width / self.heroImageViews.bounds.size.height);
+        self.maximumZoomScale = 1.0;
+        self.zoomScale = self.minimumZoomScale;
     }
+    return self;
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSString *segueId = segue.identifier;
-    if([segueId isEqualToString:@"LandscapeHeroSegue"]) {
-        ELUHeroViewController *viewController = segue.destinationViewController;
-        viewController.hero = self.heroTapped;
-        viewController.onCompletion = ^{
-            [self dismissViewControllerAnimated:YES completion:nil];
-        };
-    }
-}
-
-- (void) fillHeroImageViews {
-    self.heroImageViews = [[UIView alloc] init];
+- (UIView*) getHeroImageViews {
+    UIView *heroImageViews = [[UIView alloc] init];
     NSArray *attributes = [ELUConstants sharedInstance].attributes;
     NSArray *teams = [ELUConstants sharedInstance].teams;
     
@@ -108,14 +65,15 @@ static const NSString *kIconPrefix = @"overviewicon_";
         //Strength is first, then agi, then int
         NSInteger attrCounter = 0;
         for(NSString *primaryAttribute in attributes) {
-            for(ELUHero *hero in [self.heroesModel heroesForTeam:team primaryAttribute:primaryAttribute]) {
+            for(ELUHero *hero in [self.heroDelegate heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
                 
-                if(![eluUtil deviceIsRetina]) {
-                    heroImageView.imageURL = hero.imageUrlSmall;
-                } else {
+                if([eluUtil deviceIsRetina]) {
                     heroImageView.imageURL = hero.imageUrlMedium;
+                } else {
+                    heroImageView.imageURL = hero.imageUrlSmall;
                 }
+                
                 NSInteger xLocation = kPadding * (curPoint.x + 1 - categoryBorders.x) + kThumbWidth
                 * curPoint.x + categoryBorders.x * kCategoryPadding;
                 NSInteger yLocation = kPadding * (curPoint.y + 1 - categoryBorders.y) + kHeaderSize + kThumbHeight * curPoint.y + categoryBorders.y * kCategoryPadding;
@@ -127,7 +85,7 @@ static const NSString *kIconPrefix = @"overviewicon_";
                 objc_setAssociatedObject(tapRecognizer, @"hero", hero, OBJC_ASSOCIATION_ASSIGN);
                 [heroImageView addGestureRecognizer:tapRecognizer];
                 
-                [self.heroImageViews addSubview:heroImageView];
+                [heroImageViews addSubview:heroImageView];
                 
                 curPoint.x++;
                 if(curPoint.x >= attrCounter*kNumColumnsPerCategory + kNumColumnsPerCategory) {
@@ -166,18 +124,24 @@ static const NSString *kIconPrefix = @"overviewicon_";
         attrBox.bounds = CGRectMake(0, 0, attrImage.frame.size.width + kPadding + attrLabel.frame.size.width, MAX(attrImage.frame.size.height, attrLabel.frame.size.height));
         attrBox.center = CGPointMake((kCategoryPadding + categoryWidth) * attrCounter + kPadding + categoryWidth/2.0, kPadding + kHeaderSize/2.0);
         
-        [self.heroImageViews addSubview:attrBox];
+        [heroImageViews addSubview:attrBox];
         attrCounter++;
     }
     
     NSInteger totalWidth = kPadding * 2 + kCategoryPadding * (attributes.count - 1) + categoryWidth * attributes.count;
     NSInteger totalHeight = kPadding * 2 + kCategoryPadding * (teams.count - 1) + kPadding * (maxPoint.y - teams.count) + kThumbHeight * maxPoint.y + kHeaderSize;
-    self.heroImageViews.frame = CGRectMake(0, 0, totalWidth, totalHeight);
+    heroImageViews.frame = CGRectMake(0, 0, totalWidth, totalHeight);
+    
+    return heroImageViews;
+}
+
+- (UIView*) viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.heroImageViews;
 }
 
 - (void) heroImageTapped:(UITapGestureRecognizer *) gestureRecognizer {
-    self.heroTapped = objc_getAssociatedObject(gestureRecognizer, @"hero");
-    [self performSegueWithIdentifier:@"LandscapeHeroSegue" sender:self];
+    [self.heroDelegate heroTapped:(ELUHero*)objc_getAssociatedObject(gestureRecognizer, @"hero")];
 }
+
 
 @end

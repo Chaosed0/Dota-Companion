@@ -14,6 +14,9 @@
 const static NSString *kHeroesDictFile = @"npc_heroes.txt";
 const static NSString *kHeroEnabledKey = @"Enabled";
 
+const static NSString *keyHeroes = @"heroes";
+const static NSString *kModelArchiveFilename = @"heroes.archive";
+
 @interface ELUHeroesModel ()
 
 @property (strong, nonatomic) NSArray *heroes;
@@ -26,21 +29,33 @@ const static NSString *kHeroEnabledKey = @"Enabled";
 + (ELUHeroesModel*) sharedInstance {
     static ELUHeroesModel *model = nil;
     if(!model) {
-        model = [[ELUHeroesModel alloc] initWithHeroesFile:[eluUtil resourcePathLoc:(NSString*)kHeroesDictFile] stringsDict:[eluUtil dotaStrings]];
+        NSString *archivePath = [eluUtil pathForResourceInDocumentsDirectory:(NSString*)kModelArchiveFilename];
+        if([[NSFileManager defaultManager] fileExistsAtPath:archivePath]) {
+            //Decode it from the archive
+            model = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
+        } else {
+            //Create it anew from the base files and archive it
+            model = [[ELUHeroesModel alloc] initWithHeroesFile:[eluUtil pathForResourceInMainBundle:(NSString*)kHeroesDictFile] stringsDict:[eluUtil dotaStrings]];
+            [NSKeyedArchiver archiveRootObject:model toFile:archivePath];
+        }
     }
     return model;
 }
 
+- (id) initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super init]) {
+        self.heroes = [aDecoder decodeObjectForKey:(NSString*)keyHeroes];
+        self.heroesByType = [self constructHeroesByType];
+    }
+    return self;
+}
+
+- (void) encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.heroes forKey:(NSString*)keyHeroes];
+}
+
 - (void) fillHeroesFromDict: (NSDictionary*) heroesDict stringsDict: (NSDictionary*)dotaStrings {
     NSMutableArray *heroes = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-    NSMutableDictionary *heroesByType = [[NSMutableDictionary alloc] init];
-    
-    for (NSString *team in [ELUConstants sharedInstance].teams) {
-        [heroesByType setValue:[NSMutableDictionary dictionary] forKey:team];
-        for(NSString *attribute in [ELUConstants sharedInstance].attributes) {
-            [heroesByType[team] setValue:[NSMutableArray array] forKey:attribute];
-        }
-    }
     
     NSDictionary *heroesDictHeroes = heroesDict[@"DOTAHeroes"];
     for(NSString* heroID in heroesDictHeroes) {
@@ -49,7 +64,6 @@ const static NSString *kHeroEnabledKey = @"Enabled";
             NSDictionary *heroInfo = heroesDictHeroes[heroID];
             ELUHero *hero = [[ELUHero alloc] initWithDict:heroInfo heroID:heroID stringsDict:dotaStrings];
             [heroes addObject:hero];
-            [heroesByType[hero.isGood?kGoodTeamString:kBadTeamString][hero.primaryAttribute] addObject:hero];
         }
     }
     
@@ -59,7 +73,23 @@ const static NSString *kHeroEnabledKey = @"Enabled";
         return [hero1.name compare:hero2.name];
     }];
     
-    self.heroesByType = heroesByType;
+    self.heroesByType = [self constructHeroesByType];
+}
+
+- (NSDictionary*)constructHeroesByType {
+    NSMutableDictionary *heroesByType = [NSMutableDictionary dictionaryWithCapacity:self.heroes.count];
+       
+    for (NSString *team in [ELUConstants sharedInstance].teams) {
+        [heroesByType setValue:[NSMutableDictionary dictionary] forKey:team];
+        for(NSString *attribute in [ELUConstants sharedInstance].attributes) {
+            [heroesByType[team] setValue:[NSMutableArray array] forKey:attribute];
+        }
+    }
+    
+    for (ELUHero *hero in self.heroes) {
+        [heroesByType[hero.isGood?kGoodTeamString:kBadTeamString][hero.primaryAttribute] addObject:hero];
+    }
+    return heroesByType;
 }
 
 - (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings {

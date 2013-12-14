@@ -7,7 +7,7 @@
 //
 
 #import "ELUHero.h"
-#import "ELUHeroAbility.h"
+#import "ELUAbility.h"
 #import "eluUtil.h"
 
 static const NSString *kAttackString = @"AttackCapabilities";
@@ -24,6 +24,17 @@ static const NSString *kHeroPortraitImageSuffix = @"_vert.jpg";
 static const NSString *kBioSuffix = @"_bio";
 static const NSString *kTeamString = @"Team";
 static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
+
+static const NSString *keyName = @"name";
+static const NSString *keyRoles = @"roles";
+static const NSString *keyAbilities = @"abilities";
+static const NSString *keyIsGood = @"isGood";
+static const NSString *keyPrimaryAttribute = @"primaryAttribute";
+static const NSString *keyBio = @"bio";
+static const NSString *keyImageUrlSmall = @"imageUrlSmall";
+static const NSString *keyImageUrlMedium = @"imageUrlMedium";
+static const NSString *keyImageUrlLarge = @"imageUrlLarge";
+static const NSString *keyImageUrlPortrait = @"imageUrlPortrait";
 
 #define kDefaultNumAbilities 4
 
@@ -43,6 +54,35 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
 @end
 
 @implementation ELUHero
+
+-(id)initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super init]) {
+        self.name = [aDecoder decodeObjectForKey:(NSString*)keyName];
+        self.roles = [aDecoder decodeObjectForKey:(NSString*)keyRoles];
+        self.abilities = [aDecoder decodeObjectForKey:(NSString*)keyAbilities];
+        self.isGood = [((NSNumber*)[aDecoder decodeObjectForKey:(NSString*)keyIsGood]) boolValue];
+        self.primaryAttribute = [aDecoder decodeObjectForKey:(NSString*)keyPrimaryAttribute];
+        self.bio = [aDecoder decodeObjectForKey:(NSString*)keyBio];
+        self.imageUrlSmall = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlSmall];
+        self.imageUrlMedium = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlMedium];
+        self.imageUrlLarge = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlLarge];
+        self.imageUrlPortrait = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlPortrait];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:(NSString*)keyName];
+    [aCoder encodeObject:self.roles forKey:(NSString*)keyRoles];
+    [aCoder encodeObject:self.abilities forKey:(NSString*)keyAbilities];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.isGood] forKey:(NSString*)keyIsGood];
+    [aCoder encodeObject:self.primaryAttribute forKey:(NSString*)keyPrimaryAttribute];
+    [aCoder encodeObject:self.bio forKey:(NSString*)keyBio];
+    [aCoder encodeObject:self.imageUrlSmall forKey:(NSString*)keyImageUrlSmall];
+    [aCoder encodeObject:self.imageUrlMedium forKey:(NSString*)keyImageUrlMedium];
+    [aCoder encodeObject:self.imageUrlLarge forKey:(NSString*)keyImageUrlLarge];
+    [aCoder encodeObject:self.imageUrlPortrait forKey:(NSString*)keyImageUrlPortrait];
+}
 
 -(id)initWithDict:(NSDictionary*)heroDict heroID:(NSString*) heroId stringsDict:(NSDictionary*)stringsDict {
     self = [super init];
@@ -69,7 +109,7 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
         NSString *key = [NSString stringWithFormat:@"%@%d", @"Ability", i+1];
         NSString *value = heroDict[key];
         while(value) {
-            ELUHeroAbility *ability = [[ELUHeroAbility alloc] initWithAbilityId:value];
+            ELUAbility *ability = [[ELUAbility alloc] initWithAbilityId:value];
             if(ability) {
                 [abilities addObject:ability];
             }
@@ -102,5 +142,7 @@ static const NSString *kAttributePrefix = @"DOTA_ATTRIBUTE_";
     }
     return prettyRoles;
 }
+
+
 
 @end

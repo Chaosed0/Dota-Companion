@@ -10,7 +10,7 @@
 
 @class ELUHero;
 
-@interface ELUHeroViewController : UIViewController
+@interface ELUHeroViewController : UIViewController <UINavigationBarDelegate>
 
 @property (strong, nonatomic) ELUHero *hero;
 @property (copy, nonatomic) void (^onCompletion)(void);
