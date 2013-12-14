@@ -10,7 +10,7 @@
 
 @class ELUHero;
 
-@interface ELUHeroesModel : NSObject
+@interface ELUHeroesModel : NSObject <NSCoding>
 
 - (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings;
 - (NSUInteger) count;

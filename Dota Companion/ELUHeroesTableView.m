@@ -68,11 +68,12 @@ static const NSString *kIconPrefix = @"overviewicon_";
             for(ELUHero *hero in [self.heroDelegate heroesForTeam:team primaryAttribute:primaryAttribute]) {
                 AsyncImageView *heroImageView = [[AsyncImageView alloc] init];
                 
-                if(![eluUtil deviceIsRetina]) {
-                    heroImageView.imageURL = hero.imageUrlSmall;
-                } else {
+                if([eluUtil deviceIsRetina]) {
                     heroImageView.imageURL = hero.imageUrlMedium;
+                } else {
+                    heroImageView.imageURL = hero.imageUrlSmall;
                 }
+                
                 NSInteger xLocation = kPadding * (curPoint.x + 1 - categoryBorders.x) + kThumbWidth
                 * curPoint.x + categoryBorders.x * kCategoryPadding;
                 NSInteger yLocation = kPadding * (curPoint.y + 1 - categoryBorders.y) + kHeaderSize + kThumbHeight * curPoint.y + categoryBorders.y * kCategoryPadding;

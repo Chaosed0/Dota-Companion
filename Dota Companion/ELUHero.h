@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ELUHero : NSObject
+@interface ELUHero : NSObject <NSCoding>
 
 @property (strong, nonatomic, readonly) NSString *name;
 @property (strong, nonatomic, readonly) NSArray *roles;

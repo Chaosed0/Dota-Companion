@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ELUAbility : NSObject
+@interface ELUAbility : NSObject <NSCoding>
 
 @property (strong, nonatomic, readonly) NSString *name;
 @property (strong, nonatomic, readonly) NSURL *imageUrlSmall;

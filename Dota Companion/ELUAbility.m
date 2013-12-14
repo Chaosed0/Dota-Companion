@@ -17,6 +17,16 @@ const NSString *kAbilityImageUrlPrefix = @"http://cdn.dota2.com/apps/dota2/image
 const NSString *kCooldownString = @"AbilityCooldown";
 const NSString *kManaCostString = @"AbilityManaCost";
 
+const NSString *keyName = @"name";
+const NSString *keyImageUrlSmall = @"imageUrlSmall";
+const NSString *keyImageUrlMedium = @"imageUrlMedium";
+const NSString *keySimpleDescription = @"simpleDescription";
+const NSString *keyNumericalNotes = @"numericalNotes";
+const NSString *keyStringNotes = @"stringNotes";
+const NSString *keyManaCosts = @"manaCosts";
+const NSString *keyCooldowns = @"cooldowns";
+const NSString *keyLore = @"lore";
+
 @interface ELUAbility ()
 
 @property (strong, nonatomic) NSString *name;
@@ -32,6 +42,33 @@ const NSString *kManaCostString = @"AbilityManaCost";
 @end
 
 @implementation ELUAbility
+
+-(id) initWithCoder:(NSCoder *)aDecoder {
+    if(self = [super init]) {
+        self.name = [aDecoder decodeObjectForKey:(NSString*)keyName];
+        self.imageUrlSmall = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlSmall];
+        self.imageUrlMedium = [aDecoder decodeObjectForKey:(NSString*)keyImageUrlMedium];
+        self.simpleDescription = [aDecoder decodeObjectForKey:(NSString*)keySimpleDescription];
+        self.numericalNotes = [aDecoder decodeObjectForKey:(NSString*)keyNumericalNotes];
+        self.stringNotes = [aDecoder decodeObjectForKey:(NSString*)keyStringNotes];
+        self.manaCosts = [aDecoder decodeObjectForKey:(NSString*)keyManaCosts];
+        self.cooldowns = [aDecoder decodeObjectForKey:(NSString*)keyCooldowns];
+        self.lore = [aDecoder decodeObjectForKey:(NSString*)keyLore];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:(NSString*)keyName];
+    [aCoder encodeObject:self.imageUrlSmall forKey:(NSString*)keyImageUrlSmall];
+    [aCoder encodeObject:self.imageUrlMedium forKey:(NSString*)keyImageUrlMedium];
+    [aCoder encodeObject:self.simpleDescription forKey:(NSString*)keySimpleDescription];
+    [aCoder encodeObject:self.numericalNotes forKey:(NSString*)keyNumericalNotes];
+    [aCoder encodeObject:self.stringNotes forKey:(NSString*)keyStringNotes];
+    [aCoder encodeObject:self.manaCosts forKey:(NSString*)keyManaCosts];
+    [aCoder encodeObject:self.cooldowns forKey:(NSString*)keyCooldowns];
+    [aCoder encodeObject:self.lore forKey:(NSString*)keyLore];
+}
 
 -(id) initWithAbilityId:(NSString*)abilityId {
     NSDictionary *abilityDict = [[ELUAbility sharedAbilityDict] objectForKey:abilityId];
@@ -148,7 +185,7 @@ const NSString *kManaCostString = @"AbilityManaCost";
 +(NSDictionary*)sharedAbilityDict {
     static NSDictionary *abilityDict = nil;
     if(!abilityDict) {
-        abilityDict = [eluUtil parseDotaFile:[eluUtil resourcePathLoc:(NSString*)kAbilityFileName]];
+        abilityDict = [eluUtil parseDotaFile:[eluUtil pathForResourceInMainBundle:(NSString*)kAbilityFileName]];
     }
     return abilityDict[@"DOTAAbilities"];
 }

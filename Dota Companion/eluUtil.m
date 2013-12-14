@@ -16,8 +16,13 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
 @implementation eluUtil
 
 //Returns an NSString containing the location of a given resource inside the main bundle.
-+ (NSString*)resourcePathLoc:(NSString*)resource {
-    return [NSString stringWithFormat:@"%@/%@", [NSBundle mainBundle].resourcePath, resource];
++ (NSString*)pathForResourceInMainBundle:(NSString*)resource {
+    return [[NSBundle mainBundle].resourcePath stringByAppendingPathComponent: resource];
+}
+
++ (NSString*)pathForResourceInDocumentsDirectory:(NSString*)resource {
+    NSString *documentDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    return [documentDirectory stringByAppendingPathComponent:resource];
 }
 
 + (NSString*)concatString:(NSString*)str1 and:(NSString*)str2 {
@@ -153,7 +158,7 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
 + (NSDictionary*)dotaStrings {
     static NSDictionary *dotaStringsDict = nil;
     if(!dotaStringsDict) {
-        dotaStringsDict = [eluUtil parseDotaFile: [eluUtil resourcePathLoc:(NSString*)kStringsDictLoc]];
+        dotaStringsDict = [eluUtil parseDotaFile: [eluUtil pathForResourceInMainBundle:(NSString*)kStringsDictLoc]];
         dotaStringsDict = dotaStringsDict[@"lang"][@"Tokens"];
     }
     return dotaStringsDict;
