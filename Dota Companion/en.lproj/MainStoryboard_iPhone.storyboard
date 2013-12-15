@@ -180,14 +180,23 @@
             </objects>
             <point key="canvasLocation" x="-995" y="1234"/>
         </scene>
-        <!--View Controller-->
+        <!--View Controller - Items-->
         <scene sceneID="uGm-lH-yJ9">
             <objects>
-                <viewController id="zE9-9r-bBb" sceneMemberID="viewController">
+                <viewController title="Items" id="zE9-9r-bBb" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3tS-s0-Ozu">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Items coming soon!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="CO7-31-mGq">
+                                <rect key="frame" x="20" y="241" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.19215686274509802" green="0.19215686274509802" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <segue destination="lRC-Lf-Qew" kind="push" identifier="ItemSegue" id="wFQ-Au-FTd"/>
@@ -231,43 +240,6 @@
         <image name="cooldown.png" width="22" height="22"/>
         <image name="mana.png" width="22" height="22"/>
     </resources>
-    <classes>
-        <class className="AsyncImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AsyncImageView.h"/>
-        </class>
-        <class className="ELUAbilityViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUAbilityViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cooldownImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="cooldownLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="imageView" candidateClass="AsyncImageView"/>
-                <relationship kind="outlet" name="manaCostImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="manaCostLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-        <class className="ELUHeroViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backPressed:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="abilityScrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="heroBioTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="heroImageView" candidateClass="AsyncImageView"/>
-                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
-            </relationships>
-        </class>
-        <class className="ELUHeroesViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELUHeroesViewController.h"/>
-        </class>
-        <class className="ELURootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ELURootViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="learnHeroesButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="learnItemsButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

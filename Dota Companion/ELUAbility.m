@@ -72,7 +72,7 @@ const NSString *keyLore = @"lore";
 
 -(id) initWithAbilityId:(NSString*)abilityId {
     NSDictionary *abilityDict = [[ELUAbility sharedAbilityDict] objectForKey:abilityId];
-    if(!abilityDict) {
+    if(!abilityDict || [abilityId hasSuffix:@"empty1"] || [abilityId hasSuffix:@"empty2"] || [abilityId hasSuffix:@"attribute_bonus"]) {
         return nil;
     }
     
