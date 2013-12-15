@@ -26,6 +26,7 @@ const static NSString *kModelArchiveFilename = @"heroes.archive";
 
 @implementation ELUHeroesModel
 
+//Returns a singleton instance of the ELUHeroesModel
 + (ELUHeroesModel*) sharedInstance {
     static ELUHeroesModel *model = nil;
     if(!model) {
@@ -42,6 +43,17 @@ const static NSString *kModelArchiveFilename = @"heroes.archive";
     return model;
 }
 
+//Initialize the model from a file
+- (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings {
+    self = [super init];
+    if(self) {
+        NSDictionary *heroesDict = [eluUtil parseDotaFile:heroesFileName];
+        [self fillHeroesFromDict:heroesDict stringsDict:dotaStrings];
+    }
+    return self;
+}
+
+//Initializes this model from a decoder
 - (id) initWithCoder:(NSCoder *)aDecoder {
     if(self = [super init]) {
         self.heroes = [aDecoder decodeObjectForKey:(NSString*)keyHeroes];
@@ -50,32 +62,40 @@ const static NSString *kModelArchiveFilename = @"heroes.archive";
     return self;
 }
 
+//Encodes this model with a coder
 - (void) encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.heroes forKey:(NSString*)keyHeroes];
 }
 
+//Fills self.heroes and self.heroesByType from a dictionary
 - (void) fillHeroesFromDict: (NSDictionary*) heroesDict stringsDict: (NSDictionary*)dotaStrings {
+    //Initialization
     NSMutableArray *heroes = [NSMutableArray arrayWithCapacity:kInitialCapacity];
-    
     NSDictionary *heroesDictHeroes = heroesDict[@"DOTAHeroes"];
+    
+    //Look through all the heroes in the heroesDict for valid heroes
     for(NSString* heroID in heroesDictHeroes) {
+        //Only take heroes that are valid right now and have the correct prefix
         if([heroID hasPrefix:kHeroIdPrefix] && [heroesDictHeroes[heroID][kHeroEnabledKey] isEqualToString:@"1"]) {
-            //Valid hero, this is an NSDictionary
             NSDictionary *heroInfo = heroesDictHeroes[heroID];
             ELUHero *hero = [[ELUHero alloc] initWithDict:heroInfo heroID:heroID stringsDict:dotaStrings];
             [heroes addObject:hero];
         }
     }
     
+    //Sort the heroes by name
     self.heroes = [heroes sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         ELUHero* hero1 = obj1;
         ELUHero* hero2 = obj2;
         return [hero1.name compare:hero2.name];
     }];
     
+    //Construct the heroesByType dictionary
     self.heroesByType = [self constructHeroesByType];
 }
 
+//Constructs the heroesByType dictionary which groups heroes by team and primary attribute
+//NOTE: self.heroes must be initialized already
 - (NSDictionary*)constructHeroesByType {
     NSMutableDictionary *heroesByType = [NSMutableDictionary dictionaryWithCapacity:self.heroes.count];
        
@@ -92,23 +112,18 @@ const static NSString *kModelArchiveFilename = @"heroes.archive";
     return heroesByType;
 }
 
-- (id) initWithHeroesFile: (NSString*) heroesFileName stringsDict: (NSDictionary*) dotaStrings {
-    self = [super init];
-    if(self) {
-        NSDictionary *heroesDict = [eluUtil parseDotaFile:heroesFileName];
-        [self fillHeroesFromDict:heroesDict stringsDict:dotaStrings];
-    }
-    return self;
-}
-
+//Returns the number of heroes in this model
 - (NSUInteger) count {
     return [self.heroes count];
 }
 
+//Returns an array of heroes for a given team and primary attribute. Valid values
+// for the inputs are contained in ELUConstants' teams and attributes arrays, respectively.
 - (NSArray*) heroesForTeam:(NSString*)team primaryAttribute:(NSString*)primaryAttribute {
     return self.heroesByType[team][primaryAttribute];
 }
 
+//Returns a hero at an index. If index is greater than [self count], nil is returned.
 - (ELUHero*) heroAtIndex:(NSUInteger)index {
     if(index >= self.count) {
         return nil;

@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 EDWARD LU. All rights reserved.
 //
 
+//This category gets around the fact that UILabel has no methods marked
+// with UI_APPEARANCE_SELECTOR.
+
 #import "UILabel+Appearance.h"
 
 @implementation UILabel (Appearance)

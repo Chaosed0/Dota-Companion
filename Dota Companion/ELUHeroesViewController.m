@@ -45,13 +45,18 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    //Check if the orientation is the correct way; it might not be, since rotation
+    // might have occured while another view was in focus
     [self checkOrientation:[self interfaceOrientation] Duration:0.0];
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    //Check what view to display.
     [self checkOrientation:toInterfaceOrientation Duration:duration];
 }
 
+//Displays the correct view depending on the orientation of the interface. Animates for
+// duration seconds.
 - (void)checkOrientation:(UIInterfaceOrientation)orientation Duration:(NSTimeInterval)duration {
     if (UIInterfaceOrientationIsLandscape(orientation)) {
         [UIView animateWithDuration:duration animations:^{
