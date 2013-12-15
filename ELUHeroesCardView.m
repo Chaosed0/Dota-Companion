@@ -11,11 +11,13 @@
 #import "ELUCardView.h"
 #import "ELUHero.h"
 
+#import <objc/runtime.h>
+
 #define kMainCardWidth 0.7
 #define kMainCardHeight 0.7
 #define kSideCardWidth 0.6
 #define kSideCardHeight 0.6
-#define kCardPadding 3.0
+#define kCardPadding 10.0
 #define kNumCards 5
 
 @interface ELUHeroesCardView ()
@@ -25,6 +27,7 @@
 
 @property double timeWhenTouchBegan;
 @property CGPoint locationWhenTouchBegan;
+@property CGPoint *centersWhenTouchBegan;
 @property BOOL subviewsLaidOut;
 
 @end
@@ -76,22 +79,19 @@
         
         self.userInteractionEnabled = YES;
         
+        self.centersWhenTouchBegan = malloc(sizeof(CGPoint)*kNumCards);
         NSMutableArray *cardViews = [NSMutableArray arrayWithCapacity:kNumCards];
         
         for(int i = 0; i < kNumCards; i++) {
             ELUCardView *cardView = [[ELUCardView alloc] initWithFrame:self.bounds];
-            UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped)];
+            UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped:)];
             gestureRecognizer.numberOfTapsRequired = 1;
             [cardView addGestureRecognizer:gestureRecognizer];
-            cardView.userInteractionEnabled = NO;
             
             if(i > 1) {
-                [cardView setupWithHero:[self.heroDelegate heroForIndex:i-2]];
-                if(i == 2) {
-                    cardView.userInteractionEnabled = YES;
-                }
+                [self activateCardView:cardView heroAtIndex:i-2];
             } else {
-                cardView.alpha = 0.0;
+                [self disableCardView:cardView];
             }
             
             [cardViews addObject:cardView];
@@ -106,6 +106,10 @@
         [self addSubview:self.cardViews[2]];
     }
     return self;
+}
+
+- (void) dealloc {
+    free(self.centersWhenTouchBegan);
 }
 
 - (void) resetCards {
@@ -136,6 +140,10 @@
     
     UITouch *touch = [touches anyObject];
     self.locationWhenTouchBegan = [touch locationInView:self];
+    
+    for(int i = 0; i < self.cardViews.count; i++) {
+        self.centersWhenTouchBegan[i] = ((ELUCardView*)self.cardViews[i]).center;
+    }
 }
 
 - (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -150,7 +158,6 @@
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
-    [self snapCards];
 }
 
 - (void) checkCardOutOfBounds {
@@ -175,17 +182,14 @@
         for (int i = 3; i >= 0; i--) {
             ELUCardView *cardView = self.cardViews[i];
             self.cardViews[i+1] = cardView;
-            
-            cardView.userInteractionEnabled = NO;
         }
         
         ELUCardView *prevCardView = self.cardViews[1];
         tempCardView.center = CGPointMake(prevCardView.frame.origin.x - kCardPadding - tempCardView.frame.size.width / 2.0, self.bounds.size.height / 2.0);
-        if(self.currentHero - 2 < 0) {
-            tempCardView.alpha = 0.0;
+        if(self.currentHero - 2 >= 0) {
+            [self activateCardView:tempCardView heroAtIndex:self.currentHero-2];
         } else {
-            tempCardView.alpha = 1.0;
-            [tempCardView setupWithHero:[self.heroDelegate heroForIndex:self.currentHero-2]];
+            [self disableCardView:tempCardView];
         }
         self.cardViews[0] = tempCardView;
     }
@@ -197,16 +201,14 @@
         for (int i = 1; i < self.cardViews.count; i++) {
             ELUCardView *cardView = self.cardViews[i];
             self.cardViews[i-1] = cardView;
-            cardView.userInteractionEnabled = NO;
         }
         
         ELUCardView *prevCardView = self.cardViews[3];
         tempCardView.center = CGPointMake(prevCardView.frame.origin.x + prevCardView.frame.size.width + kCardPadding + tempCardView.frame.size.width / 2.0, self.bounds.size.height / 2.0);
-        if(self.currentHero + 2 >= [self.heroDelegate heroCount]) {
-            tempCardView.alpha = 0.0;
+        if(self.currentHero + 2 < [self.heroDelegate heroCount]) {
+            [self activateCardView:tempCardView heroAtIndex:self.currentHero+2];
         } else {
-            tempCardView.alpha = 1.0;
-            [tempCardView setupWithHero:[self.heroDelegate heroForIndex:self.currentHero+2]];
+            [self disableCardView:tempCardView];
         }
         
         self.cardViews[4] = tempCardView;
@@ -220,36 +222,40 @@
     [self bringSubviewToFront:self.cardViews[2]];
 }
 
+- (void) disableCardView:(ELUCardView*) cardView {
+    cardView.hidden = YES;
+    cardView.userInteractionEnabled = NO;
+}
+
+- (void) activateCardView:(ELUCardView*) cardView heroAtIndex:(NSUInteger)index {
+    ELUHero *hero = [self.heroDelegate heroForIndex:index];
+    cardView.hidden = NO;
+    cardView.userInteractionEnabled = YES;
+    objc_setAssociatedObject(cardView, @"hero", hero, OBJC_ASSOCIATION_ASSIGN);
+    [cardView setupWithHero:hero];
+    
+}
+
 - (void) setMainCardCenter: (CGFloat)delta {
     //Interpolate between where the center should be and where it was
     for(int i = 0; i < self.cardViews.count; i++) {
-        CGFloat distance = [self centerForCardAt:i].x - self.bounds.size.width / 2.0 - delta;
+        ELUCardView *cardView = self.cardViews[i];
+        CGFloat distance = self.centersWhenTouchBegan[i].x - self.bounds.size.width / 2.0 - delta;
         CGFloat totalDistance = self.bounds.size.width / 2.0 - [self centerForCardAt:1].x;
         CGFloat ratio = MIN(1.0, (distance * distance) / (totalDistance * totalDistance));
         //Interpolate the size of the image
         CGFloat width = kMainCardWidth - (kMainCardWidth - kSideCardWidth) * ratio;
         CGFloat height = kMainCardWidth - (kMainCardHeight - kSideCardHeight) * ratio;
         //Make the card this size
-        ELUCardView *cardView = self.cardViews[i];
         cardView.transform = CGAffineTransformMakeScale(width, height);
-        cardView.center = CGPointMake([self centerForCardAt:i].x - delta, self.bounds.size.height/2.0);
+        cardView.center = CGPointMake(self.centersWhenTouchBegan[i].x - delta, self.bounds.size.height/2.0);
     }
 }
 
-- (void) snapCards {
-    
-}
-
-- (void) changeCards: (BOOL) right {
-}
-
-- (void) onSwipeGesture: (UISwipeGestureRecognizer*) gestureRecognizer {
-    BOOL right = gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight;
-    [self changeCards:right];
-}
-
-- (void) cardTapped {
-    [self.heroDelegate heroTapped:[self.heroDelegate heroForIndex:self.currentHero]];
+- (void) cardTapped:(UITapGestureRecognizer*)gestureRecognizer {
+    ELUCardView *cardView = (ELUCardView*)gestureRecognizer.view;
+    ELUHero *hero = (ELUHero*)objc_getAssociatedObject(cardView, @"hero");
+    [self.heroDelegate heroTapped:hero];
 }
 
 @end
