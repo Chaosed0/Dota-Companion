@@ -34,9 +34,12 @@
     self.heroNameLabel = [[UILabel alloc] init];
     self.heroImageView = [[AsyncImageView alloc] init];
     self.heroRolesLabel = [[UILabel alloc] init];
+    
     [self.heroImageView setContentMode:UIViewContentModeScaleAspectFit];
     self.heroNameLabel.textAlignment = NSTextAlignmentCenter;
+    self.heroNameLabel.font = [ELUConstants sharedInstance].heroTitleFont;
     self.heroRolesLabel.textAlignment = NSTextAlignmentCenter;
+    self.heroRolesLabel.font = [UIFont systemFontOfSize:16];
     self.heroRolesLabel.numberOfLines = 0;
     
     self.heroNameLabel.frame = CGRectMake(sideMargin, topMargin, self.bounds.size.width - sideMargin * 2, nameLabelHeight);
@@ -77,7 +80,7 @@
 }
 
 - (void) setupWithHero: (ELUHero*) hero {
-    self.heroNameLabel.text = hero.name;
+    self.heroNameLabel.text = [hero.name uppercaseString];
     self.heroRolesLabel.text = [hero.roles componentsJoinedByString:@" - "];
     self.heroImageView.imageURL = hero.imageUrlPortrait;
 }

@@ -23,6 +23,10 @@ const NSString *const kHeroIdPrefix = @"npc_dota_hero_";
 
 @interface ELUConstants ()
 
+@property (strong, nonatomic) UIFont *heroTitleFont;
+@property (strong, nonatomic) UIFont *titleFont;
+@property (strong, nonatomic) UIFont *bigTitleFont;
+@property (strong, nonatomic) UIFont *subtitleFont;
 @property (strong, nonatomic) NSArray *teams;
 @property (strong, nonatomic) NSArray *attributes;
 @property (strong, nonatomic) UIColor *lightBackColor;
@@ -45,6 +49,11 @@ const NSString *const kHeroIdPrefix = @"npc_dota_hero_";
         constants.darkBackColor = [UIColor colorWithRed:39/255.0 green:39/255.0 blue:39/255.0 alpha:1.0];
         constants.textColor = [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/255.0 alpha:1.0];
         constants.darkTextColor = [UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0];
+        
+        constants.heroTitleFont = [UIFont fontWithName:@"Georgia-Bold" size:22];
+        constants.titleFont = [UIFont fontWithName:@"Georgia-Bold" size:16];
+        constants.subtitleFont = [UIFont fontWithName:@"Trajan-Bold" size:13];
+        constants.bigTitleFont = [UIFont fontWithName:@"Trajan-Bold" size:36];
     }
     return constants;
 }

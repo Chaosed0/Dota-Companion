@@ -15,9 +15,14 @@
 {
     [[UILabel appearance] setTextColorAppearance:[ELUConstants sharedInstance].textColor];
     [[UILabel appearance] setBackgroundColorAppearance:[UIColor clearColor]];
+    //setFont isn't deprecated for UILabel, neither is it for UITextView
+    //[[UILabel appearance] setFont:[ELUConstants sharedInstance].bodyFont];
     [[UITextView appearance] setTextColor:[ELUConstants sharedInstance].textColor];
     [[UITextView appearance] setBackgroundColor:[UIColor clearColor]];
+    //[[UITextView appearance] setFont:[ELUConstants sharedInstance].bodyFont];
     [[UINavigationBar appearance] setTintColor:[ELUConstants sharedInstance].lightBackColor];
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [ELUConstants sharedInstance].titleFont}];
     
     return YES;
 }

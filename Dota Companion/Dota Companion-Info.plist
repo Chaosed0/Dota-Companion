@@ -10,6 +10,10 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
 	<string>Chaos.${PRODUCT_NAME:rfc1034identifier}</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Trajan-Bold.ttf</string>
+	</array>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

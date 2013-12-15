@@ -34,6 +34,7 @@
 		D46430B2184E7EBB008BB0C5 /* ELUCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B1184E7EBB008BB0C5 /* ELUCardView.m */; };
 		D46430B5184E7FAD008BB0C5 /* ELUHero.m in Sources */ = {isa = PBXBuildFile; fileRef = D46430B4184E7FAD008BB0C5 /* ELUHero.m */; };
 		D472ED9B1857ADC300BE9F1E /* UILabel+Appearance.m in Sources */ = {isa = PBXBuildFile; fileRef = D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */; };
+		D4777D4E185D293B0082AB4C /* ELURootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4777D4D185D293B0082AB4C /* ELURootViewController.m */; };
 		D47CE8FB18500ED0005F95DA /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D47CE8FA18500ED0005F95DA /* AsyncImageView.m */; };
 		D495EB8B185BA60E00CB8E00 /* ELUHeroesCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D495EB8A185BA60E00CB8E00 /* ELUHeroesCardView.m */; };
 		D495EB90185BAAB700CB8E00 /* ELUHeroesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D495EB8F185BAAB700CB8E00 /* ELUHeroesTableView.m */; };
@@ -41,6 +42,7 @@
 		D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865C1851142A00766D7E /* overviewicon_int.png */; };
 		D4A986601851142A00766D7E /* overviewicon_str.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865D1851142A00766D7E /* overviewicon_str.png */; };
 		D4A9866318511C9100766D7E /* ELUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9866218511C9000766D7E /* ELUConstants.m */; };
+		D4B09C95185D16BB0028D546 /* Trajan-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */; };
 		D4F993E4185669C6005D5630 /* ELUAbilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F993E3185669C6005D5630 /* ELUAbilityViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,8 @@
 		D46430B4184E7FAD008BB0C5 /* ELUHero.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHero.m; sourceTree = "<group>"; };
 		D472ED991857ADC300BE9F1E /* UILabel+Appearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Appearance.h"; sourceTree = "<group>"; };
 		D472ED9A1857ADC300BE9F1E /* UILabel+Appearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Appearance.m"; sourceTree = "<group>"; };
+		D4777D4C185D293B0082AB4C /* ELURootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELURootViewController.h; sourceTree = "<group>"; };
+		D4777D4D185D293B0082AB4C /* ELURootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELURootViewController.m; sourceTree = "<group>"; };
 		D47CE8F918500ED0005F95DA /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncImageView.h; sourceTree = "<group>"; };
 		D47CE8FA18500ED0005F95DA /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncImageView.m; sourceTree = "<group>"; };
 		D495EB89185BA60E00CB8E00 /* ELUHeroesCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ELUHeroesCardView.h; path = ../ELUHeroesCardView.h; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 		D4A9865D1851142A00766D7E /* overviewicon_str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_str.png; sourceTree = "<group>"; };
 		D4A9866118511C9000766D7E /* ELUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUConstants.h; sourceTree = "<group>"; };
 		D4A9866218511C9000766D7E /* ELUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUConstants.m; sourceTree = "<group>"; };
+		D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trajan-Bold.ttf"; sourceTree = "<group>"; };
 		D4F993E2185669C6005D5630 /* ELUAbilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUAbilityViewController.h; sourceTree = "<group>"; };
 		D4F993E3185669C6005D5630 /* ELUAbilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUAbilityViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,6 +147,7 @@
 		D44BACDC184FA4CE00CD0C62 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */,
 				D4410E0D185CCB870008C3F2 /* mana.png */,
 				D4410E0F185CCB8C0008C3F2 /* cooldown.png */,
 				D4A9865B1851142A00766D7E /* overviewicon_agi.png */,
@@ -206,6 +212,8 @@
 		D44BACE1184FA51900CD0C62 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4777D4C185D293B0082AB4C /* ELURootViewController.h */,
+				D4777D4D185D293B0082AB4C /* ELURootViewController.m */,
 				D464309D184E6E65008BB0C5 /* ELUHeroesViewController.h */,
 				D464309E184E6E65008BB0C5 /* ELUHeroesViewController.m */,
 				D4252394185218D2004B1ACE /* ELUHeroViewController.h */,
@@ -346,6 +354,7 @@
 				D425239E18522466004B1ACE /* npc_heroes.txt in Resources */,
 				D4410E0E185CCB870008C3F2 /* mana.png in Resources */,
 				D4410E10185CCB8C0008C3F2 /* cooldown.png in Resources */,
+				D4B09C95185D16BB0028D546 /* Trajan-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +380,7 @@
 				D495EB8B185BA60E00CB8E00 /* ELUHeroesCardView.m in Sources */,
 				D495EB90185BAAB700CB8E00 /* ELUHeroesTableView.m in Sources */,
 				D4410E0C185CC38E0008C3F2 /* ELUAbility.m in Sources */,
+				D4777D4E185D293B0082AB4C /* ELURootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

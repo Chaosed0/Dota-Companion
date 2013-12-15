@@ -20,6 +20,10 @@ FOUNDATION_EXPORT NSString *const kHeroIdPrefix;
 
 @interface ELUConstants : NSObject
 
+@property (strong, nonatomic, readonly) UIFont *heroTitleFont;
+@property (strong, nonatomic, readonly) UIFont *titleFont;
+@property (strong, nonatomic, readonly) UIFont *bigTitleFont;
+@property (strong, nonatomic, readonly) UIFont *subtitleFont;
 @property (strong, nonatomic, readonly) NSArray *teams;
 @property (strong, nonatomic, readonly) NSArray *attributes;
 @property (strong, nonatomic, readonly) UIColor *lightBackColor;
