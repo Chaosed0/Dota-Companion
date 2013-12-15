@@ -15,39 +15,70 @@
 #define kMainCardHeight 0.7
 #define kSideCardWidth 0.6
 #define kSideCardHeight 0.6
-#define kSideCardPadding -50
+#define kCardPadding 3.0
+#define kNumCards 5
 
 @interface ELUHeroesCardView ()
 
 @property NSInteger currentHero;
 @property (strong, nonatomic) NSMutableArray *cardViews;
 
+@property double timeWhenTouchBegan;
+@property CGPoint locationWhenTouchBegan;
+@property BOOL subviewsLaidOut;
+
 @end
 
 @implementation ELUHeroesCardView
+
+- (CGSize) mainCardSize {
+    return CGSizeMake(kMainCardWidth * self.bounds.size.width, kMainCardHeight * self.bounds.size.height);
+}
+
+- (CGSize) sideCardSize {
+    return CGSizeMake(kSideCardWidth * self.bounds.size.width, kSideCardHeight * self.bounds.size.height);
+}
+
+- (CGAffineTransform) transformForCardAt:(NSInteger)index {
+    if(index != 2) {
+        return CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);
+    } else {
+        return CGAffineTransformMakeScale(kMainCardWidth, kMainCardHeight);
+    }
+}
+
+- (CGPoint) centerForCardAt:(NSInteger)index {
+    switch(index) {
+        case 0:
+            return CGPointMake(self.bounds.size.width / 2.0 - self.mainCardSize.width / 2.0 - self.sideCardSize.width / 2.0 - self.sideCardSize.width - 2 * kCardPadding, self.bounds.size.height/2.0);
+        case 1:
+            return CGPointMake(self.bounds.size.width / 2.0 - self.mainCardSize.width / 2.0 - self.sideCardSize.width / 2.0 - kCardPadding, self.bounds.size.height/2.0);
+        case 2:
+            return CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0);
+        case 3:
+            return CGPointMake(self.bounds.size.width / 2.0 + self.mainCardSize.width / 2.0 + self.sideCardSize.width / 2.0 + kCardPadding, self.bounds.size.height/2.0);
+        case 4:
+            return CGPointMake(self.bounds.size.width / 2.0 + self.mainCardSize.width / 2.0 + self.sideCardSize.width / 2.0 + self.sideCardSize.width + 2 * kCardPadding, self.bounds.size.height/2.0);
+        default:
+            return CGPointMake(0,0);
+    }
+}
 
 - (id)initWithFrame:(CGRect)frame delegate:(id<ELUHeroDelegate>) delegate;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.subviewsLaidOut = NO;
         self.backgroundColor = [ELUConstants sharedInstance].darkBackColor;
         self.heroDelegate = delegate;
         
         self.currentHero = 0;
         
-        UISwipeGestureRecognizer *swipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
-        [swipeLeftRecognizer setDirection:UISwipeGestureRecognizerDirectionLeft];
-        [self addGestureRecognizer:swipeLeftRecognizer];
-        
-        UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeGesture:)];
-        [swipeRightRecognizer setDirection:UISwipeGestureRecognizerDirectionRight];
-        [self addGestureRecognizer:swipeRightRecognizer];
-        
         self.userInteractionEnabled = YES;
         
-        NSMutableArray *cardViews = [NSMutableArray arrayWithCapacity:5];
+        NSMutableArray *cardViews = [NSMutableArray arrayWithCapacity:kNumCards];
         
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < kNumCards; i++) {
             ELUCardView *cardView = [[ELUCardView alloc] initWithFrame:self.bounds];
             UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cardTapped)];
             gestureRecognizer.numberOfTapsRequired = 1;
@@ -59,136 +90,157 @@
                 if(i == 2) {
                     cardView.userInteractionEnabled = YES;
                 }
+            } else {
+                cardView.alpha = 0.0;
             }
             
             [cardViews addObject:cardView];
         }
             
-            self.cardViews = cardViews;
-        
+        self.cardViews = cardViews;
+                  
         [self addSubview:self.cardViews[0]];
         [self addSubview:self.cardViews[4]];
         [self addSubview:self.cardViews[1]];
         [self addSubview:self.cardViews[3]];
         [self addSubview:self.cardViews[2]];
-        
-        {
-            ELUCardView *cardView = self.cardViews[0];
-            CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);
-            cardView.transform = scaleTransform;
-            cardView.center = CGPointMake(-cardView.frame.size.width/2.0, self.bounds.size.height/2.0);
-            cardView.alpha = 0.0;
-        }
-        
-        {
-            ELUCardView *cardView = self.cardViews[1];
-            CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);
-            cardView.transform = scaleTransform;
-            cardView.center = CGPointMake(kSideCardPadding, self.bounds.size.height/2.0);
-            cardView.alpha = 0.0;
-        }
-        
-        {
-            ELUCardView *cardView = self.cardViews[2];
-            CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kMainCardWidth, kMainCardHeight);
-            cardView.transform = scaleTransform;
-        }
-        
-        {
-            ELUCardView *cardView = self.cardViews[3];
-            CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
-            cardView.transform = scaleTransform;
-            cardView.center = CGPointMake(self.bounds.size.width - kSideCardPadding, self.bounds.size.height/2.0);
-        }
-        
-        {
-            ELUCardView *cardView = self.cardViews[4];
-            CGAffineTransform scaleTransform = CGAffineTransformMakeScale(kSideCardWidth, kSideCardHeight);;
-            cardView.transform = scaleTransform;
-            cardView.center = CGPointMake(self.bounds.size.width + cardView.frame.size.width/2.0, self.bounds.size.height/2.0);
-        }
     }
     return self;
 }
 
-- (void) changeCards: (BOOL) right {
-    if(right && self.currentHero > 0) {
+- (void) resetCards {
+    for (int i = 0; i < self.cardViews.count; i++) {
+        ELUCardView *cardView = self.cardViews[i];
+        cardView.transform = [self transformForCardAt:i];
+        cardView.center = [self centerForCardAt:i];
+    }
+    [self bringSubviewToFront:self.cardViews[0]];
+    [self bringSubviewToFront:self.cardViews[4]];
+    [self bringSubviewToFront:self.cardViews[1]];
+    [self bringSubviewToFront:self.cardViews[3]];
+    [self bringSubviewToFront:self.cardViews[2]];
+}
+
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    
+    if(!self.subviewsLaidOut) {
+        [self resetCards];
+        self.subviewsLaidOut = YES;
+    }
+}
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    self.timeWhenTouchBegan = CACurrentMediaTime();
+    
+    UITouch *touch = [touches anyObject];
+    self.locationWhenTouchBegan = [touch locationInView:self];
+}
+
+- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+    
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    CGFloat relX = self.locationWhenTouchBegan.x - location.x;
+    [self setMainCardCenter:relX];
+    [self checkCardOutOfBounds];
+}
+
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    [self snapCards];
+}
+
+- (void) checkCardOutOfBounds {
+    BOOL moveCards = NO;
+    BOOL right = NO;
+    
+    ELUCardView *cardView = self.cardViews[2];
+    if(cardView.frame.origin.x < - self.mainCardSize.width / 2.0) {
+        right = NO;
+        moveCards = YES;
+        self.locationWhenTouchBegan = CGPointMake(self.locationWhenTouchBegan.x - ((ELUCardView*)self.cardViews[2]).frame.size.width, self.locationWhenTouchBegan.y);
+    } else if(cardView.frame.origin.x + cardView.frame.size.width > self.bounds.size.width + self.mainCardSize.width / 2.0) {
+        right = YES;
+        moveCards = YES;
+        self.locationWhenTouchBegan = CGPointMake(self.locationWhenTouchBegan.x + ((ELUCardView*)self.cardViews[2]).frame.size.width, self.locationWhenTouchBegan.y);
+    }
+    if(moveCards && right && self.currentHero > 0) {
         //Previous hero
         self.currentHero--;
         
         ELUCardView *tempCardView = self.cardViews[4];
-        CGAffineTransform tempTransform = [(UIView*)self.cardViews[4] transform];
-        CGRect tempFrame = [(UIView*)self.cardViews[4] frame];
         for (int i = 3; i >= 0; i--) {
             ELUCardView *cardView = self.cardViews[i];
-            CGAffineTransform swapTransform = cardView.transform;
-            CGRect swapFrame = cardView.frame;
-            [UIView animateWithDuration:0.5 animations:^{
-                cardView.transform = tempTransform;
-                cardView.frame = tempFrame;
-            }];
-            tempTransform = swapTransform;
-            tempFrame = swapFrame;
             self.cardViews[i+1] = cardView;
             
             cardView.userInteractionEnabled = NO;
-            
-            if((int)self.currentHero - 1 + i < 0 || (int)self.currentHero - 1 + i >= self.heroDelegate.heroCount) {
-                cardView.alpha = 0.0;
-            } else {
-                cardView.alpha = 1.0;
-            }
         }
         
-        tempCardView.transform = tempTransform;
-        tempCardView.frame = tempFrame;
+        ELUCardView *prevCardView = self.cardViews[1];
+        tempCardView.center = CGPointMake(prevCardView.frame.origin.x - kCardPadding - tempCardView.frame.size.width / 2.0, self.bounds.size.height / 2.0);
+        if(self.currentHero - 2 < 0) {
+            tempCardView.alpha = 0.0;
+        } else {
+            tempCardView.alpha = 1.0;
+            [tempCardView setupWithHero:[self.heroDelegate heroForIndex:self.currentHero-2]];
+        }
         self.cardViews[0] = tempCardView;
-        [self.cardViews[0] setupWithHero:[self.heroDelegate heroForIndex:self.currentHero-2]];
-    } else if(right) {
-        //Do a bounce animation
     }
-    if(!right && self.currentHero < self.heroDelegate.heroCount-1) {
+    if(moveCards && !right && self.currentHero < self.heroDelegate.heroCount-1) {
         //Next hero
         self.currentHero++;
         
         ELUCardView *tempCardView = self.cardViews[0];
-        CGAffineTransform tempTransform = [(UIView*)self.cardViews[0] transform];
-        CGRect tempFrame = [(UIView*)self.cardViews[0] frame];
         for (int i = 1; i < self.cardViews.count; i++) {
             ELUCardView *cardView = self.cardViews[i];
-            CGAffineTransform swapTransform = cardView.transform;
-            CGRect swapFrame = cardView.frame;
-            [UIView animateWithDuration:0.5 animations:^{
-                cardView.transform = tempTransform;
-                cardView.frame = tempFrame;
-            }];
-            tempTransform = swapTransform;
-            tempFrame = swapFrame;
             self.cardViews[i-1] = cardView;
-            
             cardView.userInteractionEnabled = NO;
-            
-            if((int)self.currentHero - 3 + i < 0 || (int)self.currentHero - 3 + i >= self.heroDelegate.heroCount) {
-                cardView.alpha = 0.0;
-            } else {
-                cardView.alpha = 1.0;
-            }
         }
         
-        tempCardView.transform = tempTransform;
-        tempCardView.frame = tempFrame;
+        ELUCardView *prevCardView = self.cardViews[3];
+        tempCardView.center = CGPointMake(prevCardView.frame.origin.x + prevCardView.frame.size.width + kCardPadding + tempCardView.frame.size.width / 2.0, self.bounds.size.height / 2.0);
+        if(self.currentHero + 2 >= [self.heroDelegate heroCount]) {
+            tempCardView.alpha = 0.0;
+        } else {
+            tempCardView.alpha = 1.0;
+            [tempCardView setupWithHero:[self.heroDelegate heroForIndex:self.currentHero+2]];
+        }
+        
         self.cardViews[4] = tempCardView;
-        [self.cardViews[4] setupWithHero:[self.heroDelegate heroForIndex:self.currentHero+2]];
-    } else if(!right) {
-        //Do a bounce animation
     }
-           
+    
     [(UIView*)self.cardViews[2] setUserInteractionEnabled:YES];
     [self bringSubviewToFront:self.cardViews[0]];
     [self bringSubviewToFront:self.cardViews[4]];
     [self bringSubviewToFront:self.cardViews[1]];
     [self bringSubviewToFront:self.cardViews[3]];
     [self bringSubviewToFront:self.cardViews[2]];
+}
+
+- (void) setMainCardCenter: (CGFloat)delta {
+    //Interpolate between where the center should be and where it was
+    for(int i = 0; i < self.cardViews.count; i++) {
+        CGFloat distance = [self centerForCardAt:i].x - self.bounds.size.width / 2.0 - delta;
+        CGFloat totalDistance = self.bounds.size.width / 2.0 - [self centerForCardAt:1].x;
+        CGFloat ratio = MIN(1.0, (distance * distance) / (totalDistance * totalDistance));
+        //Interpolate the size of the image
+        CGFloat width = kMainCardWidth - (kMainCardWidth - kSideCardWidth) * ratio;
+        CGFloat height = kMainCardWidth - (kMainCardHeight - kSideCardHeight) * ratio;
+        //Make the card this size
+        ELUCardView *cardView = self.cardViews[i];
+        cardView.transform = CGAffineTransformMakeScale(width, height);
+        cardView.center = CGPointMake([self centerForCardAt:i].x - delta, self.bounds.size.height/2.0);
+    }
+}
+
+- (void) snapCards {
+    
+}
+
+- (void) changeCards: (BOOL) right {
 }
 
 - (void) onSwipeGesture: (UISwipeGestureRecognizer*) gestureRecognizer {
