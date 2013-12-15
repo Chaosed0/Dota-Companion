@@ -11,14 +11,20 @@
 #import "ELUCardView.h"
 #import "ELUHero.h"
 
+#import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
 #define kMainCardWidth 0.7
 #define kMainCardHeight 0.7
-#define kSideCardWidth 0.6
-#define kSideCardHeight 0.6
+#define kSideCardWidth 0.5
+#define kSideCardHeight 0.5
 #define kCardPadding 10.0
 #define kNumCards 5
+
+#define kBounceAnimTime 0.2
+#define kMinVelocity 0.2
+#define kFriction 0.2
+#define kOOBFriction 1
 
 @interface ELUHeroesCardView ()
 
@@ -136,6 +142,7 @@
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
+    
     self.timeWhenTouchBegan = CACurrentMediaTime();
     
     UITouch *touch = [touches anyObject];
@@ -158,42 +165,21 @@
 
 - (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesEnded:touches withEvent:event];
+    [self cardBounce];
+}
+
+- (void) cardBounce {
+    if((self.currentHero <= 0 && ((ELUCardView*)self.cardViews[2]).center.x > self.bounds.size.width / 2.0) || (self.currentHero >= [self.heroDelegate heroCount] - 1 && ((ELUCardView*)self.cardViews[2]).center.x < self.bounds.size.width / 2.0)) {
+        [UIView animateWithDuration:kBounceAnimTime animations:^{
+            [self setMainCardCenter:self.centersWhenTouchBegan[2].x - self.bounds.size.width / 2.0];
+        }];
+    }
 }
 
 - (void) checkCardOutOfBounds {
-    BOOL moveCards = NO;
-    BOOL right = NO;
-    
-    ELUCardView *cardView = self.cardViews[2];
-    if(cardView.frame.origin.x < - self.mainCardSize.width / 2.0) {
-        right = NO;
-        moveCards = YES;
+    ELUCardView *centerCardView = self.cardViews[2];
+    if(centerCardView.frame.origin.x < - self.mainCardSize.width / 2.0 && self.currentHero < self.heroDelegate.heroCount-1) {
         self.locationWhenTouchBegan = CGPointMake(self.locationWhenTouchBegan.x - ((ELUCardView*)self.cardViews[2]).frame.size.width, self.locationWhenTouchBegan.y);
-    } else if(cardView.frame.origin.x + cardView.frame.size.width > self.bounds.size.width + self.mainCardSize.width / 2.0) {
-        right = YES;
-        moveCards = YES;
-        self.locationWhenTouchBegan = CGPointMake(self.locationWhenTouchBegan.x + ((ELUCardView*)self.cardViews[2]).frame.size.width, self.locationWhenTouchBegan.y);
-    }
-    if(moveCards && right && self.currentHero > 0) {
-        //Previous hero
-        self.currentHero--;
-        
-        ELUCardView *tempCardView = self.cardViews[4];
-        for (int i = 3; i >= 0; i--) {
-            ELUCardView *cardView = self.cardViews[i];
-            self.cardViews[i+1] = cardView;
-        }
-        
-        ELUCardView *prevCardView = self.cardViews[1];
-        tempCardView.center = CGPointMake(prevCardView.frame.origin.x - kCardPadding - tempCardView.frame.size.width / 2.0, self.bounds.size.height / 2.0);
-        if(self.currentHero - 2 >= 0) {
-            [self activateCardView:tempCardView heroAtIndex:self.currentHero-2];
-        } else {
-            [self disableCardView:tempCardView];
-        }
-        self.cardViews[0] = tempCardView;
-    }
-    if(moveCards && !right && self.currentHero < self.heroDelegate.heroCount-1) {
         //Next hero
         self.currentHero++;
         
@@ -212,6 +198,25 @@
         }
         
         self.cardViews[4] = tempCardView;
+    } else if(centerCardView.frame.origin.x + centerCardView.frame.size.width > self.bounds.size.width + self.mainCardSize.width / 2.0 && self.currentHero > 0) {
+        self.locationWhenTouchBegan = CGPointMake(self.locationWhenTouchBegan.x + ((ELUCardView*)self.cardViews[2]).frame.size.width, self.locationWhenTouchBegan.y);
+        //Previous hero
+        self.currentHero--;
+        
+        ELUCardView *tempCardView = self.cardViews[4];
+        for (int i = 3; i >= 0; i--) {
+            ELUCardView *cardView = self.cardViews[i];
+            self.cardViews[i+1] = cardView;
+        }
+        
+        ELUCardView *prevCardView = self.cardViews[1];
+        tempCardView.center = CGPointMake(prevCardView.frame.origin.x - kCardPadding - tempCardView.frame.size.width / 2.0, self.bounds.size.height / 2.0);
+        if(self.currentHero - 2 >= 0) {
+            [self activateCardView:tempCardView heroAtIndex:self.currentHero-2];
+        } else {
+            [self disableCardView:tempCardView];
+        }
+        self.cardViews[0] = tempCardView;
     }
     
     [(UIView*)self.cardViews[2] setUserInteractionEnabled:YES];
@@ -248,7 +253,14 @@
         CGFloat height = kMainCardWidth - (kMainCardHeight - kSideCardHeight) * ratio;
         //Make the card this size
         cardView.transform = CGAffineTransformMakeScale(width, height);
-        cardView.center = CGPointMake(self.centersWhenTouchBegan[i].x - delta, self.bounds.size.height/2.0);
+        //Move the card to the correct position
+        if(i != 0) {
+            ELUCardView *prevCardView = self.cardViews[i-1];
+            cardView.center = CGPointMake(prevCardView.frame.origin.x + prevCardView.frame.size.width + kCardPadding + cardView.frame.size.width / 2.0, self.bounds.size.height / 2.0);
+        } else {
+            cardView.center = CGPointMake(self.centersWhenTouchBegan[i].x - delta, self.bounds.size.height/2.0);
+            
+        }
     }
 }
 
