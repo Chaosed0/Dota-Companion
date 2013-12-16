@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet AsyncImageView *heroImageView;
 - (IBAction)backPressed:(UIBarButtonItem *)sender;
 @property (weak, nonatomic) IBOutlet UITextView *heroBioTextView;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 @property (strong, nonatomic) ELUAbility *segueAbility;
 @property (strong, nonatomic) UINavigationItem *titleItem;
@@ -76,23 +75,18 @@
     [self performSegueWithIdentifier:@"HeroAbilitySegue" sender:self];
 }
 
--(void)viewWillAppear:(BOOL)animated {
+- (void)viewWillLayoutSubviews {
     [self checkOrientation:self.interfaceOrientation];
-}
-
-- (void) willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    [self checkOrientation:toInterfaceOrientation];
 }
 
 - (void)checkOrientation:(UIInterfaceOrientation)orientation {
     CGSize frameSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
-    NSInteger toolbarHeight = self.toolbar.frame.size.height;
     if(UIInterfaceOrientationIsLandscape(orientation)) {
         NSInteger xPosition = self.heroImageView.frame.origin.x + self.heroImageView.frame.size.width + kPadding;
-        self.heroBioTextView.frame = CGRectMake(xPosition, kPadding, frameSize.width - xPosition - kPadding*2, frameSize.height - toolbarHeight - kPadding*2);
+        self.heroBioTextView.frame = CGRectMake(xPosition, kPadding, frameSize.width - xPosition - kPadding*2, frameSize.height - kPadding*2);
     } else if(UIInterfaceOrientationIsPortrait(orientation)) {
         NSInteger yPosition = self.abilityScrollView.frame.origin.y + self.abilityScrollView.frame.size.height + kPadding;
-        self.heroBioTextView.frame = CGRectMake(kPadding, yPosition, frameSize.width - kPadding * 2, frameSize.height - yPosition - kPadding*2 - toolbarHeight);
+        self.heroBioTextView.frame = CGRectMake(kPadding, yPosition, frameSize.width - kPadding * 2, frameSize.height - yPosition - kPadding*2);
     }
 }
 

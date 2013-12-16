@@ -23,9 +23,6 @@
 		D464308A184E6E62008BB0C5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4643088184E6E62008BB0C5 /* InfoPlist.strings */; };
 		D464308C184E6E62008BB0C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D464308B184E6E62008BB0C5 /* main.m */; };
 		D4643090184E6E62008BB0C5 /* ELUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D464308F184E6E62008BB0C5 /* ELUAppDelegate.m */; };
-		D4643092184E6E62008BB0C5 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D4643091184E6E62008BB0C5 /* Default.png */; };
-		D4643094184E6E62008BB0C5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4643093184E6E62008BB0C5 /* Default@2x.png */; };
-		D4643096184E6E62008BB0C5 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4643095184E6E62008BB0C5 /* Default-568h@2x.png */; };
 		D4643099184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4643097184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard */; };
 		D464309C184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D464309A184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard */; };
 		D464309F184E6E65008BB0C5 /* ELUHeroesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D464309E184E6E65008BB0C5 /* ELUHeroesViewController.m */; };
@@ -42,7 +39,14 @@
 		D4A9865F1851142A00766D7E /* overviewicon_int.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865C1851142A00766D7E /* overviewicon_int.png */; };
 		D4A986601851142A00766D7E /* overviewicon_str.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A9865D1851142A00766D7E /* overviewicon_str.png */; };
 		D4A9866318511C9100766D7E /* ELUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9866218511C9000766D7E /* ELUConstants.m */; };
+		D4AEF3DB185E78F6009A6B55 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AEF3DA185E78F6009A6B55 /* Default@2x.png */; };
+		D4AEF3DD185E78FE009A6B55 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AEF3DC185E78FE009A6B55 /* Default.png */; };
+		D4AEF3DF185E79B1009A6B55 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AEF3DE185E79B1009A6B55 /* Default-568h@2x.png */; };
 		D4B09C95185D16BB0028D546 /* Trajan-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */; };
+		D4E91747185E7CF400F85DAE /* dota2companion-text.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E91746185E7CF400F85DAE /* dota2companion-text.png */; };
+		D4E91749185E7D3600F85DAE /* dota2-icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E91748185E7D3600F85DAE /* dota2-icon-small.png */; };
+		D4E9174C185E872E00F85DAE /* dota2-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E9174B185E872E00F85DAE /* dota2-icon.png */; };
+		D4E9174D185E877E00F85DAE /* dota2-icon-hires.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AEF3D1185E78D8009A6B55 /* dota2-icon-hires.png */; };
 		D4F993E4185669C6005D5630 /* ELUAbilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F993E3185669C6005D5630 /* ELUAbilityViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -69,9 +73,6 @@
 		D464308D184E6E62008BB0C5 /* Dota Companion-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dota Companion-Prefix.pch"; sourceTree = "<group>"; };
 		D464308E184E6E62008BB0C5 /* ELUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELUAppDelegate.h; sourceTree = "<group>"; };
 		D464308F184E6E62008BB0C5 /* ELUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ELUAppDelegate.m; sourceTree = "<group>"; };
-		D4643091184E6E62008BB0C5 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		D4643093184E6E62008BB0C5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		D4643095184E6E62008BB0C5 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D4643098184E6E63008BB0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		D464309B184E6E65008BB0C5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		D464309D184E6E65008BB0C5 /* ELUHeroesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ELUHeroesViewController.h; sourceTree = "<group>"; };
@@ -100,7 +101,14 @@
 		D4A9865D1851142A00766D7E /* overviewicon_str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overviewicon_str.png; sourceTree = "<group>"; };
 		D4A9866118511C9000766D7E /* ELUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUConstants.h; sourceTree = "<group>"; };
 		D4A9866218511C9000766D7E /* ELUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUConstants.m; sourceTree = "<group>"; };
+		D4AEF3D1185E78D8009A6B55 /* dota2-icon-hires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dota2-icon-hires.png"; sourceTree = "<group>"; };
+		D4AEF3DA185E78F6009A6B55 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D4AEF3DC185E78FE009A6B55 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D4AEF3DE185E79B1009A6B55 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trajan-Bold.ttf"; sourceTree = "<group>"; };
+		D4E91746185E7CF400F85DAE /* dota2companion-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dota2companion-text.png"; sourceTree = "<group>"; };
+		D4E91748185E7D3600F85DAE /* dota2-icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dota2-icon-small.png"; sourceTree = "<group>"; };
+		D4E9174B185E872E00F85DAE /* dota2-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dota2-icon.png"; sourceTree = "<group>"; };
 		D4F993E2185669C6005D5630 /* ELUAbilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUAbilityViewController.h; sourceTree = "<group>"; };
 		D4F993E3185669C6005D5630 /* ELUAbilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUAbilityViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +155,8 @@
 		D44BACDC184FA4CE00CD0C62 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D4AEF3D1185E78D8009A6B55 /* dota2-icon-hires.png */,
+				D4E91746185E7CF400F85DAE /* dota2companion-text.png */,
 				D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */,
 				D4410E0D185CCB870008C3F2 /* mana.png */,
 				D4410E0F185CCB8C0008C3F2 /* cooldown.png */,
@@ -227,6 +237,11 @@
 		D4643073184E6E5F008BB0C5 = {
 			isa = PBXGroup;
 			children = (
+				D4E9174B185E872E00F85DAE /* dota2-icon.png */,
+				D4E91748185E7D3600F85DAE /* dota2-icon-small.png */,
+				D4AEF3DE185E79B1009A6B55 /* Default-568h@2x.png */,
+				D4AEF3DC185E78FE009A6B55 /* Default.png */,
+				D4AEF3DA185E78F6009A6B55 /* Default@2x.png */,
 				D46430AE184E736C008BB0C5 /* QuartzCore.framework */,
 				D4643085184E6E61008BB0C5 /* Dota Companion */,
 				D464307E184E6E61008BB0C5 /* Frameworks */,
@@ -270,9 +285,6 @@
 				D4643088184E6E62008BB0C5 /* InfoPlist.strings */,
 				D464308B184E6E62008BB0C5 /* main.m */,
 				D464308D184E6E62008BB0C5 /* Dota Companion-Prefix.pch */,
-				D4643091184E6E62008BB0C5 /* Default.png */,
-				D4643093184E6E62008BB0C5 /* Default@2x.png */,
-				D4643095184E6E62008BB0C5 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -339,9 +351,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D464308A184E6E62008BB0C5 /* InfoPlist.strings in Resources */,
-				D4643092184E6E62008BB0C5 /* Default.png in Resources */,
-				D4643094184E6E62008BB0C5 /* Default@2x.png in Resources */,
-				D4643096184E6E62008BB0C5 /* Default-568h@2x.png in Resources */,
 				D4643099184E6E63008BB0C5 /* MainStoryboard_iPhone.storyboard in Resources */,
 				D464309C184E6E65008BB0C5 /* MainStoryboard_iPad.storyboard in Resources */,
 				D46430AB184E6FB2008BB0C5 /* EMRAKUL.jpg in Resources */,
@@ -355,6 +364,13 @@
 				D4410E0E185CCB870008C3F2 /* mana.png in Resources */,
 				D4410E10185CCB8C0008C3F2 /* cooldown.png in Resources */,
 				D4B09C95185D16BB0028D546 /* Trajan-Bold.ttf in Resources */,
+				D4AEF3DB185E78F6009A6B55 /* Default@2x.png in Resources */,
+				D4AEF3DD185E78FE009A6B55 /* Default.png in Resources */,
+				D4AEF3DF185E79B1009A6B55 /* Default-568h@2x.png in Resources */,
+				D4E9174D185E877E00F85DAE /* dota2-icon-hires.png in Resources */,
+				D4E91747185E7CF400F85DAE /* dota2companion-text.png in Resources */,
+				D4E91749185E7D3600F85DAE /* dota2-icon-small.png in Resources */,
+				D4E9174C185E872E00F85DAE /* dota2-icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
