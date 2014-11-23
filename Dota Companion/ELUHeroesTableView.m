@@ -15,7 +15,7 @@
 
 static const NSString *kIconPrefix = @"overviewicon_";
 
-#define kNumColumnsPerCategory 4
+#define kNumColumnsPerCategory 5
 #define kThumbWidth 59
 #define kThumbHeight 33
 #define kPadding 5.0

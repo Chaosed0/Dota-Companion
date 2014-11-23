@@ -42,6 +42,9 @@
         self.manaCostImageView.alpha = 0.0;
         self.cooldownImageView.alpha = 0.0;
     }
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (NSAttributedString*)attributedStringDescription {

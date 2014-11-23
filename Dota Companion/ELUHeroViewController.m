@@ -40,6 +40,9 @@
     self.title = self.hero.name;
     self.heroImageView.imageURL = self.hero.imageUrlLarge;
     self.heroBioTextView.text = self.hero.bio;
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

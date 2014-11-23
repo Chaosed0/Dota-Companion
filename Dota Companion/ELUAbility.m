@@ -95,7 +95,7 @@ const NSString *keyLore = @"lore";
     
     //Try to get the description; if it doesn't exist, then in general,
     // this ability is not correct
-    NSString *description = dotaStrings[[eluUtil concatString:baseDotaString and:@"Description"]];
+    NSString *description = dotaStrings[[eluUtil concatString:baseDotaString and:@"_Description"]];
     if(!description) {
         return NO;
     }

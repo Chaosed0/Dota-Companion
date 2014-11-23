@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC76ADBE1A2103C700F7F391 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC76ADBD1A2103C700F7F391 /* Images.xcassets */; };
 		D4252396185218D2004B1ACE /* ELUHeroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4252395185218D2004B1ACE /* ELUHeroViewController.m */; };
 		D425239B18522466004B1ACE /* dota_english.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239718522466004B1ACE /* dota_english.txt */; };
 		D425239C18522466004B1ACE /* items.txt in Resources */ = {isa = PBXBuildFile; fileRef = D425239818522466004B1ACE /* items.txt */; };
@@ -41,7 +42,6 @@
 		D4A9866318511C9100766D7E /* ELUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A9866218511C9000766D7E /* ELUConstants.m */; };
 		D4AEF3DB185E78F6009A6B55 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AEF3DA185E78F6009A6B55 /* Default@2x.png */; };
 		D4AEF3DD185E78FE009A6B55 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AEF3DC185E78FE009A6B55 /* Default.png */; };
-		D4AEF3DF185E79B1009A6B55 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D4AEF3DE185E79B1009A6B55 /* Default-568h@2x.png */; };
 		D4B09C95185D16BB0028D546 /* Trajan-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */; };
 		D4E91747185E7CF400F85DAE /* dota2companion-text.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E91746185E7CF400F85DAE /* dota2companion-text.png */; };
 		D4E91749185E7D3600F85DAE /* dota2-icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E91748185E7D3600F85DAE /* dota2-icon-small.png */; };
@@ -51,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC76ADBD1A2103C700F7F391 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4252394185218D2004B1ACE /* ELUHeroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELUHeroViewController.h; sourceTree = "<group>"; };
 		D4252395185218D2004B1ACE /* ELUHeroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELUHeroViewController.m; sourceTree = "<group>"; };
 		D425239718522466004B1ACE /* dota_english.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dota_english.txt; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		D4AEF3D1185E78D8009A6B55 /* dota2-icon-hires.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dota2-icon-hires.png"; sourceTree = "<group>"; };
 		D4AEF3DA185E78F6009A6B55 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D4AEF3DC185E78FE009A6B55 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		D4AEF3DE185E79B1009A6B55 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D4B09C94185D16BB0028D546 /* Trajan-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Trajan-Bold.ttf"; sourceTree = "<group>"; };
 		D4E91746185E7CF400F85DAE /* dota2companion-text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dota2companion-text.png"; sourceTree = "<group>"; };
 		D4E91748185E7D3600F85DAE /* dota2-icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dota2-icon-small.png"; sourceTree = "<group>"; };
@@ -239,7 +239,6 @@
 			children = (
 				D4E9174B185E872E00F85DAE /* dota2-icon.png */,
 				D4E91748185E7D3600F85DAE /* dota2-icon-small.png */,
-				D4AEF3DE185E79B1009A6B55 /* Default-568h@2x.png */,
 				D4AEF3DC185E78FE009A6B55 /* Default.png */,
 				D4AEF3DA185E78F6009A6B55 /* Default@2x.png */,
 				D46430AE184E736C008BB0C5 /* QuartzCore.framework */,
@@ -273,6 +272,7 @@
 				D44BACDD184FA4D700CD0C62 /* Code */,
 				D44BACDC184FA4CE00CD0C62 /* Assets */,
 				D44BACDA184FA4B300CD0C62 /* Data */,
+				CC76ADBD1A2103C700F7F391 /* Images.xcassets */,
 				D4643086184E6E62008BB0C5 /* Supporting Files */,
 			);
 			path = "Dota Companion";
@@ -365,8 +365,8 @@
 				D4410E10185CCB8C0008C3F2 /* cooldown.png in Resources */,
 				D4B09C95185D16BB0028D546 /* Trajan-Bold.ttf in Resources */,
 				D4AEF3DB185E78F6009A6B55 /* Default@2x.png in Resources */,
+				CC76ADBE1A2103C700F7F391 /* Images.xcassets in Resources */,
 				D4AEF3DD185E78FE009A6B55 /* Default.png in Resources */,
-				D4AEF3DF185E79B1009A6B55 /* Default-568h@2x.png in Resources */,
 				D4E9174D185E877E00F85DAE /* dota2-icon-hires.png in Resources */,
 				D4E91747185E7CF400F85DAE /* dota2companion-text.png in Resources */,
 				D4E91749185E7D3600F85DAE /* dota2-icon-small.png in Resources */,
@@ -491,6 +491,8 @@
 		D46430A3184E6E65008BB0C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dota Companion/Dota Companion-Prefix.pch";
 				INFOPLIST_FILE = "Dota Companion/Dota Companion-Info.plist";
@@ -502,6 +504,8 @@
 		D46430A4184E6E65008BB0C5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Dota Companion/Dota Companion-Prefix.pch";
 				INFOPLIST_FILE = "Dota Companion/Dota Companion-Info.plist";

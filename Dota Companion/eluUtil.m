@@ -67,6 +67,9 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
             if([[NSCharacterSet newlineCharacterSet] characterIsMember:c]) {
                 inComment = NO;
             }
+        } else if (c == '\\' && !escape) {
+            //Escape the next character
+            escape = YES;
         } else if(c == '\"' && !escape) {
             //We found a quote character; we either ended or began a string
             if(foundKey) {
@@ -101,6 +104,8 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
             } else {
                 [key appendString:[NSString stringWithCharacters:&c length:1]];
             }
+            //If we were escaping this character, don't anymore
+            escape = NO;
         } else if(c == '/') {
             if(!beganComment) {
                 beganComment = YES;
@@ -119,6 +124,12 @@ static const NSString *kStringsDictLoc = @"dota_english.txt";
         } else if(c == '}' || c == '\0') {
             //We are ending a dictionary; we want to advance the character first
             stop = true;
+        }
+        
+        if(!inString && escape) {
+            //You can't do that
+            escape = NO;
+            NSLog(@"Escaped outside of string on character %c", c);
         }
         
         //Advance to the next character; we want to do this even if we're stopping, so as to skip the end brace. This should be robust enough to handle the case where the \0 is at the end of the buffer, too.

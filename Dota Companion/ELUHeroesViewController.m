@@ -39,6 +39,9 @@
     self.tableView = [[ELUHeroesTableView alloc] initWithFrame:self.view.bounds delegate:self];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     [self.view addSubview:self.cardView];
     [self.view addSubview:self.tableView];
 }
